@@ -45,6 +45,7 @@ namespace ft
 		 * constructor, it can only be later updated by reading from a file.
 		 */
 		FaceImage(const QString &sFileName = QString());
+        FaceImage(const QString &sFileName, std::vector<FaceFeature*>& features);
 
 		/**
 		 * Class destructor.
@@ -143,10 +144,8 @@ namespace ft
 
 		/** Name of the file with the face image. */
 		QString m_sFileName;
-
 		/** Vector of the face features in this face image. */
 		std::vector<FaceFeature*> m_vFeatures;
-
 		/** Vector of the connections between face features in this face image. */
 		std::vector<FaceFeatureEdge*> m_vConnections;
     };

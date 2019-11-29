@@ -42,22 +42,15 @@ namespace ft
     {
         Q_OBJECT
 	public:
+		static const double ZOOM_IN_STEP;/** Scale value for the zoom in step. */
+		static const double ZOOM_OUT_STEP;/** Scale value for the zoom out step. */
 
-		/** Scale value for the zoom in step. */
-		static const double ZOOM_IN_STEP;
+		static const double ROTATE_LEFT_STEP;/** Rotate value for the rotate left step. */
+		static const double ROTATE_RIGHT_STEP;/** Rotate value for the rotate right step. */
 
-		/** Scale value for the zoom out step. */
-		static const double ZOOM_OUT_STEP;
-
-		/**
-		 * Class constructor.
-		 * @param pParent Instance of the parent widget.
-		 */
+		/** * Class constructor.  * @param pParent Instance of the parent widget. 	 */
 		FaceWidget(QWidget *pParent = 0);
 
-		/**
-		 * Class destructor.
-		 */
 		virtual ~FaceWidget();
 
 		/**
@@ -66,28 +59,18 @@ namespace ft
 		 */
 		void setPixmap(const QPixmap &oPixmap);
 
-		/**
-		 * Gets the currently applied scale factor on the image displayed.
-		 * @return Double with the currently applied scale factor.
-		 */
+		 /// Gets the currently applied scale factor on the image displayed.  @return Double with the currently applied scale factor.
 		double getScaleFactor() const;
-
-		/**
-		 * Sets the scale factor of the image displayed.
-		 * @param dScaleFactor Double with the new scale factor to be applied. It must be 
-		 * in the interval [0.10, 10.0].
-		 */
+		 /// Sets the scale factor of the image displayed.
+		 /// @param dScaleFactor Double with the new scale factor to be applied. It must be  in the interval [0.10, 13.0].
 		void setScaleFactor(const double dScaleFactor);
+	    void zoomIn();/// Performs one step of zoom in.
+		void zoomOut();/// Performs one step of zoom out.
 
-		/**
-		 * Performs one step of zoom in.
-		 */
-	    void zoomIn();
-
-		/**
-		 * Performs one step of zoom out.
-		 */
-		void zoomOut();
+        double  getRotateFactor() const;
+        void    setRotateFactor(const double dRotateFactor);
+		void    rotateLeft();
+		void    rotateRight();
 
 		/**
 		 * Queries the list of existing face feature nodes. Optionally, guarantee that the
@@ -219,7 +202,9 @@ namespace ft
 		 * with the widget (that is, a call to setScaleFactor does not emit this signal).
 		 * @param dScaleFactor Double with the new scale factor.
 		 */
-		void onScaleFactorChanged(const double dScaleFactor);
+		void onScaleFeatureChanged (const double dScaleFeature);
+		void onScaleFactorChanged (const double dScaleFactor);
+		void onRotateFactorChanged(const double dRotateFactor);
 
 		/**
 		 * Signal to indicate that the face features changed somehow: a face feature node was added, removed or moved
@@ -255,16 +240,12 @@ namespace ft
 		 */
 		void mouseReleaseEvent(QMouseEvent *pEvent);
 
-		/**
-		 * Scales the widget view to emulate a zoom behaviour by the given factor.
-		 * @param dFactorBy Double with the scale to be added/removed.
-		 */
+		/**  Scales the widget view to emulate a zoom behaviour by the given factor. * @param dFactorBy Double with the scale to be added/removed. 		 */
 		void scaleViewBy(double dFactorBy);
+        void rotateViewBy(const double step);
+        void scaleFeaturesBy(const double factor);
 
-		/**
-		 * Creates the face feature nodes and edges to be used by the face features editor.
-		 */
-		void createFaceFeatures();
+		void createFaceFeatures(); ///Creates the face feature nodes and edges to be used by the face features editor.
 
 		/**
 		 * Captures the context menu event.
@@ -293,8 +274,12 @@ namespace ft
 		/** Pixmap item used to display the face image. */
 		QGraphicsPixmapItem *m_pPixmapItem;
 
-		/** The current applied scale factor. */
-		double m_dScaleFactor;
+		/** The current applied rotate factor. */
+		double m_dRotateFactor;
+
+        /** The current applied scale factor. */
+        double m_dScaleFactor;
+        double m_dScaleFeature;
 
 		/** List of nodes used to edit the coordinates of facial features. */
 		QList<FaceFeatureNode*> m_lFaceFeatures;
@@ -313,7 +298,7 @@ namespace ft
 
 		/** Context menu for the face feature editor. */
 		QMenu *m_pContextMenu;
-	};
+    };
 };
 
 

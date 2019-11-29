@@ -153,3 +153,8 @@ void ft::FaceFeature::saveToXML(QDomElement &oParent) const
 		oTarget.setAttribute("id", iID);
 	}
 }
+
+int ft::FaceFeature::getRadius() const{
+
+    return radius;
+}

@@ -23,6 +23,8 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QApplication>
+#include <fstream>
+#include <iostream>
 
 using namespace std;
 
@@ -156,6 +158,31 @@ bool ft::FaceDataset::saveToFile(const QString &sFileName, QString &sMsgError) c
 		pImage->setFileName(oBase.relativeFilePath(pImage->fileName()));
 		pImage->saveToXML(oSamples);
 		pImage->setFileName(sSave);
+
+
+        std::vector<FaceFeature*>   features        =   pImage->getFeatures();
+        QString                     img_name        =   oBase.absoluteFilePath( pImage->fileName() );
+        std::string                 img_name__      =   img_name.toUtf8().constData();
+        std::string                 img_name_pts;
+
+        img_name_pts = img_name__.substr(0, img_name__.size()-4);
+
+        img_name__      +=  ".dan74";
+        img_name_pts    +=  ".pts";
+
+        std::ofstream   file( img_name__.c_str() );
+        for ( int idx=0; idx<features.size(); ++idx){    file << features[idx]->x() << " "  << features[idx]->y() << std::endl;        }
+        file.close();
+
+        std::ofstream   file2( img_name_pts.c_str() );
+        file2 << "version: 1" << std::endl;
+        file2 << "n_points: " << features.size() << std::endl;
+        file2 << "{" << std::endl;
+
+        for ( int idx=0; idx<features.size(); ++idx){    file2 << features[idx]->x() << " "  << features[idx]->y() << std::endl;        }
+        file2 << "}" ;
+        file2.close();
+
 	}
 
 	/******************************************************
@@ -201,7 +228,15 @@ ft::FaceImage* ft::FaceDataset::addImage(const QString &sFileName)
 		if(pImage->fileName() == sFileName)
 			return pImage;
 
-	FaceImage *pRet = new FaceImage(sFileName);
+    FaceImage *pRet = new FaceImage(sFileName);
+    FaceImage *pImLast = getImage( this->size()-1 );
+
+    for (int idx=0; idx<this->numFeatures(); ++idx){
+
+        FaceFeature *pF = pImLast->getFeature(idx);
+        pRet->addFeature(idx, pF->x(), pF->y());
+    }
+
 	m_vSamples.push_back(pRet);
 	return pRet;
 }

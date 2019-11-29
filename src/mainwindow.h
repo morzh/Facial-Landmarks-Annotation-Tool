@@ -25,6 +25,7 @@
 
 #include "aboutwindow.h"
 #include "childwindow.h"
+#include "landmarksproperties.h"
 
 namespace Ui {
     class MainWindow;
@@ -238,6 +239,8 @@ namespace ft
 		 */
 		void on_actionDisconnectFeatures_triggered();
 
+		void on_actionLandmarksProperties_triggered();
+
 		/**
 		 * Define the view to be used for the list of images (icons, a list view, or "details", a tree view).
 		 * @param sType String with the type to be used (either "icons" or "details").
@@ -292,6 +295,7 @@ namespace ft
 
         /** Instance of the about dialog box. */
         AboutWindow* m_pAbout;
+        LandmarksProperties* m_pLProperties;
 
 		/** Last path used in File Dialogs. */
 		QString m_sLastPathUsed;

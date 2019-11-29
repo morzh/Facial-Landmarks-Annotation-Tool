@@ -28,8 +28,11 @@
 #include <QGraphicsSceneMouseEvent>
 
 // Scale values for zoom in and out steps
-const double ft::FaceWidget::ZOOM_IN_STEP = 1.25;
+const double ft::FaceWidget::ZOOM_IN_STEP  = 1.25;
 const double ft::FaceWidget::ZOOM_OUT_STEP = 0.80;
+
+const double ft::FaceWidget::ROTATE_LEFT_STEP  = +2.25;
+const double ft::FaceWidget::ROTATE_RIGHT_STEP = -2.25;
 
 // Number of face features edited by the widget
 const int ft::FaceWidget::NUM_FACE_FEATURES = 68;
@@ -50,7 +53,10 @@ ft::FaceWidget::FaceWidget(QWidget *pParent) : QGraphicsView(pParent)
     setTransformationAnchor(AnchorUnderMouse);
 
     scale(1.0, 1.0);
+    rotate(0.0);
+
 	m_dScaleFactor = 1.0;
+	m_dRotateFactor = 0.0;
 
 	setBackgroundBrush(QApplication::palette().dark());
 
@@ -85,9 +91,18 @@ void ft::FaceWidget::setPixmap(const QPixmap &oPixmap)
 	m_pScene->setSceneRect(0, 0, oPixmap.width(), oPixmap.height());
 }
 
+double ft::FaceWidget::getRotateFactor() const {
+
+    return qFloor(m_dRotateFactor * 100000.0) / 100000.0; // Returns it with precision of 5 decimals
+}
+
+void ft::FaceWidget::setRotateFactor(const double dScaleFactor) {
+}
+
+
 // +-----------------------------------------------------------
-double ft::FaceWidget::getScaleFactor() const
-{
+double ft::FaceWidget::getScaleFactor() const{
+
 	return qFloor(m_dScaleFactor * 100000.0) / 100000.0; // Returns it with precision of 5 decimals
 }
 
@@ -97,7 +112,7 @@ void ft::FaceWidget::setScaleFactor(const double dScaleFactor)
 	if(dScaleFactor == m_dScaleFactor)
 		return;
 
-	if(dScaleFactor >= 0.10 && dScaleFactor <= 10.0)
+	if(dScaleFactor >= 0.10 && dScaleFactor <= 13.0)
 	{
 		// First, go back to the base scale (1.0 or 100%)
 		double dAdjust = 1.0 / m_dScaleFactor;
@@ -114,7 +129,7 @@ void ft::FaceWidget::setScaleFactor(const double dScaleFactor)
 void ft::FaceWidget::scaleViewBy(double dFactorBy)
 {
 	double dFactor = m_dScaleFactor * dFactorBy;
-	if(dFactor >= 0.10 && dFactor <= 10.0)
+	if(dFactor >= 0.05 && dFactor <= 13.0)
 	{
 		m_dScaleFactor = dFactor;
 	    scale(dFactorBy, dFactorBy);
@@ -123,7 +138,6 @@ void ft::FaceWidget::scaleViewBy(double dFactorBy)
 		emit onScaleFactorChanged(getScaleFactor());
 	}
 }
-
 #ifndef QT_NO_WHEELEVENT
 // +-----------------------------------------------------------
 void ft::FaceWidget::wheelEvent(QWheelEvent *pEvent)
@@ -131,8 +145,10 @@ void ft::FaceWidget::wheelEvent(QWheelEvent *pEvent)
 	bool bCtrl = QApplication::keyboardModifiers() & Qt::ControlModifier;
 	bool bAlt = QApplication::keyboardModifiers() & Qt::AltModifier;
 	bool bShift = QApplication::keyboardModifiers() & Qt::ShiftModifier;
+
 	int iDelta = pEvent->angleDelta().x() + pEvent->angleDelta().y();
-	double dBase = iDelta < 0 ? ZOOM_OUT_STEP : ZOOM_IN_STEP;
+	double dBase  = iDelta < 0 ? ZOOM_OUT_STEP : ZOOM_IN_STEP;
+	double dBase2 = iDelta < 0 ? ROTATE_LEFT_STEP : ROTATE_RIGHT_STEP;
 	int iSteps = abs(iDelta / 120);
 
 	if(!(bCtrl || bAlt || bShift)) // No special key pressed => scroll vertically
@@ -141,7 +157,10 @@ void ft::FaceWidget::wheelEvent(QWheelEvent *pEvent)
 		horizontalScrollBar()->setValue(horizontalScrollBar()->value() - iDelta);
 	else if(bCtrl && !(bAlt || bShift)) // Only ctrl key pressed => zoom in and out
 		scaleViewBy(qPow(dBase, iSteps));
+	else if ( !bCtrl && bAlt && !bShift)
+	    rotateViewBy(qPow(dBase2, iSteps));
 }
+
 #endif
 
 // +-----------------------------------------------------------
@@ -211,6 +230,29 @@ void ft::FaceWidget::zoomIn()
 void ft::FaceWidget::zoomOut()
 {
 	scaleViewBy(ZOOM_OUT_STEP);
+}
+
+void ft::FaceWidget::rotateLeft() {
+
+    rotateViewBy(ROTATE_LEFT_STEP);
+}
+
+void ft::FaceWidget::rotateRight() {
+
+    rotateViewBy(ROTATE_RIGHT_STEP);
+}
+
+void ft::FaceWidget::rotateViewBy(double dFactorBy) {
+
+    double dFactor = m_dRotateFactor + dFactorBy;
+    if(dFactor >= -180.0 && dFactor <= 180.0)
+    {
+        m_dRotateFactor = dFactor;
+        rotate(dFactorBy);
+
+        // Emit the signal that the scale factor has changed
+        emit onRotateFactorChanged(getRotateFactor());
+    }
 }
 
 // +-----------------------------------------------------------
@@ -446,7 +488,6 @@ void ft::FaceWidget::removeConnection(FaceFeatureEdge* pEdge)
 	m_pScene->removeItem(pEdge);
 	delete pEdge;
 }
-
 // +-----------------------------------------------------------
 void ft::FaceWidget::faceFeatureMoved(FaceFeatureNode *pNode)
 {
@@ -465,6 +506,7 @@ bool ft::FaceWidget::displayFaceFeatures() const
 {
 	return m_bDisplayFaceFeatures;
 }
+
 // +-----------------------------------------------------------
 void ft::FaceWidget::setDisplayFaceFeatures(const bool bValue)
 {
@@ -529,7 +571,20 @@ void ft::FaceWidget::contextMenuEvent(QContextMenuEvent *pEvent)
 }
 
 // +-----------------------------------------------------------
-void ft::FaceWidget::setContextMenu(QMenu *pMenu)
-{
+void ft::FaceWidget::setContextMenu(QMenu *pMenu){
+
 	m_pContextMenu = pMenu;
 }
+
+void ft::FaceWidget::scaleFeaturesBy(const double dFactorBy) {
+
+    double dFactor = m_dScaleFactor * dFactorBy;
+    if(dFactor >= 0.05 && dFactor <= 13.0)
+    {
+        m_dScaleFeature = dFactor;
+        scale(dFactorBy, dFactorBy);
+        emit onScaleFactorChanged(getScaleFactor());
+    }
+
+}
+

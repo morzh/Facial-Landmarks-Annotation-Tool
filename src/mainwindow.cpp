@@ -20,6 +20,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "aboutwindow.h"
+#include "landmarksproperties.h"
 #include "facefitconfig.h"
 #include "utils.h"
 #include "application.h"
@@ -301,6 +302,12 @@ void ft::MainWindow::on_actionExit_triggered()
     QApplication::exit(0);
 }
 
+
+void ft::MainWindow::on_actionLandmarksProperties_triggered(){
+
+    (new LandmarksProperties(this))->show();
+}
+
 // +-----------------------------------------------------------
 void ft::MainWindow::on_actionConfigure_triggered()
 {
@@ -483,6 +490,7 @@ void ft::MainWindow::on_actionAddImage_triggered()
 	{
 		m_sLastPathUsed = QFileInfo(lsFiles[0]).absolutePath();
 		pChild->dataModel()->addImages(lsFiles);
+
 		if(!pChild->selectionModel()->currentIndex().isValid())
 			pChild->selectionModel()->setCurrentIndex(pChild->dataModel()->index(0, 0), QItemSelectionModel::Select);
 	}
@@ -676,6 +684,7 @@ void ft::MainWindow::updateUI()
 	// Setup the control variables
 	ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
 
+	bool bLandmarksPropertiesOpened = pChild != NULL;
 	bool bFileOpened = pChild != NULL;
 	bool bFileChanged = bFileOpened ? pChild->isWindowModified() : false;
 	bool bItemsSelected = bFileOpened && (pChild->selectionModel()->currentIndex().isValid() || pChild->selectionModel()->selectedIndexes().size() > 0);
@@ -708,6 +717,7 @@ void ft::MainWindow::updateUI()
 	}
 
 	// Update the UI availability
+//	ui->actionLandmarksProperties(bLandmarksPropertiesOpened)
 	ui->actionSave->setEnabled(bFileChanged);
 	ui->actionSaveAs->setEnabled(bFileNotNew);
 	ui->actionAddImage->setEnabled(bFileOpened);
@@ -720,6 +730,7 @@ void ft::MainWindow::updateUI()
 	ui->actionExportPointsFile->setEnabled(bItemsSelected);
 	m_pViewButton->setEnabled(bFileOpened);
 	ui->zoomSlider->setEnabled(bFileOpened);
+	ui->rotationSlider->setEnabled(bFileOpened);
 
 	// Update the tab title and tooltip
 	if(bFileOpened)

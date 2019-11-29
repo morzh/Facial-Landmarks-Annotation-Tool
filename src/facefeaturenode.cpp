@@ -27,7 +27,7 @@
 #include <QPainter>
 
 // Radius of the drawn node, in pixels
-const int ft::FaceFeatureNode::RADIUS = 4;
+const int ft::FaceFeatureNode::RADIUS = 3;
 
 // +-----------------------------------------------------------
 ft::FaceFeatureNode::FaceFeatureNode(int iID, FaceWidget *pFaceWidget)
@@ -78,7 +78,7 @@ ft::FaceFeatureEdge *ft::FaceFeatureNode::getEdgeTo(const FaceFeatureNode *pNode
 	return NULL;
 }
 
-// +-----------------------------------------------------------
+// +----------------------------number-------------------------------
 QRectF ft::FaceFeatureNode::boundingRect() const
 {
 	if(m_pFaceWidget->displayFeatureIDs())
@@ -92,41 +92,46 @@ QRectF ft::FaceFeatureNode::boundingRect() const
 		return QRectF(-RADIUS, -RADIUS, 2 * RADIUS, 2 * RADIUS);
 }
 
+QRectF ft::FaceFeatureNode::boundingRect(bool displayFeaturesIds) const
+{
+    if (displayFeaturesIds)
+    {
+        QString sID = QString::number(m_iID);
+        int iHeight = m_pFaceWidget->fontMetrics().height();
+        int iWidth = m_pFaceWidget->fontMetrics().width(sID);
+        return QRectF(-(iWidth + RADIUS), -(iHeight + RADIUS), 2 * RADIUS + iWidth, 2 * RADIUS + iHeight);
+    } else
+        return QRectF(-RADIUS, -RADIUS, 2 * RADIUS, 2 * RADIUS);
+
+}
 // +-----------------------------------------------------------
 void ft::FaceFeatureNode::paint(QPainter *pPainter, const QStyleOptionGraphicsItem *pOption, QWidget *pWidget)
 {
-	Q_UNUSED(pOption);
-	Q_UNUSED(pWidget);
+    Q_UNUSED(pOption);
+    Q_UNUSED(pWidget);
 
-	QBrush oBrush;
-	oBrush.setStyle(Qt::SolidPattern);
-	if(isSelected())
-	{
-	    pPainter->setPen(QPen(Qt::red, 0));
-		oBrush.setColor(QColor(Qt::red));
-	}
-	else
-	{
-	    pPainter->setPen(QPen(Qt::yellow, 0));
-		oBrush.setColor(QColor(Qt::yellow));
-	}
-
-	QRectF oBounds;
-	if(m_pFaceWidget->displayFeatureIDs())
-	{
-		QString sID = QString::number(m_iID);
-		int iHeight = m_pFaceWidget->fontMetrics().height();
-		int iWidth = m_pFaceWidget->fontMetrics().width(sID);
-		oBounds = QRectF(-(iWidth + RADIUS), -(iHeight + RADIUS), iWidth, iHeight);
-		pPainter->drawText(oBounds, sID);
-
-		oBounds = QRectF(-RADIUS, -RADIUS, 2 * RADIUS, 2 * RADIUS);
-	}
-	else
-		oBounds = boundingRect();
+    QBrush oBrush;
+    oBrush.setStyle(Qt::SolidPattern);
+    if(isSelected())
+    {
+        pPainter->setPen(QPen(Qt::black, 1));
+        oBrush.setColor(QColor(Qt::red));
+    }
+    else
+    {
+        pPainter->setPen(QPen(Qt::black, 1));
+        oBrush.setColor(QColor(Qt::yellow));
+    }
 
     pPainter->setBrush(oBrush);
-	pPainter->drawEllipse(oBounds);
+    pPainter->drawEllipse(boundingRect(false));
+
+    if(m_pFaceWidget->displayFeatureIDs())
+    {
+        QString sID = QString::number(m_iID);
+        pPainter->drawText(boundingRect(true), sID);
+    }
+
 }
 
 // +-----------------------------------------------------------

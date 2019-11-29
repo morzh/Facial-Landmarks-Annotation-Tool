@@ -29,6 +29,12 @@ ft::FaceImage::FaceImage(const QString &sFileName)
 	m_sFileName = sFileName;
 }
 
+ft::FaceImage::FaceImage(const QString &sFileName, std::vector<FaceFeature*>& features){
+
+    m_sFileName = sFileName;
+    m_vFeatures = features;
+}
+
 // +-----------------------------------------------------------
 ft::FaceImage::~FaceImage()
 {
@@ -42,6 +48,7 @@ void ft::FaceImage::clear()
 		delete pFeature;
 	foreach(FaceFeatureEdge *pEdge, m_vConnections)
 		delete pEdge;
+
 	m_vFeatures.clear();
 	m_vConnections.clear();
 }

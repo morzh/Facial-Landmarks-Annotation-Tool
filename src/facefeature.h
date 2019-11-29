@@ -23,6 +23,7 @@
 #include <QDomDocument>
 #include <vector>
 #include <QPoint>
+#include <QColor>
 
 namespace ft
 {
@@ -90,10 +91,14 @@ namespace ft
          */
         void saveToXML(QDomElement &oParent) const;
 
+        int getRadius() const;
+
 	private:
 
 		/** Identifier of the face feature. */
 		int m_iID;
+		QColor  color;
+		int radius =3;
 
 		/** List of other features to which this feature is connected to. */
 		std::vector<int> m_vConnections;

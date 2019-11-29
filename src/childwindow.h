@@ -96,16 +96,13 @@ namespace ft
 		 * @return Integer with the current zoom level.
 		 */
 		int getZoomLevel() const;
+		void zoomIn(); /// Performs one step of zoom in.
+        void zoomOut(); /// Performs one step of zoom out.
 
-		/**
-		 * Performs one step of zoom in.
-		 */
-		void zoomIn();
+        int getRotateLevel() const;
 
-		/**
-		 * Performs one step of zoom out.
-		 */
-		void zoomOut();
+
+
 
 		/**
 		 * Indicates if the face feature nodes are on display.
@@ -173,21 +170,9 @@ namespace ft
 		 * @param oPos QPoint with the position (x, y) of the new feature.
 		 */
 		void addFeature(const QPoint &oPos);
-
-		/**
-		 * Removes the selected features and all their connections.
-		 */
-		void removeSelectedFeatures();
-
-		/**
-		 * Connects the selected features among themselves.
-		 */
-		void connectFeatures();
-
-		/**
-		 * Disconnects the selected features.
-		 */
-		void disconnectFeatures();
+		void removeSelectedFeatures();/** Removes the selected features and all their connections. */
+		void connectFeatures();/** Connects the selected features among themselves.  */
+		void disconnectFeatures();/**  Disconnects the selected features.  */
 
 		/**
 		 * Moves the face features in the image currently on display according to the given
@@ -202,14 +187,9 @@ namespace ft
 
 	protected:
 
-		/**
-		 * Refreshes the positions of face features in the editor based on the values in the dataset.
-		 */
+		/** Refreshes the positions of face features in the editor based on the values in the dataset. */
 		void refreshFeaturesInWidget();
-
-		/**
-		 * Updates the positions of face features in the dataset based on the values in the editor.
-		 */
+		/** Updates the positions of face features in the dataset based on the values in the editor. */
 		void updateFeaturesInDataset();
 
 	protected slots:
@@ -219,6 +199,7 @@ namespace ft
 		 * @param dScaleFactor Double with the new scale factor for the image.
 		 */
 		void onScaleFactorChanged(const double dScaleFactor);
+		void onRotateFactorChanged(const double dScaleFactor);
 
 		/**
 		 * Captures the indication that face features were selected or unselected in the editor.

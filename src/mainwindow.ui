@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>912</width>
-    <height>548</height>
+    <width>1121</width>
+    <height>886</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -74,8 +74,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>912</width>
-     <height>21</height>
+     <width>1121</width>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -129,9 +129,29 @@
      <addaction name="actionShowConnections"/>
      <addaction name="actionShowFeatureIDs"/>
     </widget>
+    <widget class="QMenu" name="menuLandmarks_Groups">
+     <property name="title">
+      <string>Landmarks Groups</string>
+     </property>
+     <addaction name="action_ShowFaceOvalLow"/>
+     <addaction name="action_ShowFaceOvalUpper"/>
+     <addaction name="separator"/>
+     <addaction name="actionBrow_Right"/>
+     <addaction name="actionBrow_Left"/>
+     <addaction name="separator"/>
+     <addaction name="actionEye_Right"/>
+     <addaction name="actionEye_Left"/>
+     <addaction name="separator"/>
+     <addaction name="actionNose_Ridge"/>
+     <addaction name="actionNose_Shape"/>
+     <addaction name="separator"/>
+     <addaction name="actionMouth_Outer"/>
+     <addaction name="actionMouth_Inner"/>
+    </widget>
     <addaction name="menuWindows"/>
     <addaction name="separator"/>
     <addaction name="menu_Image_Elements"/>
+    <addaction name="menuLandmarks_Groups"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="locale">
@@ -163,6 +183,7 @@
     <addaction name="menu_Images"/>
     <addaction name="separator"/>
     <addaction name="menu_Facial_Landmarks"/>
+    <addaction name="actionLandmarksProperties"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="locale">
@@ -309,6 +330,9 @@
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QSlider" name="zoomSlider">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="font">
             <font>
              <pointsize>12</pointsize>
@@ -437,6 +461,102 @@
              </property>
              <property name="alignment">
               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Rotate</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <widget class="QSlider" name="rotationSlider">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="accessibleName">
+            <string/>
+           </property>
+           <property name="autoFillBackground">
+            <bool>true</bool>
+           </property>
+           <property name="minimum">
+            <number>-180</number>
+           </property>
+           <property name="maximum">
+            <number>180</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="invertedAppearance">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>-180°</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>0°</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>+180°</string>
              </property>
             </widget>
            </item>
@@ -943,10 +1063,127 @@
     <string>Exports the annotation in current selected image to a CSIRO Face Analysis SDK points file</string>
    </property>
   </action>
+  <action name="action_ShowFaceOvalLow">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Face Oval Lower</string>
+   </property>
+   <property name="toolTip">
+    <string>Show Face Oval Lower</string>
+   </property>
+  </action>
+  <action name="action_ShowFaceOvalUpper">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Face Obal Upper</string>
+   </property>
+  </action>
+  <action name="actionBrow_Right">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Brow Right</string>
+   </property>
+  </action>
+  <action name="actionBrow_Left">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Brow Left</string>
+   </property>
+  </action>
+  <action name="actionEye_Right">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Eye Right</string>
+   </property>
+  </action>
+  <action name="actionEye_Left">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Eye Left</string>
+   </property>
+  </action>
+  <action name="actionNose_Ridge">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Nose Ridge</string>
+   </property>
+  </action>
+  <action name="actionNose_Shape">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Nose Shape</string>
+   </property>
+  </action>
+  <action name="actionMouth_Outer">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Mouth Outer</string>
+   </property>
+  </action>
+  <action name="actionMouth_Inner">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Mouth Inner</string>
+   </property>
+  </action>
+  <action name="actionLandmarksProperties">
+   <property name="text">
+    <string>&amp;Landmarks Properties</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
-  <tabstop>tabWidget</tabstop>
   <tabstop>textFileName</tabstop>
   <tabstop>listImages</tabstop>
   <tabstop>treeImages</tabstop>

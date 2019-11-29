@@ -88,6 +88,7 @@ namespace ft
 
 		/** Constant with the radius of the node drawn, in pixels. */
 		const static int RADIUS;
+        int radius_;
 
 	protected:
 
@@ -128,7 +129,9 @@ namespace ft
 
 		/** Identifier of the face feature node. */
 		int m_iID;
-	};
+
+        QRectF boundingRect(bool displayFeaturesIds) const;
+    };
 };
 
 #endif // FACEFEATURENODE_H

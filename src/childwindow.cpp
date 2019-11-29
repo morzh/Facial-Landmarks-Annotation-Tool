@@ -53,6 +53,7 @@ ft::ChildWindow::ChildWindow(QWidget *pParent) :
 
 	// Capture of relevant signals
 	connect(m_pFaceWidget, SIGNAL(onScaleFactorChanged(const double)), this, SLOT(onScaleFactorChanged(const double)));
+	connect(m_pFaceWidget, SIGNAL(onRotateFactorChanged(const double)), this, SLOT(onRotateFactorChanged(const double)));
 	connect(m_pFaceWidget, SIGNAL(onFaceFeaturesSelectionChanged()), this, SLOT(onFaceFeaturesSelectionChanged()));
 	connect(m_pFaceWidget, SIGNAL(onFaceFeaturesChanged()), this, SLOT(onDataChanged()));
 	connect(m_pFaceDatasetModel, SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&, const QVector<int>&)), this, SLOT(onDataChanged()));
@@ -154,6 +155,16 @@ void ft::ChildWindow::zoomOut()
 
 // +-----------------------------------------------------------
 void ft::ChildWindow::onScaleFactorChanged(const double dScaleFactor)
+{
+	Q_UNUSED(dScaleFactor);
+
+	QModelIndex oCurrent = m_pFaceSelectionModel->currentIndex();
+	QString sImageName = m_pFaceDatasetModel->data(m_pFaceDatasetModel->index(oCurrent.row(), 0), Qt::UserRole).toString();
+	emit onUIUpdated(sImageName, getZoomLevel());
+}
+
+// +-----------------------------------------------------------
+void ft::ChildWindow::onRotateFactorChanged(const double dScaleFactor)
 {
 	Q_UNUSED(dScaleFactor);
 

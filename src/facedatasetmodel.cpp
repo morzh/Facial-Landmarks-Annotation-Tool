@@ -191,6 +191,7 @@ bool ft::FaceDatasetModel::addImages(const QStringList &lImageFiles)
 	int iFirst = m_pFaceDataset->size();
 	int iLast = iFirst + lImageFiles.size() - 1;
 	beginInsertRows(QModelIndex(), iFirst, iLast);
+
 	for(int i = 0; i < lImageFiles.size(); i++)
 	{
 		m_pFaceDataset->addImage(lImageFiles[i]);

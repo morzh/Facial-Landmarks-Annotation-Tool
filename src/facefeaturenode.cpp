@@ -184,3 +184,15 @@ void ft::FaceFeatureNode::setID(int iID)
 {
 	m_iID = iID;
 }
+
+int ft::FaceFeatureNode::getRadius() {
+
+    return radius;
+
+}
+
+void ft::FaceFeatureNode::setRadius(int r) {
+
+    radius = r;
+
+}

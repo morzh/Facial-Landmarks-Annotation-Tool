@@ -48,6 +48,11 @@ namespace ft
 		static const double ROTATE_LEFT_STEP;/** Rotate value for the rotate left step. */
 		static const double ROTATE_RIGHT_STEP;/** Rotate value for the rotate right step. */
 
+		static const double ZOOM_IN_FEATURES_STEP;/** Scale value for features radius. */
+		static const double ZOOM_OUT_FEATURES_STEP;/** Scale value for features radius. */
+
+
+
 		/** * Class constructor.  * @param pParent Instance of the parent widget. 	 */
 		FaceWidget(QWidget *pParent = 0);
 
@@ -279,7 +284,7 @@ namespace ft
 
         /** The current applied scale factor. */
         double m_dScaleFactor;
-        double m_dScaleFeature;
+        double m_dScaleFeaturesFactor;
 
 		/** List of nodes used to edit the coordinates of facial features. */
 		QList<FaceFeatureNode*> m_lFaceFeatures;

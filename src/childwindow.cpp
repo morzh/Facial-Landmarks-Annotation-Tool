@@ -247,6 +247,7 @@ void ft::ChildWindow::updateFeaturesInDataset()
 		vFeats[i]->setID(pNode->getID());
 		vFeats[i]->setX(pNode->x());
 		vFeats[i]->setY(pNode->y());
+		vFeats[i]->setRadius(pNode->getRadius());
 	}
 }
 

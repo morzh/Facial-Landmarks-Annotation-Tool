@@ -34,6 +34,9 @@ const double ft::FaceWidget::ZOOM_OUT_STEP = 0.80;
 const double ft::FaceWidget::ROTATE_LEFT_STEP  = +2.25;
 const double ft::FaceWidget::ROTATE_RIGHT_STEP = -2.25;
 
+const double ft::FaceWidget::ZOOM_IN_FEATURES_STEP  = +1;
+const double ft::FaceWidget::ZOOM_OUT_FEATURES_STEP = -1;
+
 // Number of face features edited by the widget
 const int ft::FaceWidget::NUM_FACE_FEATURES = 68;
 
@@ -146,10 +149,11 @@ void ft::FaceWidget::wheelEvent(QWheelEvent *pEvent)
 	bool bAlt = QApplication::keyboardModifiers() & Qt::AltModifier;
 	bool bShift = QApplication::keyboardModifiers() & Qt::ShiftModifier;
 
-	int iDelta = pEvent->angleDelta().x() + pEvent->angleDelta().y();
-	double dBase  = iDelta < 0 ? ZOOM_OUT_STEP : ZOOM_IN_STEP;
-	double dBase2 = iDelta < 0 ? ROTATE_LEFT_STEP : ROTATE_RIGHT_STEP;
-	int iSteps = abs(iDelta / 120);
+	int     iDelta              =   pEvent->angleDelta().x() + pEvent->angleDelta().y();
+	double  dBase               =   iDelta < 0 ? ZOOM_OUT_STEP : ZOOM_IN_STEP;
+	double  rotateStep          =   iDelta < 0 ? ROTATE_LEFT_STEP : ROTATE_RIGHT_STEP;
+	double  scaleFeaturesStep   =   iDelta < 0 ? ZOOM_OUT_FEATURES_STEP : ZOOM_IN_FEATURES_STEP;
+	int     iSteps              =   abs(iDelta / 120);
 
 	if(!(bCtrl || bAlt || bShift)) // No special key pressed => scroll vertically
 		verticalScrollBar()->setValue(verticalScrollBar()->value() - iDelta);
@@ -158,7 +162,9 @@ void ft::FaceWidget::wheelEvent(QWheelEvent *pEvent)
 	else if(bCtrl && !(bAlt || bShift)) // Only ctrl key pressed => zoom in and out
 		scaleViewBy(qPow(dBase, iSteps));
 	else if ( !bCtrl && bAlt && !bShift)
-	    rotateViewBy(qPow(dBase2, iSteps));
+	    rotateViewBy(rotateStep);
+	else if ( bCtrl && bAlt && !bShift)
+	    scaleFeaturesBy(scaleFeaturesStep);
 }
 
 #endif
@@ -578,12 +584,13 @@ void ft::FaceWidget::setContextMenu(QMenu *pMenu){
 
 void ft::FaceWidget::scaleFeaturesBy(const double dFactorBy) {
 
-    double dFactor = m_dScaleFactor * dFactorBy;
-    if(dFactor >= 0.05 && dFactor <= 13.0)
+    double dFactor = m_dScaleFeaturesFactor + dFactorBy;
+
+    if(dFactor >= 1 && dFactor <= 20)
     {
-        m_dScaleFeature = dFactor;
-        scale(dFactorBy, dFactorBy);
-        emit onScaleFactorChanged(getScaleFactor());
+        m_dScaleFeaturesFactor = dFactor;
+//        scaleFeatures(dFactor);
+//        emit onScaleFeatureChanged( dFactor);
     }
 
 }

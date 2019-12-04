@@ -163,17 +163,15 @@ bool ft::FaceDataset::saveToFile(const QString &sFileName, QString &sMsgError) c
         std::vector<FaceFeature*>   features        =   pImage->getFeatures();
         QString                     img_name        =   oBase.absoluteFilePath( pImage->fileName() );
         std::string                 img_name__      =   img_name.toUtf8().constData();
-        std::string                 img_name_pts;
-
-        img_name_pts = img_name__.substr(0, img_name__.size()-4);
 
         img_name__      +=  ".dan74";
-        img_name_pts    +=  ".pts";
-
         std::ofstream   file( img_name__.c_str() );
         for ( int idx=0; idx<features.size(); ++idx){    file << features[idx]->x() << " "  << features[idx]->y() << std::endl;        }
         file.close();
 
+        /*
+        std::string   img_name_pts = img_name__.substr(0, img_name__.size()-4);
+        img_name_pts    +=  ".pts";
         std::ofstream   file2( img_name_pts.c_str() );
         file2 << "version: 1" << std::endl;
         file2 << "n_points: " << features.size() << std::endl;
@@ -182,7 +180,7 @@ bool ft::FaceDataset::saveToFile(const QString &sFileName, QString &sMsgError) c
         for ( int idx=0; idx<features.size(); ++idx){    file2 << features[idx]->x() << " "  << features[idx]->y() << std::endl;        }
         file2 << "}" ;
         file2.close();
-
+        */
 	}
 
 	/******************************************************

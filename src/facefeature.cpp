@@ -20,17 +20,19 @@
 #include "facefeature.h"
 #include <QApplication>
 #include <algorithm>
+#include <iostream>
+//#include <QDebug>
 
 using namespace std;
 
 // +-----------------------------------------------------------
-ft::FaceFeature::FaceFeature():	QPoint()
+ft::FaceFeature::FaceFeature():	QPointF()
 {
 	setID(-1);
 }
 
 // +-----------------------------------------------------------
-ft::FaceFeature::FaceFeature(int iID, float x, float y): QPoint(x, y)
+ft::FaceFeature::FaceFeature(int iID, float x, float y): QPointF(x, y)
 {
 	setID(iID);
 }
@@ -100,6 +102,12 @@ bool ft::FaceFeature::loadFromXML(const QDomElement &oElement, QString &sMsgErro
 		return false;
 	}
 
+	QString sValueR = oElement.attribute("radius");
+	if(sValueR == "")
+	{
+        sValueR = QString("3");
+	}
+
 	// Connetions
 	QDomElement oConnections = oElement.firstChildElement("Connections");
 	if (oConnections.isNull())
@@ -124,6 +132,7 @@ bool ft::FaceFeature::loadFromXML(const QDomElement &oElement, QString &sMsgErro
 	m_iID = sID.toInt();
 	setX(sValueX.toFloat());
 	setY(sValueY.toFloat());
+	setRadius(sValueR.toInt());
 	m_vConnections = vConnections;
 	
 	return true;
@@ -137,8 +146,13 @@ void ft::FaceFeature::saveToXML(QDomElement &oParent) const
 
 	// Save the feature attributes
 	oFeature.setAttribute("id", m_iID);
-	oFeature.setAttribute("x", x());
-	oFeature.setAttribute("y", y());
+//	oFeature.setAttribute("x",  x());
+//	oFeature.setAttribute("y",  y());
+    oFeature.setAttribute("x",  QString::number(x(), 'g', 5));
+    oFeature.setAttribute("y",  QString::number(y(), 'g', 5));
+    oFeature.setAttribute("radius",  getRadius());
+//	std::cout << "precision" <<  " " << (float)x() << " ";
+
 
 	// Add the "Connections" subnode
 	QDomElement oConnections = oParent.ownerDocument().createElement("Connections");
@@ -157,4 +171,9 @@ void ft::FaceFeature::saveToXML(QDomElement &oParent) const
 int ft::FaceFeature::getRadius() const{
 
     return radius;
+}
+
+void ft::FaceFeature::setRadius(int R) {
+
+    this->radius = R;
 }

@@ -30,7 +30,7 @@ namespace ft
 	/**
 	 * Represents the data of a facial feature in the image dataset.
 	 */
-	class FaceFeature : public QPoint
+	class FaceFeature : public QPointF
     {
 	public:
 
@@ -47,6 +47,9 @@ namespace ft
 		 */
 		FaceFeature(int iID, float x, float y);
 
+
+		void setRadius(int R);
+        int getRadius() const;
 		/**
 		 * Getter of the feature ID.
 		 * @return Integer with the ID of the feature.
@@ -91,7 +94,7 @@ namespace ft
          */
         void saveToXML(QDomElement &oParent) const;
 
-        int getRadius() const;
+
 
 	private:
 

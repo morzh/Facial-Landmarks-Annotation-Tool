@@ -84,11 +84,15 @@ namespace ft
 		 */
 		void setID(int iID);
 
+
+		int getRadius();
+		void setRadius(int r);
+
 	public:
 
 		/** Constant with the radius of the node drawn, in pixels. */
 		const static int RADIUS;
-        int radius_;
+        int radius = 3;
 
 	protected:
 

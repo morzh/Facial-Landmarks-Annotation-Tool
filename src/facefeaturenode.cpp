@@ -103,8 +103,10 @@ QRectF ft::FaceFeatureNode::boundingRect(bool displayFeaturesIds) const
         int iHeight = m_pFaceWidget->fontMetrics().height();
         int iWidth = m_pFaceWidget->fontMetrics().width(sID);
         return QRectF(-(iWidth + RADIUS), -(iHeight + RADIUS), 2 * RADIUS + iWidth, 2 * RADIUS + iHeight);
-    } else
-        return QRectF(-RADIUS, -RADIUS, 2 * RADIUS, 2 * RADIUS);
+    } else {
+        int R = getRadius();
+        return QRectF(-R, -R, 2 * R, 2 * R);
+    }
 
 }
 // +-----------------------------------------------------------

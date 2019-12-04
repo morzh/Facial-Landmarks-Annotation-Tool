@@ -222,6 +222,7 @@ void ft::ChildWindow::refreshFeaturesInWidget()
 		//    - (re)position the feature
 		//    - (re)do any connections
 		lsNodes[i]->setPos(vFeats[i]->x(), vFeats[i]->y());
+		lsNodes[i]->setRadius(vFeats[i]->getRadius());
 		foreach(int iID, vFeats[i]->getConnections())
 			m_pFaceWidget->connectFaceFeatures(vFeats[i]->getID(), iID);
 

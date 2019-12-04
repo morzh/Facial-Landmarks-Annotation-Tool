@@ -281,7 +281,6 @@ namespace ft
 
 		/** The current applied rotate factor. */
 		double m_dRotateFactor;
-
         /** The current applied scale factor. */
         double m_dScaleFactor;
         double m_dScaleFeaturesFactor;

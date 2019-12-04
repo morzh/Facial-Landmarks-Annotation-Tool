@@ -81,30 +81,31 @@ ft::FaceFeatureEdge *ft::FaceFeatureNode::getEdgeTo(const FaceFeatureNode *pNode
 // +----------------------------number-------------------------------
 QRectF ft::FaceFeatureNode::boundingRect() const
 {
+    int R = getRadius();
 	if(m_pFaceWidget->displayFeatureIDs())
 	{
 		QString sID = QString::number(m_iID);
 		int iHeight = m_pFaceWidget->fontMetrics().height();
 		int iWidth = m_pFaceWidget->fontMetrics().width(sID);
-		return QRectF(-(iWidth + RADIUS), -(iHeight + RADIUS), 2 * RADIUS + iWidth, 2 * RADIUS + iHeight);
+		return QRectF(-(iWidth + R), -(iHeight + R), 2 * R + iWidth, 2 * R + iHeight);
 	}
 	else
     {
-        int r = getRadius();
-        return QRectF(-r, -r, 2 * r, 2 * r);
+        return QRectF(-R, -R, 2 * R, 2 * R);
     }
 }
 
 QRectF ft::FaceFeatureNode::boundingRect(bool displayFeaturesIds) const
 {
+    int R = getRadius();
     if (displayFeaturesIds)
     {
         QString sID = QString::number(m_iID);
         int iHeight = m_pFaceWidget->fontMetrics().height();
         int iWidth = m_pFaceWidget->fontMetrics().width(sID);
-        return QRectF(-(iWidth + RADIUS), -(iHeight + RADIUS), 2 * RADIUS + iWidth, 2 * RADIUS + iHeight);
+        return QRectF(-(iWidth + R), -(iHeight + R), 2 * R + iWidth, 2 * R + iHeight);
     } else {
-        int R = getRadius();
+
         return QRectF(-R, -R, 2 * R, 2 * R);
     }
 

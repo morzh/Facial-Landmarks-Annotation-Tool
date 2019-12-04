@@ -89,7 +89,10 @@ QRectF ft::FaceFeatureNode::boundingRect() const
 		return QRectF(-(iWidth + RADIUS), -(iHeight + RADIUS), 2 * RADIUS + iWidth, 2 * RADIUS + iHeight);
 	}
 	else
-		return QRectF(-RADIUS, -RADIUS, 2 * RADIUS, 2 * RADIUS);
+    {
+        int r = getRadius();
+        return QRectF(-r, -r, 2 * r, 2 * r);
+    }
 }
 
 QRectF ft::FaceFeatureNode::boundingRect(bool displayFeaturesIds) const
@@ -185,7 +188,7 @@ void ft::FaceFeatureNode::setID(int iID)
 	m_iID = iID;
 }
 
-int ft::FaceFeatureNode::getRadius() {
+int ft::FaceFeatureNode::getRadius() const{
 
     return radius;
 

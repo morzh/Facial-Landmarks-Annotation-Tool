@@ -83,9 +83,7 @@ namespace ft
 		 * @param iID Integer with the new identifier for the feature node.
 		 */
 		void setID(int iID);
-
-
-		int getRadius();
+		int getRadius() const;
 		void setRadius(int r);
 
 	public:

@@ -120,11 +120,23 @@ void ft::FaceFeatureNode::paint(QPainter *pPainter, const QStyleOptionGraphicsIt
     oBrush.setStyle(Qt::SolidPattern);
     if(isSelected())
     {
+        /*
+        if (radius > 1)
+            pPainter->setPen(QPen(Qt::black, 1));
+        else
+            pPainter->setPen(QPen(Qt::red, 1));
+        */
         pPainter->setPen(QPen(Qt::black, 1));
         oBrush.setColor(QColor(Qt::red));
     }
     else
     {
+        /*
+        if (radius > 1)
+            pPainter->setPen(QPen(Qt::black, 1));
+        else
+            pPainter->setPen(QPen(Qt::yellow, 1));
+        */
         pPainter->setPen(QPen(Qt::black, 1));
         oBrush.setColor(QColor(Qt::yellow));
     }

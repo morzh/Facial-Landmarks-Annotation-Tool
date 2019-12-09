@@ -65,6 +65,8 @@ void ft::FaceFeatureEdge::adjust()
     qreal length = line.length();
 
     prepareGeometryChange();
+    int R_src = m_pSourceNode->getRadius();
+    int R_dst = m_pTargetNode->getRadius();
 
     QPointF edgeOffset((line.dx() * FaceFeatureNode::RADIUS) / length, (line.dy() * FaceFeatureNode::RADIUS) / length);
 	m_oSourcePoint = line.p1() + edgeOffset;

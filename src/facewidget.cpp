@@ -17,6 +17,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <algorithm>
 #include "facewidget.h"
 #include "facewidgetscene.h"
 
@@ -149,11 +150,11 @@ void ft::FaceWidget::wheelEvent(QWheelEvent *pEvent)
 	bool bAlt = QApplication::keyboardModifiers() & Qt::AltModifier;
 	bool bShift = QApplication::keyboardModifiers() & Qt::ShiftModifier;
 
-	int     iDelta              =   pEvent->angleDelta().x() + pEvent->angleDelta().y();
-	double  dBase               =   iDelta < 0 ? ZOOM_OUT_STEP : ZOOM_IN_STEP;
-	double  rotateStep          =   iDelta < 0 ? ROTATE_LEFT_STEP : ROTATE_RIGHT_STEP;
-	double  scaleFeaturesStep   =   iDelta < 0 ? ZOOM_OUT_FEATURES_STEP : ZOOM_IN_FEATURES_STEP;
-	int     iSteps              =   abs(iDelta / 120);
+	int     iDelta                  =   pEvent->angleDelta().x() + pEvent->angleDelta().y();
+	double  dBase                   =   iDelta < 0 ? ZOOM_OUT_STEP : ZOOM_IN_STEP;
+	double  rotateStep              =   iDelta < 0 ? ROTATE_LEFT_STEP : ROTATE_RIGHT_STEP;
+	double  addRadiusFeaturesStep   =   iDelta < 0 ? ZOOM_OUT_FEATURES_STEP : ZOOM_IN_FEATURES_STEP;
+	int     iSteps                  =   abs(iDelta / 120);
 
 	if(!(bCtrl || bAlt || bShift)) // No special key pressed => scroll vertically
 		verticalScrollBar()->setValue(verticalScrollBar()->value() - iDelta);
@@ -164,7 +165,7 @@ void ft::FaceWidget::wheelEvent(QWheelEvent *pEvent)
 	else if ( !bCtrl && bAlt && !bShift)
 	    rotateViewBy(rotateStep);
 	else if ( bCtrl && bAlt && !bShift)
-	    scaleFeaturesBy(scaleFeaturesStep);
+        addToFeaturesRadius(addRadiusFeaturesStep);
 }
 
 #endif
@@ -582,16 +583,23 @@ void ft::FaceWidget::setContextMenu(QMenu *pMenu){
 	m_pContextMenu = pMenu;
 }
 
-void ft::FaceWidget::scaleFeaturesBy(const double dFactorBy) {
+void ft::FaceWidget::addToFeaturesRadius(int add2Radius) {
 
-    double dFactor = m_dScaleFeaturesFactor + dFactorBy;
-
-    if(dFactor >= 1 && dFactor <= 20)
-    {
-        m_dScaleFeaturesFactor = dFactor;
-//        scaleFeatures(dFactor);
-//        emit onScaleFeatureChanged( dFactor);
+    for( auto pNode:m_lFaceFeatures) {
+        int rad = pNode->radius + add2Radius;
+        pNode->radius = clamp(rad, 1, 20);
+        pNode->update();
     }
+    update();
+}
 
+
+template<class T>
+constexpr const T& ft::FaceWidget::clamp( const T& v, const T& lo, const T& hi )
+{
+//    if (hi < lo)
+//        std::swap(lo,hi);
+
+    return (v < lo) ? lo : (hi < v) ? hi : v;
 }
 

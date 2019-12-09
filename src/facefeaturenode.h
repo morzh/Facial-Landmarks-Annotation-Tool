@@ -91,6 +91,7 @@ namespace ft
 		/** Constant with the radius of the node drawn, in pixels. */
 		const static int RADIUS;
         int radius = 3;
+        bool visibiility = true;
 
 	protected:
 

@@ -34,6 +34,7 @@
 #include <QAction>
 #include <QMessageBox>
 #include <QTemporaryFile>
+#include <iostream>
 
 using namespace std;
 
@@ -542,6 +543,17 @@ void ft::MainWindow::on_actionShowFeatures_triggered(bool bChecked)
 		ui->actionShowFeatureIDs->setChecked(false);
 	}
 	updateUI();
+}
+
+void ft::MainWindow::on_actionShowFaceOvalLow_triggered(bool bChecked){
+
+    std::cout << "on_actionShowFaceOvalLow_triggered" << std::endl;
+
+
+//    for (int i=0; i<=16; ++i){
+//        this.
+//    }
+
 }
 
 // +-----------------------------------------------------------

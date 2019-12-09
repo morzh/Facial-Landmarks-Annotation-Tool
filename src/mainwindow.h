@@ -122,20 +122,9 @@ namespace ft
 		void showStatusMessage(const QString &sMsg, const int iTimeout = 5000);
 
     private slots:
-		/**
-		 * Slot for the menu New trigger event.
-		 */ 
-		void on_actionNew_triggered();
-
-		/**
-		 * Slot for the menu Open trigger event.
-		 */ 
-		void on_actionOpen_triggered();
-
-		/**
-		 * Slot for the menu Save trigger event.
-		 */ 
-		void on_actionSave_triggered();
+		void on_actionNew_triggered(); /// Slot for the menu New trigger event
+		void on_actionOpen_triggered(); ///  Slot for the menu Open trigger event.
+		void on_actionSave_triggered(); ///Slot for the menu Save trigger event.
 
 		/**
 		 * Slot for the menu Save As trigger event.
@@ -151,26 +140,10 @@ namespace ft
 		 * Slot for the menu Configure trigger event.
 		 */
 		void on_actionConfigure_triggered();
-
-		/**
-		 * Slot for the menu Fit Landmarks trigger event.
-		 */
-		void on_actionFitLandmarks_triggered();
-
-		/**
-		* Slot for the menu Export Points File trigger event.
-		*/
-		void on_actionExportPointsFile_triggered();
-
-        /**
-         * Slot for the menu Project trigger event.
-         */
-        void on_actionProject_triggered();
-
-        /**
-         * Slot for the menu About trigger event.
-         */
-        void on_actionAbout_triggered();
+		void on_actionFitLandmarks_triggered(); /// Slot for the menu Fit Landmarks trigger event.
+		void on_actionExportPointsFile_triggered(); ///Slot for the menu Export Points File trigger event.
+        void on_actionProject_triggered(); /// Slot for the menu Project trigger event
+        void on_actionAbout_triggered(); /// Slot for the menu About trigger event.
 
 		/**
 		 * Slot for the tab (child window) closing request (by clicking in the close button).
@@ -233,13 +206,9 @@ namespace ft
 		 * Slot for the menu Connect Features trigger event.
 		 */
 		void on_actionConnectFeatures_triggered();
-
-		/**
-		 * Slot for the menu Disconnect Features trigger event.
-		 */
-		void on_actionDisconnectFeatures_triggered();
-
+		void on_actionDisconnectFeatures_triggered(); ///  Slot for the menu Disconnect Features trigger event.
 		void on_actionLandmarksProperties_triggered();
+		void on_actionShowFaceOvalLow_triggered(bool bChecked);
 
 		/**
 		 * Define the view to be used for the list of images (icons, a list view, or "details", a tree view).

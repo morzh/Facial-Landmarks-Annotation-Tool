@@ -20,6 +20,7 @@
 #ifndef FACEWIDGET_H
 #define FACEWIDGET_H
 
+#include <algorithm>
 #include <QGraphicsView>
 #include <QGraphicsPixmapItem>
 #include <QMouseEvent>
@@ -51,11 +52,8 @@ namespace ft
 		static const double ZOOM_IN_FEATURES_STEP;/** Scale value for features radius. */
 		static const double ZOOM_OUT_FEATURES_STEP;/** Scale value for features radius. */
 
-
-
 		/** * Class constructor.  * @param pParent Instance of the parent widget. 	 */
 		FaceWidget(QWidget *pParent = 0);
-
 		virtual ~FaceWidget();
 
 		/**
@@ -63,12 +61,8 @@ namespace ft
 		 * @param oPixmap Reference for a QPixmap with the new pixmap to display.
 		 */
 		void setPixmap(const QPixmap &oPixmap);
-
-		 /// Gets the currently applied scale factor on the image displayed.  @return Double with the currently applied scale factor.
-		double getScaleFactor() const;
-		 /// Sets the scale factor of the image displayed.
-		 /// @param dScaleFactor Double with the new scale factor to be applied. It must be  in the interval [0.10, 13.0].
-		void setScaleFactor(const double dScaleFactor);
+		double getScaleFactor() const; /// Gets the currently applied scale factor on the image displayed.  @return Double with the currently applied scale factor.
+		void setScaleFactor(const double dScaleFactor);/// Sets the scale factor of the image displayed.  @param dScaleFactor Double with the new scale factor to be applied. It must be  in the interval [0.10, 13.0].
 	    void zoomIn();/// Performs one step of zoom in.
 		void zoomOut();/// Performs one step of zoom out.
 
@@ -207,7 +201,7 @@ namespace ft
 		 * with the widget (that is, a call to setScaleFactor does not emit this signal).
 		 * @param dScaleFactor Double with the new scale factor.
 		 */
-		void onScaleFeatureChanged (const double dScaleFeature);
+		void onRadiusFeaturesChanged (const double dScaleFeature);
 		void onScaleFactorChanged (const double dScaleFactor);
 		void onRotateFactorChanged(const double dRotateFactor);
 
@@ -248,8 +242,8 @@ namespace ft
 		/**  Scales the widget view to emulate a zoom behaviour by the given factor. * @param dFactorBy Double with the scale to be added/removed. 		 */
 		void scaleViewBy(double dFactorBy);
         void rotateViewBy(const double step);
-        void scaleFeaturesBy(const double factor);
-
+        void addToFeaturesRadius(int add2Radius);
+        // changes radius  of each fature  in pixels
 		void createFaceFeatures(); ///Creates the face feature nodes and edges to be used by the face features editor.
 
 		/**
@@ -259,49 +253,28 @@ namespace ft
 		void contextMenuEvent(QContextMenuEvent *pEvent) Q_DECL_OVERRIDE;
 
 	protected slots:
-
-		/**
-		 * Captures the signal of selection changed in the graphics scene.
-		 */
-		void onSelectionChanged();
+		void onSelectionChanged(); /// Captures the signal of selection changed in the graphics scene.
 
 	private:
 
-		/** Indication about the feature nodes being moved. */
-		bool m_bFeaturesMoved;
+        template<class T>
+        constexpr const T& clamp( const T& v, const T& lo, const T& hi );
 
-		/** Indication about the selection of feature nodes being changed. */
-		bool m_bSelectionChanged;
+		bool m_bFeaturesMoved; /// Indication about the feature nodes being moved.
+		bool m_bSelectionChanged; /// Indication about the selection of feature nodes being changed.
+		QGraphicsScene *m_pScene; /// The scene used to render the widget contents.
+		QGraphicsPixmapItem *m_pPixmapItem; /// Pixmap item used to display the face image
+		double m_dRotateFactor; ///  The current applied rotate factor.
+        double m_dScaleFactor; ///  The current applied scale factor.
+        double m_dFeaturesRadiusAdd;
+		QList<FaceFeatureNode*> m_lFaceFeatures; /// List of nodes used to edit the coordinates of facial features
+		QList<FaceFeatureEdge*> m_lConnections; /// List of edges connecting two feature nodes.
+		bool m_bDisplayFaceFeatures; ///  Indicates if the face feature nodes should be displayed or not
+		bool m_bDisplayConnections; /// Indicates if the face feature edges should be displayed or not
+		bool m_bDisplayFeatureIDs;  /// Indicates if the IDs of the face feature nodes should be displayed or not
+		QMenu *m_pContextMenu; ///  Context menu for the face feature editor.
 
-		/** The scene used to render the widget contents. */
-		QGraphicsScene *m_pScene;
 
-		/** Pixmap item used to display the face image. */
-		QGraphicsPixmapItem *m_pPixmapItem;
-
-		/** The current applied rotate factor. */
-		double m_dRotateFactor;
-        /** The current applied scale factor. */
-        double m_dScaleFactor;
-        double m_dScaleFeaturesFactor;
-
-		/** List of nodes used to edit the coordinates of facial features. */
-		QList<FaceFeatureNode*> m_lFaceFeatures;
-
-		/** List of edges connecting two feature nodes. */
-		QList<FaceFeatureEdge*> m_lConnections;
-
-		/** Indicates if the face feature nodes should be displayed or not. */
-		bool m_bDisplayFaceFeatures;
-
-		/** Indicates if the face feature edges should be displayed or not. */
-		bool m_bDisplayConnections;
-
-		/** Indicates if the IDs of the face feature nodes should be displayed or not. */
-		bool m_bDisplayFeatureIDs;
-
-		/** Context menu for the face feature editor. */
-		QMenu *m_pContextMenu;
     };
 };
 

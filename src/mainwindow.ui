@@ -133,20 +133,20 @@
      <property name="title">
       <string>Landmarks Groups</string>
      </property>
-     <addaction name="action_ShowFaceOvalLow"/>
-     <addaction name="action_ShowFaceOvalUpper"/>
+     <addaction name="actionShowFaceOvalLow"/>
+     <addaction name="actionShowFaceOvalUpper"/>
      <addaction name="separator"/>
-     <addaction name="actionBrow_Right"/>
-     <addaction name="actionBrow_Left"/>
+     <addaction name="actionBrowRight"/>
+     <addaction name="actionBrowLeft"/>
      <addaction name="separator"/>
-     <addaction name="actionEye_Right"/>
-     <addaction name="actionEye_Left"/>
+     <addaction name="actionEyeRight"/>
+     <addaction name="actionEyeLeft"/>
      <addaction name="separator"/>
-     <addaction name="actionNose_Ridge"/>
-     <addaction name="actionNose_Shape"/>
+     <addaction name="actionNoseRidge"/>
+     <addaction name="actionNoseShape"/>
      <addaction name="separator"/>
-     <addaction name="actionMouth_Outer"/>
-     <addaction name="actionMouth_Inner"/>
+     <addaction name="actionMouthOuter"/>
+     <addaction name="actionMouthInner"/>
     </widget>
     <addaction name="menuWindows"/>
     <addaction name="separator"/>
@@ -1063,7 +1063,7 @@
     <string>Exports the annotation in current selected image to a CSIRO Face Analysis SDK points file</string>
    </property>
   </action>
-  <action name="action_ShowFaceOvalLow">
+  <action name="actionShowFaceOvalLow">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -1077,7 +1077,7 @@
     <string>Show Face Oval Lower</string>
    </property>
   </action>
-  <action name="action_ShowFaceOvalUpper">
+  <action name="actionShowFaceOvalUpper">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -1088,7 +1088,7 @@
     <string>Face Obal Upper</string>
    </property>
   </action>
-  <action name="actionBrow_Right">
+  <action name="actionBrowRight">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -1099,7 +1099,7 @@
     <string>Brow Right</string>
    </property>
   </action>
-  <action name="actionBrow_Left">
+  <action name="actionBrowLeft">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -1110,7 +1110,7 @@
     <string>Brow Left</string>
    </property>
   </action>
-  <action name="actionEye_Right">
+  <action name="actionEyeRight">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -1121,7 +1121,7 @@
     <string>Eye Right</string>
    </property>
   </action>
-  <action name="actionEye_Left">
+  <action name="actionEyeLeft">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -1132,7 +1132,7 @@
     <string>Eye Left</string>
    </property>
   </action>
-  <action name="actionNose_Ridge">
+  <action name="actionNoseRidge">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -1143,7 +1143,7 @@
     <string>Nose Ridge</string>
    </property>
   </action>
-  <action name="actionNose_Shape">
+  <action name="actionNoseShape">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -1154,7 +1154,7 @@
     <string>Nose Shape</string>
    </property>
   </action>
-  <action name="actionMouth_Outer">
+  <action name="actionMouthOuter">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -1165,7 +1165,7 @@
     <string>Mouth Outer</string>
    </property>
   </action>
-  <action name="actionMouth_Inner">
+  <action name="actionMouthInner">
    <property name="checkable">
     <bool>true</bool>
    </property>

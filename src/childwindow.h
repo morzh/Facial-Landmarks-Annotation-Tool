@@ -252,7 +252,9 @@ namespace ft
 
 		/** Selection model used to represent the selection of items in Qt view components such as QListView. */
 		QItemSelectionModel *m_pFaceSelectionModel;
-	};
+
+        void calcFeaturesRadiusAdd(QList<FaceFeatureNode *>& list);
+    };
 }
 
 #endif // CHILDWINDOW_H

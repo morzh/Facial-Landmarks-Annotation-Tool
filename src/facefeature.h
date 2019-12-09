@@ -50,7 +50,8 @@ namespace ft
 
 		void setRadius(int R);
         int getRadius() const;
-		/**
+
+        /**
 		 * Getter of the feature ID.
 		 * @return Integer with the ID of the feature.
 		 */

@@ -586,8 +586,9 @@ void ft::FaceWidget::setContextMenu(QMenu *pMenu){
 void ft::FaceWidget::addToFeaturesRadius(int add2Radius) {
 
     for( auto pNode:m_lFaceFeatures) {
-        int rad = pNode->radius + add2Radius;
-        pNode->radius = clamp(rad, 1, 20);
+        float add2radRatio = pNode->addToRadiusMult;
+        int rad = std::round((float)pNode->radius + add2Radius * add2radRatio);
+        pNode->radius = clamp(rad, (int)std::round(pNode->addToRadiusMult), (int)(20*add2radRatio));
         pNode->update();
     }
     update();

@@ -146,12 +146,9 @@ void ft::FaceFeature::saveToXML(QDomElement &oParent) const
 
 	// Save the feature attributes
 	oFeature.setAttribute("id", m_iID);
-//	oFeature.setAttribute("x",  x());
-//	oFeature.setAttribute("y",  y());
     oFeature.setAttribute("x",  QString::number(x(), 'g', 5));
     oFeature.setAttribute("y",  QString::number(y(), 'g', 5));
     oFeature.setAttribute("radius",  getRadius());
-//	std::cout << "precision" <<  " " << (float)x() << " ";
 
 
 	// Add the "Connections" subnode
@@ -177,3 +174,4 @@ void ft::FaceFeature::setRadius(int R) {
 
     this->radius = R;
 }
+

@@ -228,6 +228,8 @@ void ft::ChildWindow::refreshFeaturesInWidget()
 
 		lsNodes[i]->setData(0, false);
 	}
+
+	calcFeaturesRadiusAdd(lsNodes);
 }
 
 // +-----------------------------------------------------------
@@ -418,4 +420,24 @@ bool ft::ChildWindow::positionFeatures(std::vector<QPoint> vPoints)
 	emit onDataModified();
 
 	return true;
+}
+
+void ft::ChildWindow::calcFeaturesRadiusAdd(QList<FaceFeatureNode *>& list) {
+
+    int min_radius = 1e6;
+
+    for (int i=0; i<list.size(); ++i){
+
+        int r = list[i]->getRadius();
+        if( r < min_radius)
+            min_radius = r;
+    }
+
+
+    for (int i=0; i<list.size(); ++i){
+
+        int r = list[i]->getRadius();
+        list[i]->addToRadiusMult =   (float) r/min_radius ;
+
+    }
 }

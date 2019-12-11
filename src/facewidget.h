@@ -201,7 +201,6 @@ namespace ft
 		 * with the widget (that is, a call to setScaleFactor does not emit this signal).
 		 * @param dScaleFactor Double with the new scale factor.
 		 */
-		void onRadiusFeaturesChanged (const double dScaleFeature);
 		void onScaleFactorChanged (const double dScaleFactor);
 		void onRotateFactorChanged(const double dRotateFactor);
 

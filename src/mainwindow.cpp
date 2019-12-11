@@ -547,13 +547,27 @@ void ft::MainWindow::on_actionShowFeatures_triggered(bool bChecked)
 
 void ft::MainWindow::on_actionShowFaceOvalLow_triggered(bool bChecked){
 
-    std::cout << "on_actionShowFaceOvalLow_triggered" << std::endl;
+    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
+    if(!pChild)
+        return;
+
+    if (!bChecked)
+        pChild->hideLowOvalLandmarks();
+    else
+        pChild->showLowOvalLandmarks();
+}
 
 
-//    for (int i=0; i<=16; ++i){
-//        this.
-//    }
+void ft::MainWindow::on_actionShowFaceOvalUpper_triggered(bool bChecked){
 
+    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
+    if(!pChild)
+        return;
+
+    if (!bChecked)
+        pChild->hideUpperOvalLandmarks();
+    else
+        pChild->showUpperOvalLandmarks();
 }
 
 // +-----------------------------------------------------------

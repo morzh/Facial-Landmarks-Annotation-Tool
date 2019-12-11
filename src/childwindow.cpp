@@ -426,6 +426,8 @@ void ft::ChildWindow::calcFeaturesRadiusAdd(QList<FaceFeatureNode *>& list) {
 
     int min_radius = 1e6;
 
+//    auto list_it = list.begin();
+
     for (int i=0; i<list.size(); ++i){
 
         int r = list[i]->getRadius();
@@ -440,4 +442,46 @@ void ft::ChildWindow::calcFeaturesRadiusAdd(QList<FaceFeatureNode *>& list) {
         list[i]->addToRadiusMult =   (float) r/min_radius ;
 
     }
+}
+
+void ft::ChildWindow::hideUpperOvalLandmarks() {
+
+    QList<FaceFeatureNode*> lsFeats = m_pFaceWidget->getFaceFeatures(-1);
+
+    for (int idx=17; idx<28;++idx)
+        lsFeats[idx]->isVisible = false;
+
+    onDataChanged();
+}
+
+void ft::ChildWindow::showUpperOvalLandmarks() {
+
+    QList<FaceFeatureNode *> lsFeats = m_pFaceWidget->getFaceFeatures(-1);
+
+    for (int idx = 17; idx < 28; ++idx)
+        lsFeats[idx]->isVisible = true;
+
+    onDataChanged();
+}
+
+
+void ft::ChildWindow::hideLowOvalLandmarks() {
+
+    QList<FaceFeatureNode*> lsFeats = m_pFaceWidget->getFaceFeatures(-1);
+
+    for (int idx=0; idx<17;++idx)
+        lsFeats[idx]->isVisible = false;
+
+    onDataChanged();
+}
+
+void ft::ChildWindow::showLowOvalLandmarks() {
+
+    QList<FaceFeatureNode*> lsFeats = m_pFaceWidget->getFaceFeatures(-1);
+
+    for (int idx=0; idx<17; ++idx)
+        lsFeats[idx]->isVisible = true;
+
+    onDataChanged();
+
 }

@@ -173,6 +173,10 @@ namespace ft
 		void removeSelectedFeatures();/** Removes the selected features and all their connections. */
 		void connectFeatures();/** Connects the selected features among themselves.  */
 		void disconnectFeatures();/**  Disconnects the selected features.  */
+        void hideUpperOvalLandmarks();
+        void showUpperOvalLandmarks();
+        void hideLowOvalLandmarks();
+        void showLowOvalLandmarks();
 
 		/**
 		 * Moves the face features in the image currently on display according to the given
@@ -240,20 +244,13 @@ namespace ft
 		void onUIUpdated(const QString sImageName, const int iZoomLevel);
 
 	private:
-
-		/** Index of the current displayed face image. */
-		int m_iCurrentImage;
-
-		/** Widget used to display face images and edit facial features. */
-		FaceWidget *m_pFaceWidget;
-
-		/** Instance of the model used to encapsulate the access of the face dataset to Qt view components such as QListView. */
-		FaceDatasetModel *m_pFaceDatasetModel;
-
-		/** Selection model used to represent the selection of items in Qt view components such as QListView. */
-		QItemSelectionModel *m_pFaceSelectionModel;
-
         void calcFeaturesRadiusAdd(QList<FaceFeatureNode *>& list);
+
+        int m_iCurrentImage; /// Index of the current displayed face image.
+        FaceWidget *m_pFaceWidget; ///  Widget used to display face images and edit facial features.
+        FaceDatasetModel *m_pFaceDatasetModel; /// Instance of the model used to encapsulate the access of the face dataset to Qt view components such as QListView.
+
+		QItemSelectionModel *m_pFaceSelectionModel; ///  Selection model used to represent the selection of items in Qt view components such as QListView.
     };
 }
 

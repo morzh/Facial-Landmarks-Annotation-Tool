@@ -92,7 +92,7 @@ namespace ft
 		const static int RADIUS;
         int radius = 3;
         float addToRadiusMult = 1;
-        bool visibiility = true;
+        bool isVisible = true;
 
 	protected:
 

@@ -208,7 +208,12 @@ namespace ft
 		void on_actionConnectFeatures_triggered();
 		void on_actionDisconnectFeatures_triggered(); ///  Slot for the menu Disconnect Features trigger event.
 		void on_actionLandmarksProperties_triggered();
+
+		/// Landmarks Groups  Check/Uncheck
 		void on_actionShowFaceOvalLow_triggered(bool bChecked);
+		void on_actionShowFaceOvalUpper_triggered(bool bChecked);
+		void on_actionBrowRight_triggered(bool bChecked);
+		void on_actionBrowLeft_triggered(bool bChecked);
 
 		/**
 		 * Define the view to be used for the list of images (icons, a list view, or "details", a tree view).

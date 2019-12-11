@@ -376,6 +376,8 @@ const QList<ft::FaceFeatureNode*>& ft::FaceWidget::getFaceFeatures(int iNumFeats
 	return m_lFaceFeatures;
 }
 
+
+
 // +-----------------------------------------------------------
 QList<ft::FaceFeatureNode*> ft::FaceWidget::getSelectedFeatures() const
 {

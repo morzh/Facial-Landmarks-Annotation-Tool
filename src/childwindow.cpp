@@ -509,6 +509,22 @@ void ft::ChildWindow::hideNoseRidgeLandmarks() {
 
 
 
+void ft::ChildWindow::hideMouthOuterLandmarks() {
+    hideLandmarks(75,86);
+}
+void ft::ChildWindow::showMouthOuterLandmarks() {
+    showLandmarks(75,86);
+}
+
+void ft::ChildWindow::showMouthInnerLandmarks() {
+    showLandmarks(87,94);
+}
+void ft::ChildWindow::hideMouthInnerLandmarks() {
+    hideLandmarks(87,94);
+}
+
+
+
 void ft::ChildWindow::showLandmarks(int idx_start, int idx_end) {
 
     QList<FaceFeatureNode *> lsFeats = m_pFaceWidget->getFaceFeatures(-1);

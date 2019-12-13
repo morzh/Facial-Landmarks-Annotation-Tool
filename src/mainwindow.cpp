@@ -618,7 +618,60 @@ void ft::MainWindow::on_actionEyeRight_triggered(bool bChecked){
         pChild->showEyeRightLandmarks();
 }
 
-// +-----------------------------------------------------------
+
+void ft::MainWindow::on_actionNoseShape_triggered(bool bChecked){
+
+    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
+    if(!pChild)
+        return;
+    if (!bChecked)
+        pChild->hideNoseShapeLandmarks();
+    else
+        pChild->showNoseShapeLandmarks();
+
+}
+void ft::MainWindow::on_actionNoseRidge_triggered(bool bChecked){
+
+    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
+    if(!pChild)
+        return;
+
+    if (!bChecked)
+        pChild->hideNoseRidgeLandmarks();
+    else
+        pChild->showNoseRidgeLandmarks();
+}
+
+
+void ft::MainWindow::on_actionMouthOuter_triggered(bool bChecked){
+
+    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
+    if(!pChild)
+        return;
+    if (!bChecked)
+        pChild->hideMouthOuterLandmarks();
+    else
+        pChild->showMouthOuterLandmarks();
+
+}
+void ft::MainWindow::on_actionMouthInner_triggered(bool bChecked){
+
+    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
+    if(!pChild)
+        return;
+
+    if (!bChecked)
+        pChild->hideMouthInnerLandmarks();
+    else
+        pChild->showMouthInnerLandmarks();
+}
+
+
+
+// =========================================================================================
+// ==================================================================================================
+// =========================================================================================
+
 void ft::MainWindow::on_actionShowConnections_triggered(bool bChecked)
 {
 	if(bChecked && !ui->actionShowFeatures->isChecked())

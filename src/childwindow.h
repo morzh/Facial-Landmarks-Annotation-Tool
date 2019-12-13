@@ -198,6 +198,12 @@ namespace ft
         void hideNoseRidgeLandmarks();
         void showNoseRidgeLandmarks();
 
+        void hideMouthOuterLandmarks();
+        void showMouthOuterLandmarks();
+
+        void hideMouthInnerLandmarks();
+        void showMouthInnerLandmarks();
+
         void showLandmarks(int idx_start, int idx_end);
         void hideLandmarks(int idx_start, int idx_end);
 

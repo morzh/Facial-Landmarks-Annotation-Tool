@@ -32,8 +32,8 @@
 const double ft::FaceWidget::ZOOM_IN_STEP  = 1.25;
 const double ft::FaceWidget::ZOOM_OUT_STEP = 0.80;
 
-const double ft::FaceWidget::ROTATE_LEFT_STEP  = +2.25;
-const double ft::FaceWidget::ROTATE_RIGHT_STEP = -2.25;
+const double ft::FaceWidget::ROTATE_LEFT_STEP  = +2.0;
+const double ft::FaceWidget::ROTATE_RIGHT_STEP = -2.0;
 
 const double ft::FaceWidget::ZOOM_IN_FEATURES_STEP  = +1;
 const double ft::FaceWidget::ZOOM_OUT_FEATURES_STEP = -1;

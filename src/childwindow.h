@@ -173,10 +173,33 @@ namespace ft
 		void removeSelectedFeatures();/** Removes the selected features and all their connections. */
 		void connectFeatures();/** Connects the selected features among themselves.  */
 		void disconnectFeatures();/**  Disconnects the selected features.  */
+
         void hideUpperOvalLandmarks();
-        void showUpperOvalLandmarks();
-        void hideLowOvalLandmarks();
-        void showLowOvalLandmarks();
+        void showOvalUpperLandmarks();
+
+        void hideOvalLowLandmarks();
+        void showOvalLowLandmarks();
+
+        void hideBrowRightLandmarks();
+        void showBrowRightLandmarks();
+
+        void hideBrowLeftLandmarks();
+        void showBrowLeftLandmarks();
+
+        void hideEyeLeftLandmarks();
+        void showEyeLeftLandmarks();
+
+        void hideEyeRightLandmarks();
+        void showEyeRightLandmarks();
+
+        void hideNoseShapeLandmarks();
+        void showNoseShapeLandmarks();
+
+        void hideNoseRidgeLandmarks();
+        void showNoseRidgeLandmarks();
+
+        void showLandmarks(int idx_start, int idx_end);
+        void hideLandmarks(int idx_start, int idx_end);
 
 		/**
 		 * Moves the face features in the image currently on display according to the given

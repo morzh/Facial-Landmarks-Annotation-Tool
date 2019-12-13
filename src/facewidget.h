@@ -60,11 +60,11 @@ namespace ft
 		 * Updates the pixmap displayed at the central area.
 		 * @param oPixmap Reference for a QPixmap with the new pixmap to display.
 		 */
-		void setPixmap(const QPixmap &oPixmap);
-		double getScaleFactor() const; /// Gets the currently applied scale factor on the image displayed.  @return Double with the currently applied scale factor.
-		void setScaleFactor(const double dScaleFactor);/// Sets the scale factor of the image displayed.  @param dScaleFactor Double with the new scale factor to be applied. It must be  in the interval [0.10, 13.0].
-	    void zoomIn();/// Performs one step of zoom in.
-		void zoomOut();/// Performs one step of zoom out.
+		void    setPixmap(const QPixmap &oPixmap);
+		double  getScaleFactor() const; /// Gets the currently applied scale factor on the image displayed.  @return Double with the currently applied scale factor.
+		void    setScaleFactor(const double dScaleFactor);/// Sets the scale factor of the image displayed.  @param dScaleFactor Double with the new scale factor to be applied. It must be  in the interval [0.10, 13.0].
+	    void    zoomIn();/// Performs one step of zoom in.
+		void    zoomOut();/// Performs one step of zoom out.
 
         double  getRotateFactor() const;
         void    setRotateFactor(const double dRotateFactor);

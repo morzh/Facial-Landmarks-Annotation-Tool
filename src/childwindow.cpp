@@ -445,43 +445,87 @@ void ft::ChildWindow::calcFeaturesRadiusAdd(QList<FaceFeatureNode *>& list) {
 }
 
 void ft::ChildWindow::hideUpperOvalLandmarks() {
-
-    QList<FaceFeatureNode*> lsFeats = m_pFaceWidget->getFaceFeatures(-1);
-
-    for (int idx=17; idx<28;++idx)
-        lsFeats[idx]->isVisible = false;
-
-    onDataChanged();
+    hideLandmarks(17,27);
+}
+void ft::ChildWindow::showOvalUpperLandmarks() {
+    showLandmarks(17,27);
 }
 
-void ft::ChildWindow::showUpperOvalLandmarks() {
+void ft::ChildWindow::hideOvalLowLandmarks() {
+    hideLandmarks(0,16);
+}
+void ft::ChildWindow::showOvalLowLandmarks() {
+    showLandmarks(0,16);
+}
+
+
+
+
+void ft::ChildWindow::hideBrowRightLandmarks() {
+    hideLandmarks(28,32);
+}
+void ft::ChildWindow::showBrowRightLandmarks() {
+    showLandmarks(28,32);
+}
+
+void ft::ChildWindow::hideBrowLeftLandmarks() {
+    hideLandmarks(33,37);
+}
+void ft::ChildWindow::showBrowLeftLandmarks() {
+    showLandmarks(33,37);
+}
+
+
+
+void ft::ChildWindow::hideEyeRightLandmarks() {
+    hideLandmarks(38,47);
+}
+void ft::ChildWindow::showEyeRightLandmarks() {
+    showLandmarks(38,47);
+}
+
+void ft::ChildWindow::hideEyeLeftLandmarks() {
+    hideLandmarks(48,57);
+}
+void ft::ChildWindow::showEyeLeftLandmarks() {
+    showLandmarks(48,57);
+}
+
+
+
+void ft::ChildWindow::hideNoseShapeLandmarks() {
+    hideLandmarks(62,74);
+}
+void ft::ChildWindow::showNoseShapeLandmarks() {
+    showLandmarks(62,74);
+}
+
+void ft::ChildWindow::showNoseRidgeLandmarks() {
+    showLandmarks(58,61);
+}
+void ft::ChildWindow::hideNoseRidgeLandmarks() {
+    hideLandmarks(58,61);
+}
+
+
+
+void ft::ChildWindow::showLandmarks(int idx_start, int idx_end) {
 
     QList<FaceFeatureNode *> lsFeats = m_pFaceWidget->getFaceFeatures(-1);
-
-    for (int idx = 17; idx < 28; ++idx)
+    for (int idx = idx_start; idx <= idx_end; ++idx){
         lsFeats[idx]->isVisible = true;
-
+        lsFeats[idx]->setFlag(QGraphicsItem::ItemIsSelectable, true);
+        lsFeats[idx]->setFlag(QGraphicsItem::ItemIsMovable, true);
+    }
     onDataChanged();
 }
+void ft::ChildWindow::hideLandmarks(int idx_start, int idx_end) {
 
-
-void ft::ChildWindow::hideLowOvalLandmarks() {
-
-    QList<FaceFeatureNode*> lsFeats = m_pFaceWidget->getFaceFeatures(-1);
-
-    for (int idx=0; idx<17;++idx)
+    QList<FaceFeatureNode *> lsFeats = m_pFaceWidget->getFaceFeatures(-1);
+    for (int idx = idx_start; idx <= idx_end; ++idx){
         lsFeats[idx]->isVisible = false;
-
+        lsFeats[idx]->setFlag(QGraphicsItem::ItemIsSelectable, false);
+        lsFeats[idx]->setFlag(QGraphicsItem::ItemIsMovable, false);
+    }
     onDataChanged();
-}
-
-void ft::ChildWindow::showLowOvalLandmarks() {
-
-    QList<FaceFeatureNode*> lsFeats = m_pFaceWidget->getFaceFeatures(-1);
-
-    for (int idx=0; idx<17; ++idx)
-        lsFeats[idx]->isVisible = true;
-
-    onDataChanged();
-
 }

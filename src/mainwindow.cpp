@@ -552,9 +552,9 @@ void ft::MainWindow::on_actionShowFaceOvalLow_triggered(bool bChecked){
         return;
 
     if (!bChecked)
-        pChild->hideLowOvalLandmarks();
+        pChild->hideOvalLowLandmarks();
     else
-        pChild->showLowOvalLandmarks();
+        pChild->showOvalLowLandmarks();
 }
 
 
@@ -567,7 +567,55 @@ void ft::MainWindow::on_actionShowFaceOvalUpper_triggered(bool bChecked){
     if (!bChecked)
         pChild->hideUpperOvalLandmarks();
     else
-        pChild->showUpperOvalLandmarks();
+        pChild->showOvalUpperLandmarks();
+}
+
+void ft::MainWindow::on_actionBrowLeft_triggered(bool bChecked){
+
+    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
+    if(!pChild)
+        return;
+    if (!bChecked)
+        pChild->hideBrowLeftLandmarks();
+    else
+        pChild->showBrowLeftLandmarks();
+
+}
+
+void ft::MainWindow::on_actionBrowRight_triggered(bool bChecked){
+
+    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
+    if(!pChild)
+        return;
+
+    if (!bChecked)
+        pChild->hideBrowRightLandmarks();
+    else
+        pChild->showBrowRightLandmarks();
+}
+
+void ft::MainWindow::on_actionEyeLeft_triggered(bool bChecked){
+
+    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
+    if(!pChild)
+        return;
+    if (!bChecked)
+        pChild->hideEyeLeftLandmarks();
+    else
+        pChild->showEyeLeftLandmarks();
+
+}
+
+void ft::MainWindow::on_actionEyeRight_triggered(bool bChecked){
+
+    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
+    if(!pChild)
+        return;
+
+    if (!bChecked)
+        pChild->hideEyeRightLandmarks();
+    else
+        pChild->showEyeRightLandmarks();
 }
 
 // +-----------------------------------------------------------

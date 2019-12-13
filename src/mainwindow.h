@@ -214,6 +214,8 @@ namespace ft
 		void on_actionShowFaceOvalUpper_triggered(bool bChecked);
 		void on_actionBrowRight_triggered(bool bChecked);
 		void on_actionBrowLeft_triggered(bool bChecked);
+		void on_actionEyeRight_triggered(bool bChecked);
+		void on_actionEyeLeft_triggered(bool bChecked);
 
 		/**
 		 * Define the view to be used for the list of images (icons, a list view, or "details", a tree view).

@@ -20,6 +20,7 @@
 #include "childwindow.h"
 #include "mainwindow.h"
 #include "application.h"
+#include "Landmarks95Interpolator.h"
 
 #include <QMessageBox>
 #include <QGridLayout>
@@ -28,6 +29,7 @@
 #include <QDebug>
 
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -174,6 +176,15 @@ void ft::ChildWindow::onRotateFactorChanged(const double dScaleFactor)
 }
 
 // +-----------------------------------------------------------
+
+void ft::ChildWindow::onModelChanged(const bool bModified){
+
+    if(bModified)
+        updateFeaturesFromDataset();
+    setWindowModified(bModified);
+    emit onDataModified();
+
+}
 void ft::ChildWindow::onDataChanged(const bool bModified)
 {
 	if(bModified)
@@ -181,6 +192,8 @@ void ft::ChildWindow::onDataChanged(const bool bModified)
 	setWindowModified(bModified);
 	emit onDataModified();
 }
+
+
 
 // +-----------------------------------------------------------
 void ft::ChildWindow::onCurrentChanged(const QModelIndex &oCurrent, const QModelIndex &oPrevious)
@@ -233,6 +246,29 @@ void ft::ChildWindow::refreshFeaturesInWidget()
 }
 
 // +-----------------------------------------------------------
+void ft::ChildWindow::updateFeaturesFromDataset(){
+
+    QList<FaceFeatureNode*> lsNodes = m_pFaceWidget->getFaceFeatures();
+    vector<FaceFeature*> vFeats = m_pFaceDatasetModel->getFeatures(m_iCurrentImage);
+
+    FaceFeatureNode* pNode;
+    int id;
+    for(int i = 0; i < (int) lsNodes.size(); i++)
+    {
+        if(i >= lsNodes.size()) // Sanity check (vFeats and lsNodes are supposed to have the same size, but who knows?)
+        {
+            qCritical() << tr("An update of face features in dataset was not performed due to inconsistences.");
+            continue;
+        }
+
+        pNode = lsNodes.at(i);
+        id    =  pNode->getID();
+
+        pNode->setX( vFeats[id]->x());
+        pNode->setY( vFeats[id]->y());
+    }
+}
+
 void ft::ChildWindow::updateFeaturesInDataset()
 {
 	QList<FaceFeatureNode*> lsNodes = m_pFaceWidget->getFaceFeatures();
@@ -544,4 +580,18 @@ void ft::ChildWindow::hideLandmarks(int idx_start, int idx_end) {
         lsFeats[idx]->setFlag(QGraphicsItem::ItemIsMovable, false);
     }
     onDataChanged();
+}
+
+void ft::ChildWindow::InterpolateLandmarks95() {
+
+    if (m_pFaceDatasetModel == nullptr)
+        return;
+
+    Landmarks95Interpolator interp;
+    std::vector<ft::FaceFeature*> sFaceFeatures = m_pFaceDatasetModel->getFeatures(m_iCurrentImage);
+
+    sFaceFeatures[0]->setX(0.0);
+    sFaceFeatures[0]->setY(0.0);
+
+    onModelChanged();
 }

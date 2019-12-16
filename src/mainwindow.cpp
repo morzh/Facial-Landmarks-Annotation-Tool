@@ -667,6 +667,15 @@ void ft::MainWindow::on_actionMouthInner_triggered(bool bChecked){
 }
 
 
+void  ft::MainWindow::on_actionSpaceEvenly_triggered(){
+
+    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
+    if(!pChild)
+        return;
+
+    pChild->InterpolateLandmarks95();
+
+}
 
 // =========================================================================================
 // ==================================================================================================

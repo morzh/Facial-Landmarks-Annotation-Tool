@@ -207,6 +207,9 @@ namespace ft
         void showLandmarks(int idx_start, int idx_end);
         void hideLandmarks(int idx_start, int idx_end);
 
+
+        void InterpolateLandmarks95();
+
 		/**
 		 * Moves the face features in the image currently on display according to the given
 		 * list of positions. If the number of face features is different than the number of
@@ -224,6 +227,9 @@ namespace ft
 		void refreshFeaturesInWidget();
 		/** Updates the positions of face features in the dataset based on the values in the editor. */
 		void updateFeaturesInDataset();
+		void updateFeaturesFromDataset();
+
+
 
 	protected slots:
 
@@ -246,6 +252,7 @@ namespace ft
 		 * The default is true.
 		 */
 		void onDataChanged(const bool bModified = true);
+		void onModelChanged(const bool bModified = true);
 
 		/**
 		 * Captures indication of changes in the current selected image on the selection model.
@@ -278,7 +285,6 @@ namespace ft
         int m_iCurrentImage; /// Index of the current displayed face image.
         FaceWidget *m_pFaceWidget; ///  Widget used to display face images and edit facial features.
         FaceDatasetModel *m_pFaceDatasetModel; /// Instance of the model used to encapsulate the access of the face dataset to Qt view components such as QListView.
-
 		QItemSelectionModel *m_pFaceSelectionModel; ///  Selection model used to represent the selection of items in Qt view components such as QListView.
     };
 }

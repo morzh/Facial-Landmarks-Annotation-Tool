@@ -179,6 +179,7 @@
      <addaction name="separator"/>
      <addaction name="actionConnectFeatures"/>
      <addaction name="actionDisconnectFeatures"/>
+     <addaction name="actionSpaceEvenly"/>
     </widget>
     <addaction name="menu_Images"/>
     <addaction name="separator"/>
@@ -1179,6 +1180,21 @@
   <action name="actionLandmarksProperties">
    <property name="text">
     <string>&amp;Landmarks Properties</string>
+   </property>
+  </action>
+  <action name="actionMakeLandmarksEvenlySpaced">
+   <property name="text">
+    <string>Make Landmarks Evenly Spaced</string>
+   </property>
+  </action>
+  <action name="actionSpaceEvenly">
+   <property name="text">
+    <string>Space Evenly</string>
+   </property>
+  </action>
+  <action name="actionUnod">
+   <property name="text">
+    <string>Unod</string>
    </property>
   </action>
  </widget>

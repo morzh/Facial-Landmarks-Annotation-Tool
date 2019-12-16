@@ -125,16 +125,8 @@ namespace ft
 		void on_actionNew_triggered(); /// Slot for the menu New trigger event
 		void on_actionOpen_triggered(); ///  Slot for the menu Open trigger event.
 		void on_actionSave_triggered(); ///Slot for the menu Save trigger event.
-
-		/**
-		 * Slot for the menu Save As trigger event.
-		 */ 
-		void on_actionSaveAs_triggered();
-
-        /**
-         * Slot for the menu Exit trigger event.
-         */
-        void on_actionExit_triggered();
+		void on_actionSaveAs_triggered(); /// Slot for the menu Save As trigger event.
+        void on_actionExit_triggered(); ///  Slot for the menu Exit trigger event.
 
 		/**
 		 * Slot for the menu Configure trigger event.
@@ -220,6 +212,8 @@ namespace ft
 		void on_actionNoseRidge_triggered(bool bChecked);
 		void on_actionMouthOuter_triggered(bool bChecked);
 		void on_actionMouthInner_triggered(bool bChecked);
+
+		void  on_actionSpaceEvenly_triggered();
 
 		/**
 		 * Define the view to be used for the list of images (icons, a list view, or "details", a tree view).

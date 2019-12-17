@@ -3,9 +3,17 @@
 //
 
 #include "Landmarks95Interpolator.h"
+#include "spline_library/spline.h"
+#include "spline_library/splines/uniform_cr_spline.h"
 
-int Landmarks95Interpolator::interpolate() {
+void Landmarks95Interpolator::interpolate(std::vector<ft::FaceFeature*>) {
+
+}
+
+void Landmarks95Interpolator::interpolate_points(std::vector<QVector2D> splinePoints) {
+
+    UniformCRSpline<QVector2D> mySpline(splinePoints);
+    QVector2D interpolatedPosition = mySpline.getPosition(0.5f);
 
 
-    return 0;
 }

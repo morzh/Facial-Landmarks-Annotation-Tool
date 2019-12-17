@@ -590,6 +590,8 @@ void ft::ChildWindow::InterpolateLandmarks95() {
     Landmarks95Interpolator interp;
     std::vector<ft::FaceFeature*> sFaceFeatures = m_pFaceDatasetModel->getFeatures(m_iCurrentImage);
 
+    interp.interpolate(sFaceFeatures);
+
     sFaceFeatures[0]->setX(0.0);
     sFaceFeatures[0]->setY(0.0);
 

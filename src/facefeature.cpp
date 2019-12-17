@@ -175,3 +175,8 @@ void ft::FaceFeature::setRadius(int R) {
     this->radius = R;
 }
 
+QVector2D ft::FaceFeature::toVector() {
+
+    return QVector2D(x(), y());
+}
+

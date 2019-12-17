@@ -285,6 +285,8 @@ namespace ft
 
 		/** Name of the temporary file used for the face-fit utility. */
 		QString m_sFitTempFile;
+
+        QList<int> getIndicesOfSelectedImages(ChildWindow *pChild);
     };
 };
 

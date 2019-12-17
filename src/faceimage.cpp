@@ -139,7 +139,6 @@ QPixmap ft::FaceImage::pixMap() const
     QImageReader reader(m_sFileName);
     reader.setAutoTransform(true);
     return QPixmap::fromImage(reader.read());
-
 //    QPixmap oRet;
 //	oRet.load(m_sFileName);
 //	return oRet;

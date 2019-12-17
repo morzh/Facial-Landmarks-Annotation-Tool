@@ -24,6 +24,7 @@
 #include <vector>
 #include <QPoint>
 #include <QColor>
+#include <QtGui/QVector2D>
 
 namespace ft
 {
@@ -46,6 +47,9 @@ namespace ft
 		 * @param y Float with the y coordinate of the face feature.
 		 */
 		FaceFeature(int iID, float x, float y);
+
+
+		QVector2D toVector();
 
 
 		void setRadius(int R);

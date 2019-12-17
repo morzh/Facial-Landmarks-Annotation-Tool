@@ -670,11 +670,12 @@ void ft::MainWindow::on_actionMouthInner_triggered(bool bChecked){
 void  ft::MainWindow::on_actionSpaceEvenly_triggered(){
 
     ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
-    if(!pChild)
-        return;
+    if(!pChild)   return;
 
-    pChild->InterpolateLandmarks95();
+    QModelIndexList     lsSelected = pChild->selectionModel()->selectedRows();
+    QList<int>          lIndexes = getIndicesOfSelectedImages(pChild);
 
+    pChild->InterpolateLandmarks95(lIndexes);
 }
 
 // =========================================================================================
@@ -983,4 +984,20 @@ void ft::MainWindow::destroyChildWindow(ChildWindow *pChild)
 	disconnect(pChild, SIGNAL(onFeaturesSelectionChanged()), this, SLOT(onUpdateUI()));
 
 	delete pChild;
+}
+
+QList<int> ft::MainWindow::getIndicesOfSelectedImages(ft::ChildWindow *pChild) {
+
+    QModelIndexList     lsSelected = pChild->selectionModel()->selectedRows();
+    QList<int>          lIndexes;
+
+//    std::cout <<  "num of selected face images " << lsSelected.size() << std::endl;
+    if(lsSelected.size() > 0){
+        for(int i = 0; i < lsSelected.size(); i++) {
+            lIndexes.append(lsSelected[i].row());
+//            std::cout << lsSelected[i].row() << std::endl;
+        }
+    }
+
+    return lIndexes;
 }

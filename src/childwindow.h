@@ -208,7 +208,7 @@ namespace ft
         void hideLandmarks(int idx_start, int idx_end);
 
 
-        void InterpolateLandmarks95();
+        void InterpolateLandmarks95(const QList<int> &indices);
 
 		/**
 		 * Moves the face features in the image currently on display according to the given

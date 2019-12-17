@@ -15,12 +15,16 @@ public:
     void interpolate(std::vector<ft::FaceFeature*>);
 
 private:
-    void interpolate_ovLow();
-    void interpolate_ovUpper();
-    void interpolate_rBrow();
-    void interpolate_lBrow();
+    void                    interpolate_ovLow(std::vector<ft::FaceFeature*> vFeauters);
+    void                    interpolate_ovUpper(std::vector<ft::FaceFeature*> vFeauters);
 
-    std::vector<QVector2D> interpolate_points(const std::vector<QVector2D> &pts, int pts_num);
+    void                    interpolate_rBrow(std::vector<ft::FaceFeature*> vFeauters);
+    void                    interpolate_lBrow(std::vector<ft::FaceFeature*> vFeauters);
+
+    void                    interpolate_rEye(std::vector<ft::FaceFeature *> vFeatures);
+    void                    interpolate_lEye(std::vector<ft::FaceFeature *> vFeatures );
+
+    std::vector<QVector2D>  placePointsEvenly(const std::vector<QVector2D> &pts);
 };
 
 

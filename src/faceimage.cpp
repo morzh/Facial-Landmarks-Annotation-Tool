@@ -20,6 +20,7 @@
 #include "faceimage.h"
 
 #include <QApplication>
+#include <QtGui/QImageReader>
 
 using namespace std;
 
@@ -135,9 +136,13 @@ void ft::FaceImage::saveToXML(QDomElement &oParent) const
 // +-----------------------------------------------------------
 QPixmap ft::FaceImage::pixMap() const
 {
-	QPixmap oRet;
-	oRet.load(m_sFileName);
-	return oRet;
+    QImageReader reader(m_sFileName);
+    reader.setAutoTransform(true);
+    return QPixmap::fromImage(reader.read());
+
+//    QPixmap oRet;
+//	oRet.load(m_sFileName);
+//	return oRet;
 }
 
 // +-----------------------------------------------------------

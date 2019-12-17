@@ -20,7 +20,7 @@ private:
     void interpolate_rBrow();
     void interpolate_lBrow();
 
-    void interpolate_points(std::vector<QVector2D>);
+    std::vector<QVector2D> interpolate_points(const std::vector<QVector2D> &pts, int pts_num);
 };
 
 

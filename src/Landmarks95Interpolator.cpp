@@ -10,9 +10,9 @@ void Landmarks95Interpolator::interpolate(std::vector<ft::FaceFeature*>) {
 
 }
 
-void Landmarks95Interpolator::interpolate_points(std::vector<QVector2D> splinePoints) {
+std::vector<QVector2D> Landmarks95Interpolator::interpolate_points(const std::vector<QVector2D> &pts, int pts_num) {
 
-    UniformCRSpline<QVector2D> mySpline(splinePoints);
+    UniformCRSpline<QVector2D> mySpline(pts);
     QVector2D interpolatedPosition = mySpline.getPosition(0.5f);
 
 

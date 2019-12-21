@@ -284,3 +284,10 @@ Qt::ItemFlags ft::FaceDatasetModel::flags(const QModelIndex &oIndex) const
 			return Qt::NoItemFlags;
 	}
 }
+
+
+
+QList<QString> ft::FaceDatasetModel::getImageNamesList() const {
+
+    return m_pFaceDataset->getImageNamesList();
+}

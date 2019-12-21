@@ -613,7 +613,7 @@
      <property name="verticalSpacing">
       <number>6</number>
      </property>
-     <item row="0" column="0">
+     <item row="1" column="0">
       <widget class="QToolBar" name="imagesToolbar">
        <property name="windowTitle">
         <string/>
@@ -631,7 +631,7 @@
        <addaction name="actionRemoveImage"/>
       </widget>
      </item>
-     <item row="1" column="0">
+     <item row="2" column="0">
       <widget class="QListView" name="listImages">
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
@@ -650,7 +650,7 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
+     <item row="3" column="0">
       <widget class="QTreeView" name="treeImages">
        <property name="editTriggers">
         <set>QAbstractItemView::AllEditTriggers</set>
@@ -661,6 +661,16 @@
        <attribute name="headerDefaultSectionSize">
         <number>150</number>
        </attribute>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLineEdit" name="SearchBox">
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
     </layout>

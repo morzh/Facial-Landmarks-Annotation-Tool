@@ -161,6 +161,8 @@ namespace ft
 		 */
 		int numFeatures() const;
 
+        QList<QString> getImageNamesList() const;
+
 	protected:
 
 		/**

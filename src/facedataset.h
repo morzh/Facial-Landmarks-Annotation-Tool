@@ -153,6 +153,8 @@ namespace ft
 		 */
 		std::vector<FaceFeature*> getImageFeatures(const int iIndex);
 
+		QList<QString> getImageNamesList();
+
 	private:
 
 		/** Vector of sample face images. */

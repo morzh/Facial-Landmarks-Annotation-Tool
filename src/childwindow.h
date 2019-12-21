@@ -22,6 +22,8 @@
 
 #include "facedatasetmodel.h"
 #include "facewidget.h"
+#include "faceimage.h"
+
 
 #include <QtGui>
 #include <QWidget>
@@ -34,7 +36,8 @@ namespace ft
 	class ChildWindow : public QWidget
 	{
 		Q_OBJECT
-	public:
+
+    public:
 		/**
 		 * Class constructor.
 		 * @param pParent Instance of the widget that will be the parent of this window.
@@ -220,6 +223,8 @@ namespace ft
 		 * @return Boolean indicating if the reposition was successfully done or not.
 		 */
 		bool positionFeatures(std::vector<QPoint> vPoints);
+
+		QList<QString> getImageNamesList();
 
 	protected:
 

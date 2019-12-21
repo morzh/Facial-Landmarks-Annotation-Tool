@@ -312,3 +312,19 @@ vector<ft::FaceFeature*> ft::FaceDataset::getImageFeatures(const int iIndex)
 
 	return m_vSamples[iIndex]->getFeatures();
 }
+
+QList<QString> ft::FaceDataset::getImageNamesList() {
+
+    if (m_vSamples.empty())
+        return QList<QString>();
+
+    QList<QString> namesList;
+
+    for (auto faceImage:m_vSamples){
+
+        QString imageName = faceImage->fileName();
+        namesList.push_back(imageName);
+    }
+
+    return  namesList;
+}

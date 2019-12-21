@@ -596,3 +596,9 @@ void ft::ChildWindow::InterpolateLandmarks95(const QList<int> &indices) {
     }
     onModelChanged();
 }
+
+QList<QString> ft::ChildWindow::getImageNamesList() {
+
+    return m_pFaceDatasetModel->getImageNamesList();
+}
+

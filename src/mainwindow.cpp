@@ -358,6 +358,7 @@ void ft::MainWindow::onFitError(QProcess::ProcessError eError)
 	showStatusMessage(tr("The face fit utility executable failed to execute. Please check its configuration."));
 }
 
+
 // +-----------------------------------------------------------
 void ft::MainWindow::onFitFinished(int iExitCode, QProcess::ExitStatus eExitStatus)
 {
@@ -984,6 +985,27 @@ void ft::MainWindow::destroyChildWindow(ChildWindow *pChild)
 	disconnect(pChild, SIGNAL(onFeaturesSelectionChanged()), this, SLOT(onUpdateUI()));
 
 	delete pChild;
+}
+
+void ft::MainWindow::on_SearchBox_textEdited(const QString &textToSearch) {
+
+    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
+    if(!pChild)   return;
+
+    QList<QString>              lsImageNames = pChild->getImageNamesList();
+    QList<int>                  lsFoundImagesIdx;
+    std::vector<QModelIndex>    idxlist;
+
+//    QAbstractItemModel  qaModel = ;
+    QModelIndexList   lsSelected = pChild->selectionModel()->model()->match(
+            pChild->selectionModel()->model()->index(0,0),  // first row, first column
+            Qt::DisplayRole,  // search the text as displayed
+            textToSearch,  // there is a QVariant(QString) conversion constructor
+            1, // first hit only
+            Qt::MatchContains // or Qt::MatchFixedString
+    );
+    pChild->selectionModel()->clearSelection();
+    pChild->selectionModel()->select(lsSelected[0], QItemSelectionModel::Select );
 }
 
 QList<int> ft::MainWindow::getIndicesOfSelectedImages(ft::ChildWindow *pChild) {

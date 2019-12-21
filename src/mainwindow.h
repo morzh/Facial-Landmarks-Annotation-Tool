@@ -22,6 +22,7 @@
 
 #include <QMainWindow>
 #include <QProcess>
+#include <QLineEdit>
 
 #include "aboutwindow.h"
 #include "childwindow.h"
@@ -262,6 +263,9 @@ namespace ft
 		* @param eExitStatus QProcess::ExitStatus enumeration with the utility exit status.
 		*/
 		void onFitFinished(int iExitCode, QProcess::ExitStatus eExitStatus);
+
+        void on_SearchBox_textEdited(const QString &textToSearch);
+
 
     private:
         /** Instance of the ui for GUI element access. */

@@ -284,7 +284,6 @@ namespace ft
 		QString m_sFitTempFile;
 
         QSortFilterProxyModel *proxy;
-        ItemDelegate *itemDelegate;
         QList<int> getIndicesOfSelectedImages(ChildWindow *pChild);
     };
 };

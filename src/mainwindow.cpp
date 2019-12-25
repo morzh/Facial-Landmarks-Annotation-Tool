@@ -109,8 +109,6 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	connect(ui->zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(onSliderValueChanged(int)));
 
     proxy = new QSortFilterProxyModel(this);
-    itemDelegate = new ItemDelegate(this);
-
 }
 
 // +-----------------------------------------------------------
@@ -995,30 +993,16 @@ void ft::MainWindow::destroyChildWindow(ChildWindow *pChild)
 void ft::MainWindow::on_SearchBox_textEdited(const QString &textToSearch) {
 
     ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
-    if(!pChild || textToSearch.isEmpty())   return;
+    if(!pChild /*|| textToSearch.isEmpty()*/)   return;
 
     proxy->setDynamicSortFilter(true);
     proxy->setSourceModel(pChild->selectionModel()->model());
-    ui->listImages->setItemDelegate(itemDelegate);
     ui->listImages->setModel(proxy);
-
     proxy->setFilterFixedString(textToSearch);
 
     pChild->update();
 
-
-
-
-
-
-
 /*
-    int  listImagesSize =   ui->listImages->model()->rowCount();
-    for ( int idx=0; idx<listImagesSize; ++idx) {
-        ui->listImages->setRowHidden(idx, false);
-    }
-
-
 
     QModelIndexList   lsSelected = pChild->selectionModel()->model()->match(
             pChild->selectionModel()->model()->index(0,0),  // first row, first column
@@ -1027,9 +1011,6 @@ void ft::MainWindow::on_SearchBox_textEdited(const QString &textToSearch) {
             100, // first hit only
             Qt::MatchContains // or Qt::MatchFixedString
     );
-*/
-
-/*
     for (auto  item:lsSelected) {
         pChild->selectionModel()->select(item, QItemSelectionModel::Select);
     }

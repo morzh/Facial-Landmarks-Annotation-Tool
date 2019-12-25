@@ -23,6 +23,7 @@
 #include <QMainWindow>
 #include <QProcess>
 #include <QLineEdit>
+#include "ItemDelegate.h"
 
 #include "aboutwindow.h"
 #include "childwindow.h"
@@ -149,11 +150,7 @@ namespace ft
 		 * @param iTabIndex Integer with the index of the tab now selected.
 		 */
 		void on_tabChanged(int iTabIndex);
-
-		/**
-		 * Slot for the button Add Image trigger event.
-		 */
-		void on_actionAddImage_triggered();
+		void on_actionAddImage_triggered(); /// Slot for the button Add Image trigger event.
 
 		/**
 		 * Slot for the button Add Image trigger event.
@@ -274,22 +271,20 @@ namespace ft
         /** Instance of the about dialog box. */
         AboutWindow* m_pAbout;
         LandmarksProperties* m_pLProperties;
-
 		/** Last path used in File Dialogs. */
 		QString m_sLastPathUsed;
-
 		/** Path to the face-fit utility. */
 		QString m_sFaceFitPath;
-
 		/** Instance of a dropdown button for the view mode of the image list. */
 		QMenu *m_pViewButton;
-
 		/** Process instance to execute the face-fit utility. */
 		QProcess *m_oFitProcess;
 
 		/** Name of the temporary file used for the face-fit utility. */
 		QString m_sFitTempFile;
 
+        QSortFilterProxyModel *proxy;
+        ItemDelegate *itemDelegate;
         QList<int> getIndicesOfSelectedImages(ChildWindow *pChild);
     };
 };

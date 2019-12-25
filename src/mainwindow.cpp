@@ -36,6 +36,7 @@
 #include <QTemporaryFile>
 #include <iostream>
 
+
 using namespace std;
 
 // +-----------------------------------------------------------
@@ -106,6 +107,10 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 
 	// Connect the zoom slider
 	connect(ui->zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(onSliderValueChanged(int)));
+
+    proxy = new QSortFilterProxyModel(this);
+    itemDelegate = new ItemDelegate(this);
+
 }
 
 // +-----------------------------------------------------------
@@ -990,22 +995,45 @@ void ft::MainWindow::destroyChildWindow(ChildWindow *pChild)
 void ft::MainWindow::on_SearchBox_textEdited(const QString &textToSearch) {
 
     ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
-    if(!pChild)   return;
+    if(!pChild || textToSearch.isEmpty())   return;
 
-    QList<QString>              lsImageNames = pChild->getImageNamesList();
-    QList<int>                  lsFoundImagesIdx;
-    std::vector<QModelIndex>    idxlist;
+    proxy->setDynamicSortFilter(true);
+    proxy->setSourceModel(pChild->selectionModel()->model());
+    ui->listImages->setItemDelegate(itemDelegate);
+    ui->listImages->setModel(proxy);
 
-//    QAbstractItemModel  qaModel = ;
+    proxy->setFilterFixedString(textToSearch);
+
+    pChild->update();
+
+
+
+
+
+
+
+/*
+    int  listImagesSize =   ui->listImages->model()->rowCount();
+    for ( int idx=0; idx<listImagesSize; ++idx) {
+        ui->listImages->setRowHidden(idx, false);
+    }
+
+
+
     QModelIndexList   lsSelected = pChild->selectionModel()->model()->match(
             pChild->selectionModel()->model()->index(0,0),  // first row, first column
             Qt::DisplayRole,  // search the text as displayed
             textToSearch,  // there is a QVariant(QString) conversion constructor
-            1, // first hit only
+            100, // first hit only
             Qt::MatchContains // or Qt::MatchFixedString
     );
-    pChild->selectionModel()->clearSelection();
-    pChild->selectionModel()->select(lsSelected[0], QItemSelectionModel::Select );
+*/
+
+/*
+    for (auto  item:lsSelected) {
+        pChild->selectionModel()->select(item, QItemSelectionModel::Select);
+    }
+*/
 }
 
 QList<int> ft::MainWindow::getIndicesOfSelectedImages(ft::ChildWindow *pChild) {
@@ -1013,11 +1041,9 @@ QList<int> ft::MainWindow::getIndicesOfSelectedImages(ft::ChildWindow *pChild) {
     QModelIndexList     lsSelected = pChild->selectionModel()->selectedRows();
     QList<int>          lIndexes;
 
-//    std::cout <<  "num of selected face images " << lsSelected.size() << std::endl;
     if(lsSelected.size() > 0){
         for(int i = 0; i < lsSelected.size(); i++) {
             lIndexes.append(lsSelected[i].row());
-//            std::cout << lsSelected[i].row() << std::endl;
         }
     }
 

@@ -152,7 +152,6 @@ namespace ft
 		 * an empty vector if the given index is invalid.
 		 */
 		std::vector<FaceFeature*> getImageFeatures(const int iIndex);
-
 		QList<QString> getImageNamesList();
 
 	private:

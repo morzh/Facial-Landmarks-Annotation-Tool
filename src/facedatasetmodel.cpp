@@ -207,6 +207,7 @@ bool ft::FaceDatasetModel::removeImages(const QList<int> &lImageIndexes)
 {
 	int iFirst = lImageIndexes.first();
 	int iLast = lImageIndexes.last();
+
 	beginRemoveRows(QModelIndex(), iFirst, iLast);
 	for(int i = lImageIndexes.size() - 1; i >= 0; i--)
 	{
@@ -214,6 +215,7 @@ bool ft::FaceDatasetModel::removeImages(const QList<int> &lImageIndexes)
 		m_lCachedThumbnails.removeAt(lImageIndexes[i]);
 	}
 	endRemoveRows();
+
 	emit dataChanged(index(0), index(lImageIndexes.size() - 1));
 	return true;
 }

@@ -82,10 +82,10 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 
 	QAction *pSortAZ = new QAction(QIcon(":/icons/viewdetails"), tr("Sort A->Z"), this);
 //	pViewDetails->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
-	m_pSortButton->addAction(pViewDetails);
+	m_pSortButton->addAction(pSortAZ);
 	QAction *pSortZA = new QAction(QIcon(":/icons/viewicons"), tr("Sort Z->A"), this);
 //	pViewIcons->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_I));
-	m_pSortButton->addAction(pViewIcons);
+	m_pSortButton->addAction(pSortZA);
 
 
 

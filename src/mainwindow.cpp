@@ -88,6 +88,7 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	connect(pMap, SIGNAL(mapped(QString)), this, SLOT(setImageListView(QString)));
 	connect(m_pViewButton->menuAction(), SIGNAL(triggered()), this, SLOT(toggleImageListView()));
 
+	m_pSortButton->setIcon(QIcon(":/icons/sorticon")); // By default display the image thumbnails
 	m_pViewButton->setIcon(QIcon(":/icons/viewicons")); // By default display the image thumbnails
 	ui->treeImages->setVisible(false);
 
@@ -865,11 +866,13 @@ void ft::MainWindow::updateUI()
         proxy->setSourceModel(pChild->dataModel());
         ui->listImages->setModel(proxy);
         ui->listImages->setSelectionModel(view2SelectionModel);
+        ui->treeImages->setModel(proxy);
+        ui->treeImages->setSelectionModel(view2SelectionModel);
 
 //        ui->listImages->setModel(pChild->dataModel());
 //        ui->listImages->setSelectionModel(pChild->selectionModel());
-        ui->treeImages->setModel(pChild->dataModel());
-        ui->treeImages->setSelectionModel(pChild->selectionModel());
+//        ui->treeImages->setModel(pChild->dataModel());
+//        ui->treeImages->setSelectionModel(pChild->selectionModel());
 	}
 	else
 	{

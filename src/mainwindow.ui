@@ -778,7 +778,7 @@
   <action name="actionOpen">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons/open.png</normaloff>:/icons/resources/icons/open.png</iconset>
+     <normaloff>:/icons/resources/icons/open-file-folder.ico</normaloff>:/icons/resources/icons/open-file-folder.ico</iconset>
    </property>
    <property name="text">
     <string>&amp;Open...</string>

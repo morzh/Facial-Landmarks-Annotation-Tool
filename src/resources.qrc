@@ -8,6 +8,7 @@
         <file>resources/icons/help.png</file>
         <file alias="viewdetails">resources/icons/viewdetails.png</file>
         <file alias="viewicons">resources/icons/viewicons.png</file>
+        <file alias="sorticon">resources/icons/sort.png</file>
         <file>resources/icons/add.png</file>
         <file>resources/icons/database.png</file>
         <file>resources/icons/delete.png</file>
@@ -21,6 +22,9 @@
         <file>resources/icons/disconnect.png</file>
         <file>resources/icons/connect.png</file>
         <file>resources/icons/links.png</file>
+        <file>resources/icons/open-file-folder.ico</file>
+        <file>resources/icons/openfile.png</file>
+        <file>resources/icons/sort.png</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="noface">resources/images/noface.png</file>

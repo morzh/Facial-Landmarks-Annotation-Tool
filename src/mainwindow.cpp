@@ -79,6 +79,17 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	pViewIcons->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_I));
 	m_pViewButton->addAction(pViewIcons);
 
+
+	QAction *pSortAZ = new QAction(QIcon(":/icons/viewdetails"), tr("Sort A->Z"), this);
+//	pViewDetails->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
+	m_pSortButton->addAction(pViewDetails);
+	QAction *pSortZA = new QAction(QIcon(":/icons/viewicons"), tr("Sort Z->A"), this);
+//	pViewIcons->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_I));
+	m_pSortButton->addAction(pViewIcons);
+
+
+
+
 	QSignalMapper *pMap = new QSignalMapper(ui->imagesToolbar);
 	connect(pViewDetails, SIGNAL(triggered()), pMap, SLOT(map()));
 	connect(pViewIcons, SIGNAL(triggered()), pMap, SLOT(map()));

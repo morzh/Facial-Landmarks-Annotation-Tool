@@ -100,7 +100,7 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	connect(m_pViewButton->menuAction(), SIGNAL(triggered()), this, SLOT(toggleImageListView()));
 
 	m_pSortButton->setIcon(QIcon(":/icons/sorticon")); // By default display the image thumbnails
-	m_pViewButton->setIcon(QIcon(":/icons/viewicons")); // By default display the image thumbnails
+	m_pViewButton->setIcon(QIcon(":/icons/viewmodes_bw")); // By default display the image thumbnails
 	ui->treeImages->setVisible(false);
 
 	// Default path for file dialogs is the standard documents path
@@ -803,13 +803,13 @@ void ft::MainWindow::setImageListView(QString sType)
 {
 	if(sType == "details")
 	{
-		m_pViewButton->setIcon(QIcon(":/icons/viewdetails"));
+		m_pViewButton->setIcon(QIcon(":/icons/viewdetails_bw"));
 		ui->listImages->setVisible(false);
 		ui->treeImages->setVisible(true);
 	}
 	else if(sType == "icons")
 	{
-		m_pViewButton->setIcon(QIcon(":/icons/viewicons"));
+		m_pViewButton->setIcon(QIcon(":/icons/viewicons_bw"));
 		ui->treeImages->setVisible(false);
 		ui->listImages->setVisible(true);
 	}

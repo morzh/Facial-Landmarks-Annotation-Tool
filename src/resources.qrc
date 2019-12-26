@@ -10,6 +10,7 @@
         <file alias="viewicons">resources/icons/viewicons.png</file>
         <file alias="viewdetails_bw">resources/icons/viewDetails-bw.png</file>
         <file alias="viewicons_bw">resources/icons/viewIcons-bw.png</file>
+        <file alias="viewmodes_bw">resources/icons/viewModes-bw.png</file>
         <file alias="sorticon">resources/icons/sort.png</file>
         <file alias="sort_az">resources/icons/BT_sort_az-512.png</file>
         <file alias="sort_za">resources/icons/BT_sort_za-512.png</file>

@@ -130,6 +130,8 @@ ft::MainWindow::~MainWindow()
 
     if(m_pAbout)
         delete m_pAbout;
+    if(m_pLProperties)
+        delete m_pLProperties;
 	if(m_pViewButton)
 		delete m_pViewButton;
 	if(m_pSortButton)

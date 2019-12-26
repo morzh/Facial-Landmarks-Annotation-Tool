@@ -50,8 +50,8 @@ find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Xml REQUIRED)
 
 # Add all source and resource files
-file(GLOB SRC src/*.cpp src/*.h src/spline_library/*.h src/spline_library/splines/*.h src/spline_library/utils/*.h )
-file(GLOB RSC src/*.qrc)
+file(GLOB SRC src/*.cpp src/*.h src/spline_library/*.h src/spline_library/splines/*.h src/spline_library/utils/*.h  src/kitemmodels/*.h )
+file(GLOB RSC src/*.qrc src/kitemmodels/*.cpp )
 
 # Add the executable
 if(WIN32)

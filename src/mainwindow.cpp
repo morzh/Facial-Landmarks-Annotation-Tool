@@ -64,7 +64,13 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	// Add the view dropdown button manually (because Qt designer does not allow it...)
 	m_pViewButton = new QMenu(ui->imagesToolbar);
 	ui->imagesToolbar->addSeparator();
-	ui->imagesToolbar->addAction(m_pViewButton->menuAction());
+    ui->imagesToolbar->addAction(m_pViewButton->menuAction());
+
+    //Add sorting dropdown button manually
+    m_pSortButton = new QMenu(ui->imagesToolbar);
+    ui->imagesToolbar->addSeparator();
+    ui->imagesToolbar->addAction(m_pSortButton->menuAction());
+
 
 	QAction *pViewDetails = new QAction(QIcon(":/icons/viewdetails"), tr("&Details"), this);
 	pViewDetails->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
@@ -109,6 +115,7 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	connect(ui->zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(onSliderValueChanged(int)));
 
     proxy = new QSortFilterProxyModel(this);
+    proxy->setDynamicSortFilter(true);
 }
 
 // +-----------------------------------------------------------
@@ -125,8 +132,15 @@ ft::MainWindow::~MainWindow()
         delete m_pAbout;
 	if(m_pViewButton)
 		delete m_pViewButton;
+	if(m_pSortButton)
+		delete m_pSortButton;
 	if (m_oFitProcess)
 		delete m_oFitProcess;
+	if (proxy)
+		delete proxy;
+	if (view2SelectionModel)
+		delete view2SelectionModel;
+
     delete ui;
 }
 
@@ -708,9 +722,7 @@ void ft::MainWindow::on_actionAddFeature_triggered()
 	if(!pChild)
 		return;
 
-	// The position of the mouse  is stored in this action data
-	// if the action is called from a context menu in the face features
-	// editor (see method FaceWidget::contextMenuEvent)
+	// The position of the mouse  is stored in this action data  if the action is called from a context menu in the face features  editor (see method FaceWidget::contextMenuEvent)
 	QVariant vPos = ui->actionAddFeature->data();
 	QPoint oPos;
 	if(vPos.isValid())
@@ -824,6 +836,7 @@ void ft::MainWindow::updateUI()
 {
 	// Setup the control variables
 	ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
+	delete view2SelectionModel;
 
 	bool bLandmarksPropertiesOpened = pChild != NULL;
 	bool bFileOpened = pChild != NULL;
@@ -846,10 +859,15 @@ void ft::MainWindow::updateUI()
 	// Update the data and selection models
 	if(bFileOpened)
 	{
-		ui->listImages->setModel(pChild->dataModel());
-		ui->listImages->setSelectionModel(pChild->selectionModel());
-		ui->treeImages->setModel(pChild->dataModel());
-		ui->treeImages->setSelectionModel(pChild->selectionModel());
+        view2SelectionModel = new KLinkItemSelectionModel( proxy, pChild->selectionModel(), this);
+        proxy->setSourceModel(pChild->dataModel());
+        ui->listImages->setModel(proxy);
+        ui->listImages->setSelectionModel(view2SelectionModel);
+
+//        ui->listImages->setModel(pChild->dataModel());
+//        ui->listImages->setSelectionModel(pChild->selectionModel());
+        ui->treeImages->setModel(pChild->dataModel());
+        ui->treeImages->setSelectionModel(pChild->selectionModel());
 	}
 	else
 	{
@@ -889,6 +907,7 @@ void ft::MainWindow::updateUI()
 		pChild->setDisplayConnections(ui->actionShowFeatures->isChecked() && ui->actionShowConnections->isChecked());
 		pChild->setDisplayFeatureIDs(ui->actionShowFeatures->isChecked() && ui->actionShowFeatureIDs->isChecked());
 	}
+
 
 }
 
@@ -993,14 +1012,14 @@ void ft::MainWindow::destroyChildWindow(ChildWindow *pChild)
 void ft::MainWindow::on_SearchBox_textEdited(const QString &textToSearch) {
 
     ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
-    if(!pChild /*|| textToSearch.isEmpty()*/)   return;
+    if(!pChild )   return;
 
-    proxy->setDynamicSortFilter(true);
-    proxy->setSourceModel(pChild->selectionModel()->model());
-    ui->listImages->setModel(proxy);
+//    proxy->setDynamicSortFilter(true);
+//    proxy->setSourceModel(pChild->selectionModel()->model());
+//    ui->listImages->setModel(proxy);
     proxy->setFilterFixedString(textToSearch);
 
-    pChild->update();
+//    pChild->update();
 
 /*
 

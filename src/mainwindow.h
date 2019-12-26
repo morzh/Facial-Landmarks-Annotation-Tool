@@ -23,11 +23,12 @@
 #include <QMainWindow>
 #include <QProcess>
 #include <QLineEdit>
-#include "ItemDelegate.h"
 
 #include "aboutwindow.h"
 #include "childwindow.h"
 #include "landmarksproperties.h"
+
+#include "kitemmodels/klinkitemselectionmodel.h"
 
 namespace Ui {
     class MainWindow;
@@ -275,15 +276,15 @@ namespace ft
 		QString m_sLastPathUsed;
 		/** Path to the face-fit utility. */
 		QString m_sFaceFitPath;
-		/** Instance of a dropdown button for the view mode of the image list. */
+		/** Instance of a dropdown buttons for the view mode of the image list. */
 		QMenu *m_pViewButton;
+		QMenu *m_pSortButton;
 		/** Process instance to execute the face-fit utility. */
 		QProcess *m_oFitProcess;
-
 		/** Name of the temporary file used for the face-fit utility. */
 		QString m_sFitTempFile;
-
         QSortFilterProxyModel *proxy;
+        KLinkItemSelectionModel *view2SelectionModel;
         QList<int> getIndicesOfSelectedImages(ChildWindow *pChild);
     };
 };

@@ -64,6 +64,12 @@ ft::ChildWindow::ChildWindow(QWidget *pParent) :
 	// Indicate that it is a brand new dataset (i.e. not yet saved to a file)
 	setProperty("new", true);
 	m_iCurrentImage = -1;
+
+    proxy = new QSortFilterProxyModel(this);
+    proxy->setDynamicSortFilter(true);
+
+    proxy->setSourceModel(m_pFaceDatasetModel);
+    m_pFaceSelectionProxyModel = new KLinkItemSelectionModel(proxy, m_pFaceSelectionModel, this);
 }
 
 // +-----------------------------------------------------------
@@ -71,6 +77,8 @@ ft::ChildWindow::~ChildWindow()
 {
 	delete m_pFaceSelectionModel;
 	delete m_pFaceDatasetModel;
+	delete proxy;
+	delete m_pFaceSelectionProxyModel;
 }
 
 // +-----------------------------------------------------------
@@ -600,5 +608,19 @@ void ft::ChildWindow::InterpolateLandmarks95(const QList<int> &indices) {
 QList<QString> ft::ChildWindow::getImageNamesList() {
 
     return m_pFaceDatasetModel->getImageNamesList();
+}
+
+QItemSelectionModel *ft::ChildWindow::selectionProxyModel() const {
+    return m_pFaceSelectionProxyModel;
+}
+
+QAbstractItemModel* ft::ChildWindow::dataProxyModel() const {
+    return proxy;
+}
+
+void ft::ChildWindow::setFilterString(const QString &qString) {
+
+    proxy->setFilterFixedString(qString);
+
 }
 

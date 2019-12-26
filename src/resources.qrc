@@ -8,7 +8,11 @@
         <file>resources/icons/help.png</file>
         <file alias="viewdetails">resources/icons/viewdetails.png</file>
         <file alias="viewicons">resources/icons/viewicons.png</file>
+        <file alias="viewdetails_bw">resources/icons/viewDetails-bw.png</file>
+        <file alias="viewicons_bw">resources/icons/viewIcons-bw.png</file>
         <file alias="sorticon">resources/icons/sort.png</file>
+        <file alias="sort_az">resources/icons/BT_sort_az-512.png</file>
+        <file alias="sort_za">resources/icons/BT_sort_za-512.png</file>
         <file>resources/icons/add.png</file>
         <file>resources/icons/database.png</file>
         <file>resources/icons/delete.png</file>
@@ -25,6 +29,13 @@
         <file>resources/icons/open-file-folder.ico</file>
         <file>resources/icons/openfile.png</file>
         <file>resources/icons/sort.png</file>
+        <file>resources/icons/oMinus_bw.png</file>
+        <file>resources/icons/minus-bw.png</file>
+        <file>resources/icons/oPlus_bw.png</file>
+        <file>resources/icons/plus-bw.png</file>
+        <file>resources/icons/viewModes-bw.png</file>
+        <file>resources/icons/BT_sort_az-512.png</file>
+        <file>resources/icons/BT_sort_za-512.png</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="noface">resources/images/noface.png</file>

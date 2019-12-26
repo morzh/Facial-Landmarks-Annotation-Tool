@@ -72,18 +72,18 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
     ui->imagesToolbar->addAction(m_pSortButton->menuAction());
 
 
-	QAction *pViewDetails = new QAction(QIcon(":/icons/viewdetails"), tr("&Details"), this);
+	QAction *pViewDetails = new QAction(QIcon(":/icons/viewdetails_bw"), tr("&Details"), this);
 	pViewDetails->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
 	m_pViewButton->addAction(pViewDetails);
-	QAction *pViewIcons = new QAction(QIcon(":/icons/viewicons"), tr("&Icons"), this);
+	QAction *pViewIcons = new QAction(QIcon(":/icons/viewicons_bw"), tr("&Icons"), this);
 	pViewIcons->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_I));
 	m_pViewButton->addAction(pViewIcons);
 
 
-	QAction *pSortAZ = new QAction(QIcon(":/icons/viewdetails"), tr("Sort A->Z"), this);
+	QAction *pSortAZ = new QAction(QIcon(":/icons/sort_az"), tr("Sort A→Z"), this);
 //	pViewDetails->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
 	m_pSortButton->addAction(pSortAZ);
-	QAction *pSortZA = new QAction(QIcon(":/icons/viewicons"), tr("Sort Z->A"), this);
+	QAction *pSortZA = new QAction(QIcon(":/icons/sort_za"), tr("Sort Z→A"), this);
 //	pViewIcons->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_I));
 	m_pSortButton->addAction(pSortZA);
 
@@ -126,8 +126,7 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	// Connect the zoom slider
 	connect(ui->zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(onSliderValueChanged(int)));
 
-    proxy = new QSortFilterProxyModel(this);
-    proxy->setDynamicSortFilter(true);
+
 }
 
 // +-----------------------------------------------------------
@@ -150,10 +149,6 @@ ft::MainWindow::~MainWindow()
 		delete m_pSortButton;
 	if (m_oFitProcess)
 		delete m_oFitProcess;
-	if (proxy)
-		delete proxy;
-	if (view2SelectionModel)
-		delete view2SelectionModel;
 
     delete ui;
 }
@@ -850,7 +845,6 @@ void ft::MainWindow::updateUI()
 {
 	// Setup the control variables
 	ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
-	delete view2SelectionModel;
 
 	bool bLandmarksPropertiesOpened = pChild != NULL;
 	bool bFileOpened = pChild != NULL;
@@ -873,12 +867,10 @@ void ft::MainWindow::updateUI()
 	// Update the data and selection models
 	if(bFileOpened)
 	{
-        view2SelectionModel = new KLinkItemSelectionModel( proxy, pChild->selectionModel(), this);
-        proxy->setSourceModel(pChild->dataModel());
-        ui->listImages->setModel(proxy);
-        ui->listImages->setSelectionModel(view2SelectionModel);
-        ui->treeImages->setModel(proxy);
-        ui->treeImages->setSelectionModel(view2SelectionModel);
+        ui->listImages->setModel(pChild->dataProxyModel());
+        ui->listImages->setSelectionModel(pChild->selectionProxyModel());
+        ui->treeImages->setModel(pChild->dataProxyModel());
+        ui->treeImages->setSelectionModel(pChild->selectionProxyModel());
 
 //        ui->listImages->setModel(pChild->dataModel());
 //        ui->listImages->setSelectionModel(pChild->selectionModel());
@@ -1030,11 +1022,7 @@ void ft::MainWindow::on_SearchBox_textEdited(const QString &textToSearch) {
     ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
     if(!pChild )   return;
 
-//    proxy->setDynamicSortFilter(true);
-//    proxy->setSourceModel(pChild->selectionModel()->model());
-//    ui->listImages->setModel(proxy);
-    proxy->setFilterFixedString(textToSearch);
-
+    pChild->setFilterString(textToSearch);
 //    pChild->update();
 
 /*

@@ -850,7 +850,7 @@
   <action name="actionAddImage">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons/add.png</normaloff>:/icons/resources/icons/add.png</iconset>
+     <normaloff>:/icons/resources/icons/plus-bw.png</normaloff>:/icons/resources/icons/plus-bw.png</iconset>
    </property>
    <property name="text">
     <string>Add...</string>
@@ -865,7 +865,7 @@
   <action name="actionRemoveImage">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons/delete.png</normaloff>:/icons/resources/icons/delete.png</iconset>
+     <normaloff>:/icons/resources/icons/minus-bw.png</normaloff>:/icons/resources/icons/minus-bw.png</iconset>
    </property>
    <property name="text">
     <string>Remove</string>

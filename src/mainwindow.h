@@ -28,7 +28,7 @@
 #include "childwindow.h"
 #include "landmarksproperties.h"
 
-#include "kitemmodels/klinkitemselectionmodel.h"
+
 
 namespace Ui {
     class MainWindow;
@@ -283,8 +283,6 @@ namespace ft
 		QProcess *m_oFitProcess;
 		/** Name of the temporary file used for the face-fit utility. */
 		QString m_sFitTempFile;
-        QSortFilterProxyModel *proxy;
-        KLinkItemSelectionModel *view2SelectionModel;
         QList<int> getIndicesOfSelectedImages(ChildWindow *pChild);
     };
 };

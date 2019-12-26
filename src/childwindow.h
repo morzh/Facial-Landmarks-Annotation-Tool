@@ -23,7 +23,7 @@
 #include "facedatasetmodel.h"
 #include "facewidget.h"
 #include "faceimage.h"
-
+#include "kitemmodels/klinkitemselectionmodel.h"
 
 #include <QtGui>
 #include <QWidget>
@@ -38,12 +38,12 @@ namespace ft
 		Q_OBJECT
 
     public:
-		/**
+
+        /**
 		 * Class constructor.
 		 * @param pParent Instance of the widget that will be the parent of this window.
 		 */
 		explicit ChildWindow(QWidget* pParent = 0);
-
 		/**
 		 * Class destructor.
 		 */
@@ -57,6 +57,9 @@ namespace ft
 		 */
 		FaceDatasetModel* dataModel() const;
 
+        QAbstractItemModel * dataProxyModel() const;
+        void setFilterString(const QString &qString);
+
 		/**
 		 * Gets the list selection model used to display selection information about the contents of the
 		 * face annotation dataset handled by this window.
@@ -64,6 +67,7 @@ namespace ft
 		 * to display lists, icons or tress with the face annotation dataset contents.
 		 */
 		QItemSelectionModel* selectionModel() const;
+		QItemSelectionModel* selectionProxyModel() const;
 
 		/**
 		 * Saves the contents of the face annotation dataset in this window to the current file
@@ -287,10 +291,13 @@ namespace ft
 	private:
         void calcFeaturesRadiusAdd(QList<FaceFeatureNode *>& list);
 
-        int m_iCurrentImage; /// Index of the current displayed face image.
-        FaceWidget *m_pFaceWidget; ///  Widget used to display face images and edit facial features.
-        FaceDatasetModel *m_pFaceDatasetModel; /// Instance of the model used to encapsulate the access of the face dataset to Qt view components such as QListView.
-		QItemSelectionModel *m_pFaceSelectionModel; ///  Selection model used to represent the selection of items in Qt view components such as QListView.
+        int                     m_iCurrentImage; /// Index of the current displayed face image.
+        FaceWidget              *m_pFaceWidget; ///  Widget used to display face images and edit facial features.
+        FaceDatasetModel        *m_pFaceDatasetModel; /// Instance of the model used to encapsulate the access of the face dataset to Qt view components such as QListView.
+		QItemSelectionModel     *m_pFaceSelectionModel; ///  Selection model used to represent the selection of items in Qt view components such as QListView.
+
+        QSortFilterProxyModel   *proxy;
+        KLinkItemSelectionModel *m_pFaceSelectionProxyModel;
     };
 }
 

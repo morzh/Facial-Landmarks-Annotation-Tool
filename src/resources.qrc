@@ -2,10 +2,16 @@
     <qresource prefix="/icons">
         <file alias="fat">resources/icons/fat.png</file>
         <file>resources/icons/new.png</file>
+        <file>resources/icons/new-bw.png</file>
+        <file>resources/icons/new-bw2.png</file>
         <file>resources/icons/open.png</file>
+        <file>resources/icons/open-bw.png</file>
+        <file>resources/icons/open-bw2.png</file>
         <file>resources/icons/save.png</file>
+        <file>resources/icons/save-bw.png</file>
         <file>resources/icons/saveas.png</file>
         <file>resources/icons/help.png</file>
+        <file>resources/icons/help-bw.png</file>
         <file alias="viewdetails">resources/icons/viewdetails.png</file>
         <file alias="viewicons">resources/icons/viewicons.png</file>
         <file alias="viewdetails_bw">resources/icons/viewDetails-bw.png</file>
@@ -21,12 +27,19 @@
         <file>resources/icons/image-list.png</file>
         <file>resources/icons/image-properties.png</file>
         <file>resources/icons/remove-feature.png</file>
+        <file>resources/icons/remove-feature-bw.png</file>
+        <file>resources/icons/remove-feature-bw2.png</file>
         <file>resources/icons/add-feature.png</file>
+        <file>resources/icons/add-feature-bw.png</file>
         <file>resources/icons/feature-ids.png</file>
         <file>resources/icons/features.png</file>
+        <file>resources/icons/features-bw.png</file>
         <file>resources/icons/disconnect.png</file>
+        <file>resources/icons/disconnect-bw.png</file>
         <file>resources/icons/connect.png</file>
+        <file>resources/icons/connect-bw.png</file>
         <file>resources/icons/links.png</file>
+        <file>resources/icons/links-bw.png</file>
         <file>resources/icons/open-file-folder.ico</file>
         <file>resources/icons/openfile.png</file>
         <file>resources/icons/sort.png</file>

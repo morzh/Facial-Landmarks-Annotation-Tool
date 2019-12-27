@@ -778,7 +778,7 @@
   <action name="actionOpen">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons/open-file-folder.ico</normaloff>:/icons/resources/icons/open-file-folder.ico</iconset>
+     <normaloff>:/icons/resources/icons/open-bw2.png</normaloff>:/icons/resources/icons/open-bw2.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Open...</string>
@@ -793,7 +793,7 @@
   <action name="actionNew">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons/new.png</normaloff>:/icons/resources/icons/new.png</iconset>
+     <normaloff>:/icons/resources/icons/new-bw2.png</normaloff>:/icons/resources/icons/new-bw2.png</iconset>
    </property>
    <property name="text">
     <string>&amp;New</string>
@@ -808,7 +808,7 @@
   <action name="actionSave">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons/save.png</normaloff>:/icons/resources/icons/save.png</iconset>
+     <normaloff>:/icons/resources/icons/save-bw.png</normaloff>:/icons/resources/icons/save-bw.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Save</string>
@@ -835,7 +835,7 @@
   <action name="actionProject">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons/help.png</normaloff>:/icons/resources/icons/help.png</iconset>
+     <normaloff>:/icons/resources/icons/help-bw.png</normaloff>:/icons/resources/icons/help-bw.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Project Docs</string>
@@ -928,7 +928,7 @@
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons/features.png</normaloff>:/icons/resources/icons/features.png</iconset>
+     <normaloff>:/icons/resources/icons/features-bw.png</normaloff>:/icons/resources/icons/features-bw.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Landmarks</string>
@@ -949,7 +949,7 @@
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons/links.png</normaloff>:/icons/resources/icons/links.png</iconset>
+     <normaloff>:/icons/resources/icons/links-bw.png</normaloff>:/icons/resources/icons/links-bw.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Links</string>
@@ -982,7 +982,7 @@
   <action name="actionAddFeature">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons/add-feature.png</normaloff>:/icons/resources/icons/add-feature.png</iconset>
+     <normaloff>:/icons/resources/icons/add-feature-bw.png</normaloff>:/icons/resources/icons/add-feature-bw.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Add</string>
@@ -997,7 +997,7 @@
   <action name="actionRemoveFeature">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons/remove-feature.png</normaloff>:/icons/resources/icons/remove-feature.png</iconset>
+     <normaloff>:/icons/resources/icons/remove-feature-bw.png</normaloff>:/icons/resources/icons/remove-feature-bw.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Remove</string>
@@ -1012,7 +1012,7 @@
   <action name="actionConnectFeatures">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons/connect.png</normaloff>:/icons/resources/icons/connect.png</iconset>
+     <normaloff>:/icons/resources/icons/connect-bw.png</normaloff>:/icons/resources/icons/connect-bw.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Link</string>
@@ -1027,7 +1027,7 @@
   <action name="actionDisconnectFeatures">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons/disconnect.png</normaloff>:/icons/resources/icons/disconnect.png</iconset>
+     <normaloff>:/icons/resources/icons/disconnect-bw.png</normaloff>:/icons/resources/icons/disconnect-bw.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Unlink</string>

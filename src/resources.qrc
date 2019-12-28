@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/icons">
-        <file alias="fat">resources/icons/fat.png</file>
+        <file alias="fat">resources/icons/fat-bw.png</file>
         <file>resources/icons/new.png</file>
         <file>resources/icons/new-bw.png</file>
         <file>resources/icons/new-bw2.png</file>
@@ -26,12 +26,14 @@
         <file>resources/icons/information.png</file>
         <file>resources/icons/image-list.png</file>
         <file>resources/icons/image-properties.png</file>
+        <file>resources/icons/image-properties-bw.png</file>
         <file>resources/icons/remove-feature.png</file>
         <file>resources/icons/remove-feature-bw.png</file>
         <file>resources/icons/remove-feature-bw2.png</file>
         <file>resources/icons/add-feature.png</file>
         <file>resources/icons/add-feature-bw.png</file>
         <file>resources/icons/feature-ids.png</file>
+        <file>resources/icons/feature-ids-bw.png</file>
         <file>resources/icons/features.png</file>
         <file>resources/icons/features-bw.png</file>
         <file>resources/icons/disconnect.png</file>
@@ -55,5 +57,8 @@
         <file alias="noface">resources/images/noface.png</file>
         <file alias="brokenimage">resources/images/brokenimage.png</file>
         <file alias="imagemissing">resources/images/imagemissing.png</file>
+    </qresource>
+    <qresource prefix="">
+    <file>darcula.css</file>
     </qresource>
 </RCC>

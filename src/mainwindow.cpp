@@ -50,6 +50,10 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	oROPalette.setColor(QPalette::Base, oROPalette.midlight().color());
 	ui->textFileName->setPalette(oROPalette);
 
+
+
+
+
     setWindowState(Qt::WindowMaximized);
     m_pAbout = NULL;
 
@@ -126,6 +130,7 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	// Connect the zoom slider
 	connect(ui->zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(onSliderValueChanged(int)));
 
+    undoStack = new QUndoStack(this);
 
 }
 
@@ -867,10 +872,13 @@ void ft::MainWindow::updateUI()
 	// Update the data and selection models
 	if(bFileOpened)
 	{
+        ui->SearchBox->clear();
+        ui->SearchBox->setText( pChild->getSearchBoxText());
         ui->listImages->setModel(pChild->dataProxyModel());
         ui->listImages->setSelectionModel(pChild->selectionProxyModel());
         ui->treeImages->setModel(pChild->dataProxyModel());
         ui->treeImages->setSelectionModel(pChild->selectionProxyModel());
+
 
 //        ui->listImages->setModel(pChild->dataModel());
 //        ui->listImages->setSelectionModel(pChild->selectionModel());
@@ -896,6 +904,7 @@ void ft::MainWindow::updateUI()
 	ui->actionFitLandmarks->setEnabled(bItemsSelected);
 	ui->actionExportPointsFile->setEnabled(bItemsSelected);
 	m_pViewButton->setEnabled(bFileOpened);
+	m_pSortButton->setEnabled(bFileOpened);
 	ui->zoomSlider->setEnabled(bFileOpened);
 	ui->rotationSlider->setEnabled(bFileOpened);
 
@@ -1023,6 +1032,8 @@ void ft::MainWindow::on_SearchBox_textEdited(const QString &textToSearch) {
     if(!pChild )   return;
 
     pChild->setFilterString(textToSearch);
+    pChild->setSearchBoxText(textToSearch);
+    ui->SearchBox->setText(textToSearch);
 //    pChild->update();
 
 /*

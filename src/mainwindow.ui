@@ -181,6 +181,8 @@
      <addaction name="actionDisconnectFeatures"/>
      <addaction name="actionSpaceEvenly"/>
     </widget>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRedo"/>
     <addaction name="menu_Images"/>
     <addaction name="separator"/>
     <addaction name="menu_Facial_Landmarks"/>
@@ -907,7 +909,7 @@
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons/image-properties.png</normaloff>:/icons/resources/icons/image-properties.png</iconset>
+     <normaloff>:/icons/resources/icons/image-properties-bw.png</normaloff>:/icons/resources/icons/image-properties-bw.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Image Properties</string>
@@ -967,7 +969,7 @@
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons/feature-ids.png</normaloff>:/icons/resources/icons/feature-ids.png</iconset>
+     <normaloff>:/icons/resources/icons/feature-ids-bw.png</normaloff>:/icons/resources/icons/feature-ids-bw.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Labels</string>
@@ -1065,7 +1067,7 @@
   <action name="actionExportPointsFile">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons/image-properties.png</normaloff>:/icons/resources/icons/image-properties.png</iconset>
+     <normaloff>:/icons/resources/icons/image-properties-bw.png</normaloff>:/icons/resources/icons/image-properties-bw.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Export points file...</string>
@@ -1205,6 +1207,16 @@
   <action name="actionUnod">
    <property name="text">
     <string>Unod</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="text">
+    <string>Undo</string>
+   </property>
+  </action>
+  <action name="actionRedo">
+   <property name="text">
+    <string>Redo</string>
    </property>
   </action>
  </widget>

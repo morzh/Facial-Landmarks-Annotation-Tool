@@ -228,7 +228,11 @@ namespace ft
 		 */
 		bool positionFeatures(std::vector<QPoint> vPoints);
 
-		QList<QString> getImageNamesList();
+        const QString &getSearchBoxText() const;
+
+        void setSearchBoxText(const QString &searchBoxText);
+
+        QList<QString> getImageNamesList();
 
 	protected:
 
@@ -298,6 +302,7 @@ namespace ft
 
         QSortFilterProxyModel   *proxy;
         KLinkItemSelectionModel *m_pFaceSelectionProxyModel;
+        QString                  searchBoxText;
     };
 }
 

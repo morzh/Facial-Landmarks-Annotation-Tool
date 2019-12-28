@@ -50,14 +50,15 @@ find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Xml REQUIRED)
 
 # Add all source and resource files
-file(GLOB SRC src/*.cpp src/*.h src/spline_library/*.h src/spline_library/splines/*.h src/spline_library/utils/*.h  src/kitemmodels/*.h )
-file(GLOB RSC src/*.qrc src/kitemmodels/*.cpp )
+file(GLOB SRC src/*.cpp src/*.h src/spline_library/*.h src/spline_library/splines/*.h src/spline_library/utils/*.h  src/kitemmodels/*.h src/kitemmodels/*.cpp )
+file(GLOB RSC src/*.qrc src/darcula.css)
 
 # Add the executable
 if(WIN32)
     add_executable(FLAT WIN32 ${SRC} ${RSC})
 else()
-    add_executable(FLAT ${SRC} ${RSC} src/landmarksproperties.cpp src/landmarksproperties.h src/Landmarks95Interpolator.cpp src/Landmarks95Interpolator.h)
+    add_executable(FLAT ${SRC} ${RSC} )
+#    add_executable(FLAT ${SRC} ${RSC} src/landmarksproperties.cpp src/landmarksproperties.h src/Landmarks95Interpolator.cpp src/Landmarks95Interpolator.h)
 endif()
 set_target_properties(FLAT PROPERTIES OUTPUT_NAME flat)
 set_target_properties(FLAT PROPERTIES OUTPUT_NAME_DEBUG flatd)

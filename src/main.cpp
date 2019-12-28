@@ -30,6 +30,19 @@ int main(int argc, char *argv[])
 	MainWindow oMainWindow;
 	QObject::connect(FtApplication::instance(), SIGNAL(statusMessageShown(const QString &, const int)), &oMainWindow, SLOT(showStatusMessage(const QString &, const int)));
 
+/*
+    QFile f(":darcula.css");
+    if (!f.exists())
+        printf("Unable to set stylesheet, file not found\n");
+    else
+    {
+        f.open(QFile::ReadOnly | QFile::Text);
+        QTextStream ts(&f);
+        oMainWindow.setStyleSheet(ts.readAll());
+    }
+*/
+
+
 	oMainWindow.show();
 	return oApp.exec();
 }

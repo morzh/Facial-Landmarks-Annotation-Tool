@@ -70,6 +70,8 @@ ft::ChildWindow::ChildWindow(QWidget *pParent) :
 
     proxy->setSourceModel(m_pFaceDatasetModel);
     m_pFaceSelectionProxyModel = new KLinkItemSelectionModel(proxy, m_pFaceSelectionModel, this);
+
+
 }
 
 // +-----------------------------------------------------------
@@ -622,5 +624,13 @@ void ft::ChildWindow::setFilterString(const QString &qString) {
 
     proxy->setFilterFixedString(qString);
 
+}
+
+const QString &ft::ChildWindow::getSearchBoxText() const {
+    return searchBoxText;
+}
+
+void ft::ChildWindow::setSearchBoxText(const QString &searchBoxText) {
+    ChildWindow::searchBoxText = searchBoxText;
 }
 

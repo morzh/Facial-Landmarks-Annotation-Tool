@@ -20,6 +20,9 @@
         <file alias="sorticon">resources/icons/sort.png</file>
         <file alias="sort_az">resources/icons/BT_sort_az-512.png</file>
         <file alias="sort_za">resources/icons/BT_sort_za-512.png</file>
+        <file alias="evenlyspace">resources/icons/evenlyspaced-bw.png</file>
+        <file alias="landmarksgroups">resources/icons/landmarksgroups2.png</file>
+        <file alias="unsorted">resources/icons/unsorted.png</file>
         <file>resources/icons/add.png</file>
         <file>resources/icons/database.png</file>
         <file>resources/icons/delete.png</file>
@@ -52,6 +55,8 @@
         <file>resources/icons/viewModes-bw.png</file>
         <file>resources/icons/BT_sort_az-512.png</file>
         <file>resources/icons/BT_sort_za-512.png</file>
+        <file>resources/icons/evenlyspaced-bw.png</file>
+        <file>resources/icons/landmarksgroups2.png</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="noface">resources/images/noface.png</file>

@@ -280,6 +280,7 @@ namespace ft
 		/** Instance of a dropdown buttons for the view mode of the image list. */
 		QMenu *m_pViewButton;
 		QMenu *m_pSortButton;
+		QMenu *m_pLandmarkGroupsButton;
 		/** Process instance to execute the face-fit utility. */
 		QProcess *m_oFitProcess;
 		/** Name of the temporary file used for the face-fit utility. */

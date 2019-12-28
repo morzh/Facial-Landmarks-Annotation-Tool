@@ -736,6 +736,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionSpaceEvenly"/>
    <addaction name="actionFitLandmarks"/>
    <addaction name="actionExportPointsFile"/>
   </widget>
@@ -1195,11 +1196,19 @@
    </property>
   </action>
   <action name="actionMakeLandmarksEvenlySpaced">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/resources/icons/evenlyspaced-bw.png</normaloff>:/icons/resources/icons/evenlyspaced-bw.png</iconset>
+   </property>
    <property name="text">
     <string>Make Landmarks Evenly Spaced</string>
    </property>
   </action>
   <action name="actionSpaceEvenly">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/resources/icons/evenlyspaced-bw.png</normaloff>:/icons/resources/icons/evenlyspaced-bw.png</iconset>
+   </property>
    <property name="text">
     <string>Space Evenly</string>
    </property>

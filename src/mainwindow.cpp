@@ -50,12 +50,11 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	oROPalette.setColor(QPalette::Base, oROPalette.midlight().color());
 	ui->textFileName->setPalette(oROPalette);
 
-
-
-
-
     setWindowState(Qt::WindowMaximized);
     m_pAbout = NULL;
+
+    m_pLandmarkGroupsButton = new QMenu(ui->toolsToolBar);
+    ui->toolsToolBar->addAction(m_pLandmarkGroupsButton->menuAction());
 
     setWindowIcon(QIcon(":/icons/fat"));
 	ui->tabWidget->setAutoFillBackground(true);
@@ -85,11 +84,64 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 
 
 	QAction *pSortAZ = new QAction(QIcon(":/icons/sort_az"), tr("Sort A→Z"), this);
-//	pViewDetails->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
 	m_pSortButton->addAction(pSortAZ);
 	QAction *pSortZA = new QAction(QIcon(":/icons/sort_za"), tr("Sort Z→A"), this);
-//	pViewIcons->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_I));
 	m_pSortButton->addAction(pSortZA);
+	QAction *pSortUnsorted = new QAction(QIcon(":/icons/unsorted"), tr("Unsorted"), this);
+	m_pSortButton->addAction(pSortUnsorted);
+
+
+
+
+	QAction *pLmsGrps_lowOval = new QAction( tr("Lower Oval"), this);
+	pLmsGrps_lowOval->setCheckable(true);
+	pLmsGrps_lowOval->setChecked(true);
+    QAction *pLmsGrps_upperOval = new QAction( tr("Upper Oval"), this);
+    pLmsGrps_upperOval->setCheckable(true);
+    pLmsGrps_upperOval->setChecked(true);
+
+    QAction *pLmsGrps_rBrow = new QAction( tr("Right Brow"), this);
+    pLmsGrps_rBrow->setCheckable(true);
+    pLmsGrps_rBrow->setChecked(true);
+    QAction *pLmsGrps_lBrow = new QAction( tr("Left Brow"), this);
+    pLmsGrps_lBrow->setCheckable(true);
+    pLmsGrps_lBrow->setChecked(true);
+
+    QAction *pLmsGrps_rEye = new QAction( tr("Right Eye"), this);
+    pLmsGrps_rEye->setCheckable(true);
+    pLmsGrps_rEye->setChecked(true);
+    QAction *pLmsGrps_lEye = new QAction( tr("Left Eye"), this);
+    pLmsGrps_lEye->setCheckable(true);
+    pLmsGrps_lEye->setChecked(true);
+
+    QAction *pLmsGrps_noseRidge = new QAction( tr("Nose Ridge"), this);
+    pLmsGrps_noseRidge->setCheckable(true);
+    pLmsGrps_noseRidge->setChecked(true);
+    QAction *pLmsGrps_noseShape = new QAction( tr("Nose Shape"), this);
+    pLmsGrps_noseShape->setCheckable(true);
+    pLmsGrps_noseShape->setChecked(true);
+
+    QAction *pLmsGrps_lipsOuter = new QAction( tr("Lips Outer"), this);
+    pLmsGrps_lipsOuter->setCheckable(true);
+    pLmsGrps_lipsOuter->setChecked(true);
+    QAction *pLmsGrps_lipsInner = new QAction( tr("Lips Inner"), this);
+    pLmsGrps_lipsInner->setCheckable(true);
+    pLmsGrps_lipsInner->setChecked(true);
+
+    m_pLandmarkGroupsButton->addAction(pLmsGrps_lowOval);
+    m_pLandmarkGroupsButton->addAction(pLmsGrps_upperOval);
+    m_pLandmarkGroupsButton->addSeparator();
+    m_pLandmarkGroupsButton->addAction(pLmsGrps_rBrow);
+    m_pLandmarkGroupsButton->addAction(pLmsGrps_lBrow);
+    m_pLandmarkGroupsButton->addSeparator();
+    m_pLandmarkGroupsButton->addAction(pLmsGrps_rEye);
+    m_pLandmarkGroupsButton->addAction(pLmsGrps_lEye);
+    m_pLandmarkGroupsButton->addSeparator();
+    m_pLandmarkGroupsButton->addAction(pLmsGrps_noseRidge);
+    m_pLandmarkGroupsButton->addAction(pLmsGrps_noseShape);
+    m_pLandmarkGroupsButton->addSeparator();
+    m_pLandmarkGroupsButton->addAction(pLmsGrps_lipsOuter);
+    m_pLandmarkGroupsButton->addAction(pLmsGrps_lipsInner);
 
 
 
@@ -103,6 +155,7 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	connect(pMap, SIGNAL(mapped(QString)), this, SLOT(setImageListView(QString)));
 	connect(m_pViewButton->menuAction(), SIGNAL(triggered()), this, SLOT(toggleImageListView()));
 
+	m_pLandmarkGroupsButton->setIcon(QIcon(":/icons/landmarksgroups")); // By default display the image thumbnails
 	m_pSortButton->setIcon(QIcon(":/icons/sorticon")); // By default display the image thumbnails
 	m_pViewButton->setIcon(QIcon(":/icons/viewmodes_bw")); // By default display the image thumbnails
 	ui->treeImages->setVisible(false);

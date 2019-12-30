@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/icons">
         <file alias="fat">resources/icons/fat-bw.png</file>
+        <file alias="progicon">resources/icons/FLAT-bw.png</file>
         <file>resources/icons/new.png</file>
         <file>resources/icons/new-bw.png</file>
         <file>resources/icons/new-bw2.png</file>

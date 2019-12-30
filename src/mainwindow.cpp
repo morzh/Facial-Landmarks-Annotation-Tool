@@ -56,7 +56,7 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
     m_pLandmarkGroupsButton = new QMenu(ui->toolsToolBar);
     ui->toolsToolBar->addAction(m_pLandmarkGroupsButton->menuAction());
 
-    setWindowIcon(QIcon(":/icons/fat"));
+    setWindowIcon(QIcon(":/icons/progicon"));
 	ui->tabWidget->setAutoFillBackground(true);
 	ui->tabWidget->setBackgroundRole(QPalette::Midlight);
 
@@ -128,6 +128,8 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
     pLmsGrps_lipsInner->setCheckable(true);
     pLmsGrps_lipsInner->setChecked(true);
 
+
+
     m_pLandmarkGroupsButton->addAction(pLmsGrps_lowOval);
     m_pLandmarkGroupsButton->addAction(pLmsGrps_upperOval);
     m_pLandmarkGroupsButton->addSeparator();
@@ -155,6 +157,15 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	connect(pMap, SIGNAL(mapped(QString)), this, SLOT(setImageListView(QString)));
 	connect(m_pViewButton->menuAction(), SIGNAL(triggered()), this, SLOT(toggleImageListView()));
 
+
+    QSignalMapper *pMapLmsGrps = new QSignalMapper(ui->toolsToolBar);
+    connect(pLmsGrps_lowOval, SIGNAL(triggered()), pMapLmsGrps, SLOT(map()));
+    connect(pLmsGrps_upperOval, SIGNAL(triggered()), pMapLmsGrps, SLOT(map()));
+    pMapLmsGrps->setMapping(pLmsGrps_lowOval, QString("lowoval"));
+    pMapLmsGrps->setMapping(pLmsGrps_upperOval, QString("upperoval"));
+
+//    connect(pMapLmsGrps, SIGNAL(mapped(QString)), this, SLOT(on_actionShowFaceOvalLow_triggered()));
+
 	m_pLandmarkGroupsButton->setIcon(QIcon(":/icons/landmarksgroups")); // By default display the image thumbnails
 	m_pSortButton->setIcon(QIcon(":/icons/sorticon")); // By default display the image thumbnails
 	m_pViewButton->setIcon(QIcon(":/icons/viewmodes_bw")); // By default display the image thumbnails
@@ -181,7 +192,8 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	}
 
 	// Connect the zoom slider
-	connect(ui->zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(onSliderValueChanged(int)));
+	connect(ui->zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(onZoomSliderValueChanged(int)));
+    connect(pLmsGrps_lBrow, SIGNAL(triggered()), this, SLOT(onBrowLeftChanged()));
 
     undoStack = new QUndoStack(this);
 
@@ -207,6 +219,8 @@ ft::MainWindow::~MainWindow()
 		delete m_pSortButton;
 	if (m_oFitProcess)
 		delete m_oFitProcess;
+	if (undoStack)
+	    delete undoStack;
 
     delete ui;
 }
@@ -982,7 +996,7 @@ void ft::MainWindow::updateUI()
 }
 
 // +-----------------------------------------------------------
-void ft::MainWindow::onSliderValueChanged(int iValue)
+void ft::MainWindow::onZoomSliderValueChanged(int iValue)
 {
 	ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
 	if(pChild)
@@ -1063,6 +1077,8 @@ ft::ChildWindow* ft::MainWindow::createChildWindow(QString sFileName, bool bModi
 	int iIndex = ui->tabWidget->addTab(pChild, pChild->windowIcon(), "");
 	ui->tabWidget->setCurrentIndex(iIndex);
 
+
+
 	return pChild;
 }
 
@@ -1087,7 +1103,6 @@ void ft::MainWindow::on_SearchBox_textEdited(const QString &textToSearch) {
     pChild->setFilterString(textToSearch);
     pChild->setSearchBoxText(textToSearch);
     ui->SearchBox->setText(textToSearch);
-//    pChild->update();
 
 /*
 

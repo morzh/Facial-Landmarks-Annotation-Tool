@@ -237,7 +237,8 @@ namespace ft
 		 * Captures the updates in the zoom slider by user interaction.
 		 * @param iValue Integer with the new value of the slider (in the range [1, 21]).
 		 */
-		void onSliderValueChanged(int iValue);
+		void onZoomSliderValueChanged(int iValue);
+//		void onZoomSliderValueChanged(int iValue);
 
 		/**
 		 * Captures the updates in the zoom by user interaction in other sources that not the slider.

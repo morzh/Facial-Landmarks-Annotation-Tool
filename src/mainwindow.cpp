@@ -90,9 +90,10 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	QAction *pSortUnsorted = new QAction(QIcon(":/icons/unsorted"), tr("Unsorted"), this);
 	m_pSortButton->addAction(pSortUnsorted);
 
+	lmsGrpButton.addMenusToButton(m_pLandmarkGroupsButton, this);
 
 
-
+/*
 	QAction *pLmsGrps_lowOval = new QAction( tr("Lower Oval"), this);
 	pLmsGrps_lowOval->setCheckable(true);
 	pLmsGrps_lowOval->setChecked(true);
@@ -144,7 +145,7 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
     m_pLandmarkGroupsButton->addSeparator();
     m_pLandmarkGroupsButton->addAction(pLmsGrps_lipsOuter);
     m_pLandmarkGroupsButton->addAction(pLmsGrps_lipsInner);
-
+*/
 
 
 
@@ -158,13 +159,15 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	connect(m_pViewButton->menuAction(), SIGNAL(triggered()), this, SLOT(toggleImageListView()));
 
 
+/*
     QSignalMapper *pMapLmsGrps = new QSignalMapper(ui->toolsToolBar);
     connect(pLmsGrps_lowOval, SIGNAL(triggered()), pMapLmsGrps, SLOT(map()));
     connect(pLmsGrps_upperOval, SIGNAL(triggered()), pMapLmsGrps, SLOT(map()));
-    pMapLmsGrps->setMapping(pLmsGrps_lowOval, QString("lowoval"));
-    pMapLmsGrps->setMapping(pLmsGrps_upperOval, QString("upperoval"));
+    pMapLmsGrps->setMapping(pLmsGrps_lowOval, QString("lmsgrp_ovallow"));
+    pMapLmsGrps->setMapping(pLmsGrps_upperOval, QString("lmsgrp_ovalupper"));
+*/
 
-//    connect(pMapLmsGrps, SIGNAL(mapped(QString)), this, SLOT(on_actionShowFaceOvalLow_triggered()));
+//    connect(m_pLandmarkGroupsButton->menuAction(), SIGNAL(triggered()), this, SLOT(setLandmarksGroups()));
 
 	m_pLandmarkGroupsButton->setIcon(QIcon(":/icons/landmarksgroups")); // By default display the image thumbnails
 	m_pSortButton->setIcon(QIcon(":/icons/sorticon")); // By default display the image thumbnails
@@ -193,7 +196,7 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 
 	// Connect the zoom slider
 	connect(ui->zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(onZoomSliderValueChanged(int)));
-    connect(pLmsGrps_lBrow, SIGNAL(triggered()), this, SLOT(onBrowLeftChanged()));
+//    connect(pLmsGrps_lBrow, SIGNAL(triggered()), this, SLOT(onBrowLeftChanged()));
 
     undoStack = new QUndoStack(this);
 
@@ -870,6 +873,7 @@ int ft::MainWindow::getFilePageIndex(const QString &sFile)
 	return iRet;
 }
 
+
 // +-----------------------------------------------------------
 void ft::MainWindow::setImageListView(QString sType)
 {
@@ -1132,3 +1136,4 @@ QList<int> ft::MainWindow::getIndicesOfSelectedImages(ft::ChildWindow *pChild) {
 
     return lIndexes;
 }
+

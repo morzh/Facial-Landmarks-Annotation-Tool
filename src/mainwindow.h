@@ -28,7 +28,7 @@
 #include "aboutwindow.h"
 #include "childwindow.h"
 #include "landmarksproperties.h"
-
+#include "LmsGroupsButton.h"
 
 
 namespace Ui {
@@ -56,7 +56,7 @@ namespace ft
          */
         virtual ~MainWindow();
 
-	protected:
+    protected:
 
 		/**
 		 * Captures the close event of the main window.
@@ -213,7 +213,8 @@ namespace ft
 		void on_actionMouthOuter_triggered(bool bChecked);
 		void on_actionMouthInner_triggered(bool bChecked);
 
-		void  on_actionSpaceEvenly_triggered();
+
+        void  on_actionSpaceEvenly_triggered();
 
 		/**
 		 * Define the view to be used for the list of images (icons, a list view, or "details", a tree view).
@@ -288,6 +289,7 @@ namespace ft
 		QString m_sFitTempFile;
         QList<int> getIndicesOfSelectedImages(ChildWindow *pChild);
         QUndoStack *undoStack = nullptr;
+        LmsGroupsButton lmsGrpButton;
     };
 };
 

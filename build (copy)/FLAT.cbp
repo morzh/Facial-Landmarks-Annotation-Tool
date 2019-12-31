@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="FLAT"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\anaconda3\;CMake Files\..\..\anaconda3\lib\;CMake Files\..\..\anaconda3\lib\cmake\;CMake Files\..\..\anaconda3\lib\cmake\Qt5Core\;CMake Files\..\..\anaconda3\lib\cmake\Qt5Widgets\;CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\;CMake Files\..\..\anaconda3\lib\cmake\Qt5Xml\;CMake Files\src\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/morzh/work/Facial-Landmarks-Annotation-Tool/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/morzh/work/Facial-Landmarks-Annotation-Tool/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="FLAT">
+				<Option output="/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/flat" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/morzh/work/Facial-Landmarks-Annotation-Tool/build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add option="-DQT_NO_DEBUG"/>
+					<Add option="-DQT_WIDGETS_LIB"/>
+					<Add option="-DQT_GUI_LIB"/>
+					<Add option="-DQT_XML_LIB"/>
+					<Add directory="/home/morzh/work/Facial-Landmarks-Annotation-Tool/build"/>
+					<Add directory="/home/morzh/work/Facial-Landmarks-Annotation-Tool"/>
+					<Add directory="/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/FLAT_autogen/include"/>
+					<Add directory="/home/morzh/anaconda3/include/qt"/>
+					<Add directory="/home/morzh/anaconda3/include/qt/QtCore"/>
+					<Add directory="/home/morzh/anaconda3/./mkspecs/linux-g++"/>
+					<Add directory="/home/morzh/anaconda3/include/qt/QtWidgets"/>
+					<Add directory="/home/morzh/anaconda3/include/qt/QtGui"/>
+					<Add directory="/home/morzh/anaconda3/include/qt/QtXml"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 FLAT"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="FLAT/fast">
+				<Option output="/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/flat" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/morzh/work/Facial-Landmarks-Annotation-Tool/build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add option="-DQT_NO_DEBUG"/>
+					<Add option="-DQT_WIDGETS_LIB"/>
+					<Add option="-DQT_GUI_LIB"/>
+					<Add option="-DQT_XML_LIB"/>
+					<Add directory="/home/morzh/work/Facial-Landmarks-Annotation-Tool/build"/>
+					<Add directory="/home/morzh/work/Facial-Landmarks-Annotation-Tool"/>
+					<Add directory="/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/FLAT_autogen/include"/>
+					<Add directory="/home/morzh/anaconda3/include/qt"/>
+					<Add directory="/home/morzh/anaconda3/include/qt/QtCore"/>
+					<Add directory="/home/morzh/anaconda3/./mkspecs/linux-g++"/>
+					<Add directory="/home/morzh/anaconda3/include/qt/QtWidgets"/>
+					<Add directory="/home/morzh/anaconda3/include/qt/QtGui"/>
+					<Add directory="/home/morzh/anaconda3/include/qt/QtXml"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 FLAT/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/morzh/work/Facial-Landmarks-Annotation-Tool/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="FLAT_autogen">
+				<Option working_dir="/home/morzh/work/Facial-Landmarks-Annotation-Tool/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 FLAT_autogen"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/FLAT_autogen/UVLADIE3JM/qrc_resources.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/FLAT_autogen/mocs_compilation.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/Landmarks95Interpolator.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/Landmarks95Interpolator.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/aboutwindow.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/aboutwindow.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/application.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/application.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/childwindow.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/childwindow.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/facedataset.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/facedataset.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/facedatasetmodel.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/facedatasetmodel.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/facefeature.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/facefeature.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/facefeatureedge.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/facefeatureedge.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/facefeaturenode.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/facefeaturenode.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/facefitconfig.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/facefitconfig.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/faceimage.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/faceimage.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/facewidget.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/facewidget.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/facewidgetscene.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/facewidgetscene.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/kitemmodels/kitemmodels_debug.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/kitemmodels/kitemmodels_debug.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/kitemmodels/kitemmodels_export.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/kitemmodels/klinkitemselectionmodel.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/kitemmodels/klinkitemselectionmodel.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/kitemmodels/kmodelindexproxymapper.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/kitemmodels/kmodelindexproxymapper.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/kitemmodels/krecursivefilterproxymodel.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/kitemmodels/krecursivefilterproxymodel.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/landmarksproperties.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/landmarksproperties.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/main.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/mainwindow.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/mainwindow.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/resources.qrc">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/spline_library/spline.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/spline_library/splines/cubic_hermite_spline.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/spline_library/splines/generic_b_spline.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/spline_library/splines/natural_spline.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/spline_library/splines/quintic_hermite_spline.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/spline_library/splines/uniform_cr_spline.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/spline_library/splines/uniform_cubic_bspline.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/spline_library/utils/arclength.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/spline_library/utils/calculus.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/spline_library/utils/linearalgebra.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/spline_library/utils/spline_common.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/spline_library/utils/splineinverter.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/spline_library/utils/splinesample_adaptor.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/spline_library/vector.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/utils.cpp">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/utils.h">
+			<Option target="FLAT"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/version.h.in">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Core/Qt5CoreConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Core/Qt5CoreConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Core/Qt5CoreMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QComposePlatformInputContextPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QEglFSEmulatorIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QEglFSIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QEglFSX11IntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QEvdevKeyboardPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QEvdevMousePlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QEvdevTabletPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QEvdevTouchScreenPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QICNSPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QIbusPlatformInputContextPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QMinimalEglIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QTgaPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QTiffPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QVirtualKeyboardPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QVncIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QWbmpPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QWebpPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QXcbEglIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QXcbGlxIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Gui/Qt5Gui_QXcbIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Xml/Qt5XmlConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Xml\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/../../anaconda3/lib/cmake/Qt5Xml/Qt5XmlConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\anaconda3\lib\cmake\Qt5Xml\"/>
+		</Unit>
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/resources.qrc">
+			<Option virtualFolder="CMake Files\src\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

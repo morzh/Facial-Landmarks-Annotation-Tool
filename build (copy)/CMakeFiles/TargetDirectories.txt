@@ -1,0 +1,4 @@
+/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/CMakeFiles/rebuild_cache.dir
+/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/CMakeFiles/FLAT.dir
+/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/CMakeFiles/edit_cache.dir
+/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/CMakeFiles/FLAT_autogen.dir

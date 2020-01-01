@@ -841,17 +841,12 @@ void ft::MainWindow::setImageListSort(QString sType){
     if(sType == "sort_az")
     {
         m_pSortButton->setIcon(QIcon(":/icons/sort_az"));
-        pChild->setSortAscending();
-
-//        ui->listImages->setVisible(false);
-//        ui->treeImages->setVisible(true);
+        pChild->setSortMethod(Qt::AscendingOrder);
     }
     else if(sType == "sort_za")
     {
         m_pSortButton->setIcon(QIcon(":/icons/sort_za"));
-        pChild->setSortDescending();
-//        ui->treeImages->setVisible(false);
-//        ui->listImages->setVisible(true);
+        pChild->setSortMethod(Qt::DescendingOrder);
     }
     else if (sType == "sort_unsorted"){
         m_pSortButton->setIcon(QIcon(":/icons/unsorted"));

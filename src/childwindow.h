@@ -39,9 +39,8 @@ namespace ft
 
     public:
 
-        void setSortMethod(Qt::SortOrder);
-        void setSortAscending();
-        void setSortDescending();
+        void setSortMethod(int order);
+
         void setSortAsIs();
 
         /**

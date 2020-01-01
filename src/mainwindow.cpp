@@ -835,9 +835,13 @@ int ft::MainWindow::getFilePageIndex(const QString &sFile)
 // +-----------------------------------------------------------
 void ft::MainWindow::setImageListSort(QString sType){
 
+    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
+    if (!pChild) return;
+
     if(sType == "sort_az")
     {
         m_pSortButton->setIcon(QIcon(":/icons/sort_az"));
+        pChild->setSortAscending();
 
 //        ui->listImages->setVisible(false);
 //        ui->treeImages->setVisible(true);
@@ -845,18 +849,19 @@ void ft::MainWindow::setImageListSort(QString sType){
     else if(sType == "sort_za")
     {
         m_pSortButton->setIcon(QIcon(":/icons/sort_za"));
+        pChild->setSortDescending();
 //        ui->treeImages->setVisible(false);
 //        ui->listImages->setVisible(true);
     }
     else if (sType == "sort_unsorted"){
         m_pSortButton->setIcon(QIcon(":/icons/unsorted"));
+        pChild->setSortAsIs();
 
     }
-
 }
 
-void ft::MainWindow::setImageListView(QString sType)
-{
+void ft::MainWindow::setImageListView(QString sType){
+
 	if(sType == "details")
 	{
 		m_pViewButton->setIcon(QIcon(":/icons/viewdetails_bw"));

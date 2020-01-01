@@ -39,6 +39,11 @@ namespace ft
 
     public:
 
+        void setSortMethod(Qt::SortOrder);
+        void setSortAscending();
+        void setSortDescending();
+        void setSortAsIs();
+
         /**
 		 * Class constructor.
 		 * @param pParent Instance of the widget that will be the parent of this window.
@@ -303,6 +308,7 @@ namespace ft
         QSortFilterProxyModel   *proxy;
         KLinkItemSelectionModel *m_pFaceSelectionProxyModel;
         QString                  searchBoxText;
+
     };
 }
 

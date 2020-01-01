@@ -293,6 +293,7 @@ namespace ft
         QList<int> getIndicesOfSelectedImages(ChildWindow *pChild);
         QUndoStack *undoStack = nullptr;
         LandmarksGroups lmsGrpButton;
+
     };
 };
 

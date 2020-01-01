@@ -634,3 +634,24 @@ void ft::ChildWindow::setSearchBoxText(const QString &searchBoxText) {
     ChildWindow::searchBoxText = searchBoxText;
 }
 
+void ft::ChildWindow::setSortAscending() {
+
+    proxy->sort(0, Qt::AscendingOrder);
+}
+
+void ft::ChildWindow::setSortDescending() {
+
+    proxy->sort(0, Qt::DescendingOrder);
+}
+
+void ft::ChildWindow::setSortAsIs() {
+
+    proxy->sort(-1);
+//    proxy->invalidate();
+}
+
+
+void ft::ChildWindow::setSortMethod(Qt::SortOrder order){
+
+    proxy->sort(0, order);
+}

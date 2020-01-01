@@ -28,7 +28,7 @@
 #include "aboutwindow.h"
 #include "childwindow.h"
 #include "landmarksproperties.h"
-#include "LmsGroupsButton.h"
+#include "LandmarksGroups.h"
 
 
 namespace Ui {
@@ -221,6 +221,7 @@ namespace ft
 		 * @param sType String with the type to be used (either "icons" or "details").
 		 */
 		void setImageListView(QString sType);
+		void setImageListSort(QString sType);
 
 		/**
 		 * Helper method to toggle the current view for the list of images (used in the shortcut button).
@@ -291,7 +292,7 @@ namespace ft
 		QString m_sFitTempFile;
         QList<int> getIndicesOfSelectedImages(ChildWindow *pChild);
         QUndoStack *undoStack = nullptr;
-        LmsGroupsButton lmsGrpButton;
+        LandmarksGroups lmsGrpButton;
     };
 };
 

@@ -83,25 +83,36 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	m_pViewButton->addAction(pViewIcons);
 
 
-	QAction *pSortAZ = new QAction(QIcon(":/icons/sort_az"), tr("Sort A→Z"), this);
-	m_pSortButton->addAction(pSortAZ);
-	QAction *pSortZA = new QAction(QIcon(":/icons/sort_za"), tr("Sort Z→A"), this);
-	m_pSortButton->addAction(pSortZA);
-	QAction *pSortUnsorted = new QAction(QIcon(":/icons/unsorted"), tr("Unsorted"), this);
-	m_pSortButton->addAction(pSortUnsorted);
+    QSignalMapper *pMapView = new QSignalMapper(ui->imagesToolbar);
+    connect(pViewDetails, SIGNAL(triggered()), pMapView, SLOT(map()));
+    connect(pViewIcons, SIGNAL(triggered()), pMapView, SLOT(map()));
+    pMapView->setMapping(pViewDetails, QString("details"));
+    pMapView->setMapping(pViewIcons, QString("icons"));
 
-	lmsGrpButton.addMenusToButton(m_pLandmarkGroupsButton, this);
-//	lmsGrpButton.connect();
+    connect(pMapView, SIGNAL(mapped(QString)), this, SLOT(setImageListView(QString)));
+    connect(m_pViewButton->menuAction(), SIGNAL(triggered()), this, SLOT(toggleImageListView()));
 
 
-	QSignalMapper *pMap = new QSignalMapper(ui->imagesToolbar);
-	connect(pViewDetails, SIGNAL(triggered()), pMap, SLOT(map()));
-	connect(pViewIcons, SIGNAL(triggered()), pMap, SLOT(map()));
-	pMap->setMapping(pViewDetails, QString("details"));
-	pMap->setMapping(pViewIcons, QString("icons"));
 
-	connect(pMap, SIGNAL(mapped(QString)), this, SLOT(setImageListView(QString)));
-	connect(m_pViewButton->menuAction(), SIGNAL(triggered()), this, SLOT(toggleImageListView()));
+    QAction *pSortAZ = new QAction(QIcon(":/icons/sort_az"), tr("Sort A→Z"), this);
+    m_pSortButton->addAction(pSortAZ);
+    QAction *pSortZA = new QAction(QIcon(":/icons/sort_za"), tr("Sort Z→A"), this);
+    m_pSortButton->addAction(pSortZA);
+    QAction *pSortUnsorted = new QAction(QIcon(":/icons/unsorted"), tr("Unsorted"), this);
+    m_pSortButton->addAction(pSortUnsorted);
+
+    QSignalMapper *pMapSort = new QSignalMapper(ui->imagesToolbar);
+    connect(pSortAZ, SIGNAL(triggered()), pMapSort, SLOT(map()));
+    connect(pSortZA, SIGNAL(triggered()), pMapSort, SLOT(map()));
+    connect(pSortUnsorted, SIGNAL(triggered()), pMapSort, SLOT(map()));
+    pMapSort->setMapping(pSortAZ, QString("sort_az"));
+    pMapSort->setMapping(pSortZA, QString("sort_za"));
+    pMapSort->setMapping(pSortUnsorted, QString("sort_unsorted"));
+
+    connect(pMapSort, SIGNAL(mapped(QString)), this, SLOT(setImageListSort(QString)));
+
+
+    lmsGrpButton.addMenusToButton(m_pLandmarkGroupsButton, this);
 
     for (int idx=0; idx < m_pLandmarkGroupsButton->actions().size(); ++idx)
         connect(m_pLandmarkGroupsButton->actions()[idx], SIGNAL(triggered()), this, SLOT(setLandmarksGroups()));
@@ -822,6 +833,28 @@ int ft::MainWindow::getFilePageIndex(const QString &sFile)
 
 
 // +-----------------------------------------------------------
+void ft::MainWindow::setImageListSort(QString sType){
+
+    if(sType == "sort_az")
+    {
+        m_pSortButton->setIcon(QIcon(":/icons/sort_az"));
+
+//        ui->listImages->setVisible(false);
+//        ui->treeImages->setVisible(true);
+    }
+    else if(sType == "sort_za")
+    {
+        m_pSortButton->setIcon(QIcon(":/icons/sort_za"));
+//        ui->treeImages->setVisible(false);
+//        ui->listImages->setVisible(true);
+    }
+    else if (sType == "sort_unsorted"){
+        m_pSortButton->setIcon(QIcon(":/icons/unsorted"));
+
+    }
+
+}
+
 void ft::MainWindow::setImageListView(QString sType)
 {
 	if(sType == "details")

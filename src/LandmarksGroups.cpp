@@ -2,9 +2,9 @@
 // Created by morzh on 01.01.2020.
 //
 
-#include "LmsGroupsButton.h"
+#include "LandmarksGroups.h"
 
-void LmsGroupsButton::addMenusToButton(QMenu *button, QObject *parent) {
+void LandmarksGroups::addMenusToButton(QMenu *button, QObject *parent) {
 
     if ( !button && !parent)
         return;
@@ -23,3 +23,9 @@ void LmsGroupsButton::addMenusToButton(QMenu *button, QObject *parent) {
     }
 
 }
+
+void LandmarksGroups::createActions() {
+
+}
+
+//Range::Range(int start, int end) : start(start), end(end) {}

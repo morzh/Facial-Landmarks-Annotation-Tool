@@ -2,8 +2,8 @@
 // Created by morzh on 01.01.2020.
 //
 
-#ifndef FLAT_LMSGROUPSBUTTON_H
-#define FLAT_LMSGROUPSBUTTON_H
+#ifndef FLAT_LANDMARKSGROUPS_H
+#define FLAT_LANDMARKSGROUPS_H
 
 
 #include <QtCore/QString>
@@ -11,9 +11,16 @@
 #include <QtWidgets/QAction>
 #include <QMenu>
 
-class LmsGroupsButton: public QObject {
+
+struct Range{
+    Range(int start, int end): start(start), end(end) {}
+    int start, end;
+};
+
+class LandmarksGroups: public QObject {
     Q_OBJECT
 public:
+    void createActions();
     void addMenusToButton(QMenu *button, QObject *parent);
 
     int               num_groups = 10;
@@ -24,8 +31,10 @@ public:
                                     tr("Mouth Outer"), tr("Mouth Inner")};
 
     QList<QAction*>   actions;
+    QList<Range>      ranges = { Range(0,16), Range(17,27)};
+    QList<QString>    interpRanges;
 
 };
 
 
-#endif //FLAT_LMSGROUPSBUTTON_H
+#endif //FLAT_LANDMARKSGROUPS_H

@@ -67,8 +67,8 @@ ft::ChildWindow::ChildWindow(QWidget *pParent) :
 
     proxy = new QSortFilterProxyModel(this);
     proxy->setDynamicSortFilter(true);
-
     proxy->setSourceModel(m_pFaceDatasetModel);
+
     m_pFaceSelectionProxyModel = new KLinkItemSelectionModel(proxy, m_pFaceSelectionModel, this);
 
 

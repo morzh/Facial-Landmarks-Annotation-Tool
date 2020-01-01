@@ -9,6 +9,7 @@ void LmsGroupsButton::addMenusToButton(QMenu *button, QObject *parent) {
     if ( !button && !parent)
         return;
 
+    num_groups = list_names.size();
     actions.reserve(num_groups);
 
     for (int idx=0; idx<num_groups; ++idx){

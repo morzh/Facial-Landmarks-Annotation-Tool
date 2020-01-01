@@ -14,12 +14,16 @@
 class LmsGroupsButton: public QObject {
     Q_OBJECT
 public:
-
-    int               num_groups = 8;
-    QList<QString>    list_names = {tr("Oval Low"), tr("Oval Upper"), tr("Brows"), tr("Eyes"), tr("Nose Ridge"), tr("Node Shape"), tr("Mouth Outer"), tr("Mouth Inner")};
-    QList<QAction*>   actions;
-
     void addMenusToButton(QMenu *button, QObject *parent);
+
+    int               num_groups = 10;
+    QList<QString>    list_names = {tr("Oval Low"),    tr("Oval Upper"),
+                                    tr("Brows Right"), tr("Brows Left"),
+                                    tr("Eyes Right"),  tr("Eyes Left"),
+                                    tr("Nose Ridge"),  tr("Node Shape"),
+                                    tr("Mouth Outer"), tr("Mouth Inner")};
+
+    QList<QAction*>   actions;
 
 };
 

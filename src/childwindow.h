@@ -181,7 +181,7 @@ namespace ft
 		void connectFeatures();/** Connects the selected features among themselves.  */
 		void disconnectFeatures();/**  Disconnects the selected features.  */
 
-        void hideUpperOvalLandmarks();
+        void hideOvalUpperLandmarks();
         void showOvalUpperLandmarks();
 
         void hideOvalLowLandmarks();

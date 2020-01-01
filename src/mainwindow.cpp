@@ -91,6 +91,7 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	m_pSortButton->addAction(pSortUnsorted);
 
 	lmsGrpButton.addMenusToButton(m_pLandmarkGroupsButton, this);
+//	lmsGrpButton.connect();
 
 
 	QSignalMapper *pMap = new QSignalMapper(ui->imagesToolbar);
@@ -102,14 +103,8 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	connect(pMap, SIGNAL(mapped(QString)), this, SLOT(setImageListView(QString)));
 	connect(m_pViewButton->menuAction(), SIGNAL(triggered()), this, SLOT(toggleImageListView()));
 
-/*
-    QSignalMapper *pMapLmsGrps = new QSignalMapper(ui->toolsToolBar);
-    connect(lmsGrpButton.actions[0], SIGNAL(triggered()), pMapLmsGrps, SLOT(map()));
-    connect(lmsGrpButton.actions[1], SIGNAL(triggered()), pMapLmsGrps, SLOT(map()));
-    pMapLmsGrps->setMapping(lmsGrpButton.actions[0], QString("lmsgrp_ovallow"));
-    pMapLmsGrps->setMapping(lmsGrpButton.actions[1], QString("lmsgrp_ovalupper"));
-*/
-    connect(m_pLandmarkGroupsButton->actions()[0], SIGNAL(triggered()), this, SLOT(setLandmarksGroups()));
+    for (int idx=0; idx < m_pLandmarkGroupsButton->actions().size(); ++idx)
+        connect(m_pLandmarkGroupsButton->actions()[idx], SIGNAL(triggered()), this, SLOT(setLandmarksGroups()));
 
 	m_pLandmarkGroupsButton->setIcon(QIcon(":/icons/landmarksgroups")); // By default display the image thumbnails
 	m_pSortButton->setIcon(QIcon(":/icons/sorticon")); // By default display the image thumbnails
@@ -612,22 +607,28 @@ void ft::MainWindow::on_actionShowFaceOvalUpper_triggered(bool bChecked){
     if(!pChild)
         return;
 
-    if (!bChecked)
-        pChild->hideUpperOvalLandmarks();
-    else
+    if (!bChecked){
+        pChild->hideOvalUpperLandmarks();
+        lmsGrpButton.actions[1]->setChecked(bChecked);
+    }
+    else {
         pChild->showOvalUpperLandmarks();
+        lmsGrpButton.actions[1]->setChecked(bChecked);
+    }
 }
 
-void ft::MainWindow::on_actionBrowLeft_triggered(bool bChecked){
+void ft::MainWindow::on_actionBrowLeft_triggered(bool bChecked) {
 
-    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
-    if(!pChild)
+    ChildWindow *pChild = (ChildWindow *) ui->tabWidget->currentWidget();
+    if (!pChild)
         return;
-    if (!bChecked)
+    if (!bChecked){
         pChild->hideBrowLeftLandmarks();
-    else
+    }
+    else {
         pChild->showBrowLeftLandmarks();
 
+    }
 }
 
 void ft::MainWindow::on_actionBrowRight_triggered(bool bChecked){
@@ -1084,6 +1085,7 @@ QList<int> ft::MainWindow::getIndicesOfSelectedImages(ft::ChildWindow *pChild) {
 }
 
 void ft::MainWindow::setLandmarksGroups() {
+    //{tr("Oval Low"), tr("Oval Upper"), tr("Brows"), tr("Eyes"), tr("Nose Ridge"), tr("Node Shape"), tr("Mouth Outer"), tr("Mouth Inner")};
 
     ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
     if(!pChild )   return;
@@ -1096,6 +1098,19 @@ void ft::MainWindow::setLandmarksGroups() {
         pChild->hideOvalLowLandmarks();
         ui->actionShowFaceOvalLow->setChecked(false);
     }
+
+
+    if (lmsGrpButton.actions[1]->isChecked()) {
+        pChild->showOvalUpperLandmarks();
+        ui->actionShowFaceOvalUpper->setChecked(true);
+    }
+    else {
+        pChild->hideOvalUpperLandmarks();
+        ui->actionShowFaceOvalUpper->setChecked(false);
+    }
+
+
+
 
 }
 

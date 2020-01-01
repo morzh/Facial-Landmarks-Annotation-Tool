@@ -490,7 +490,7 @@ void ft::ChildWindow::calcFeaturesRadiusAdd(QList<FaceFeatureNode *>& list) {
     }
 }
 
-void ft::ChildWindow::hideUpperOvalLandmarks() {
+void ft::ChildWindow::hideOvalUpperLandmarks() {
     hideLandmarks(17,27);
 }
 void ft::ChildWindow::showOvalUpperLandmarks() {

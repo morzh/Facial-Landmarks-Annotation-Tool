@@ -15,9 +15,9 @@ class LmsGroupsButton: public QObject {
     Q_OBJECT
 public:
 
-    int                     num_groups = 8;
-    std::vector<QString>    list_names = {tr("Oval Low"), tr("Oval Upper"), tr("Brows"), tr("Eyes"), tr("Nose Ridge"), tr("Node Shape"), tr("Mouth Outer"), tr("Mouth Inner")};
-    std::vector<QAction*>   actions;
+    int               num_groups = 8;
+    QList<QString>    list_names = {tr("Oval Low"), tr("Oval Upper"), tr("Brows"), tr("Eyes"), tr("Nose Ridge"), tr("Node Shape"), tr("Mouth Outer"), tr("Mouth Inner")};
+    QList<QAction*>   actions;
 
     void addMenusToButton(QMenu *button, QObject *parent);
 

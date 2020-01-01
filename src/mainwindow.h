@@ -267,6 +267,8 @@ namespace ft
 
         void on_SearchBox_textEdited(const QString &textToSearch);
 
+        void setLandmarksGroups();
+
 
     private:
         /** Instance of the ui for GUI element access. */

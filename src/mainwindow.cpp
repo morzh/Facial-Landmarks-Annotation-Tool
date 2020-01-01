@@ -93,62 +93,6 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	lmsGrpButton.addMenusToButton(m_pLandmarkGroupsButton, this);
 
 
-/*
-	QAction *pLmsGrps_lowOval = new QAction( tr("Lower Oval"), this);
-	pLmsGrps_lowOval->setCheckable(true);
-	pLmsGrps_lowOval->setChecked(true);
-    QAction *pLmsGrps_upperOval = new QAction( tr("Upper Oval"), this);
-    pLmsGrps_upperOval->setCheckable(true);
-    pLmsGrps_upperOval->setChecked(true);
-
-    QAction *pLmsGrps_rBrow = new QAction( tr("Right Brow"), this);
-    pLmsGrps_rBrow->setCheckable(true);
-    pLmsGrps_rBrow->setChecked(true);
-    QAction *pLmsGrps_lBrow = new QAction( tr("Left Brow"), this);
-    pLmsGrps_lBrow->setCheckable(true);
-    pLmsGrps_lBrow->setChecked(true);
-
-    QAction *pLmsGrps_rEye = new QAction( tr("Right Eye"), this);
-    pLmsGrps_rEye->setCheckable(true);
-    pLmsGrps_rEye->setChecked(true);
-    QAction *pLmsGrps_lEye = new QAction( tr("Left Eye"), this);
-    pLmsGrps_lEye->setCheckable(true);
-    pLmsGrps_lEye->setChecked(true);
-
-    QAction *pLmsGrps_noseRidge = new QAction( tr("Nose Ridge"), this);
-    pLmsGrps_noseRidge->setCheckable(true);
-    pLmsGrps_noseRidge->setChecked(true);
-    QAction *pLmsGrps_noseShape = new QAction( tr("Nose Shape"), this);
-    pLmsGrps_noseShape->setCheckable(true);
-    pLmsGrps_noseShape->setChecked(true);
-
-    QAction *pLmsGrps_lipsOuter = new QAction( tr("Lips Outer"), this);
-    pLmsGrps_lipsOuter->setCheckable(true);
-    pLmsGrps_lipsOuter->setChecked(true);
-    QAction *pLmsGrps_lipsInner = new QAction( tr("Lips Inner"), this);
-    pLmsGrps_lipsInner->setCheckable(true);
-    pLmsGrps_lipsInner->setChecked(true);
-
-
-
-    m_pLandmarkGroupsButton->addAction(pLmsGrps_lowOval);
-    m_pLandmarkGroupsButton->addAction(pLmsGrps_upperOval);
-    m_pLandmarkGroupsButton->addSeparator();
-    m_pLandmarkGroupsButton->addAction(pLmsGrps_rBrow);
-    m_pLandmarkGroupsButton->addAction(pLmsGrps_lBrow);
-    m_pLandmarkGroupsButton->addSeparator();
-    m_pLandmarkGroupsButton->addAction(pLmsGrps_rEye);
-    m_pLandmarkGroupsButton->addAction(pLmsGrps_lEye);
-    m_pLandmarkGroupsButton->addSeparator();
-    m_pLandmarkGroupsButton->addAction(pLmsGrps_noseRidge);
-    m_pLandmarkGroupsButton->addAction(pLmsGrps_noseShape);
-    m_pLandmarkGroupsButton->addSeparator();
-    m_pLandmarkGroupsButton->addAction(pLmsGrps_lipsOuter);
-    m_pLandmarkGroupsButton->addAction(pLmsGrps_lipsInner);
-*/
-
-
-
 	QSignalMapper *pMap = new QSignalMapper(ui->imagesToolbar);
 	connect(pViewDetails, SIGNAL(triggered()), pMap, SLOT(map()));
 	connect(pViewIcons, SIGNAL(triggered()), pMap, SLOT(map()));
@@ -158,16 +102,14 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	connect(pMap, SIGNAL(mapped(QString)), this, SLOT(setImageListView(QString)));
 	connect(m_pViewButton->menuAction(), SIGNAL(triggered()), this, SLOT(toggleImageListView()));
 
-
 /*
     QSignalMapper *pMapLmsGrps = new QSignalMapper(ui->toolsToolBar);
-    connect(pLmsGrps_lowOval, SIGNAL(triggered()), pMapLmsGrps, SLOT(map()));
-    connect(pLmsGrps_upperOval, SIGNAL(triggered()), pMapLmsGrps, SLOT(map()));
-    pMapLmsGrps->setMapping(pLmsGrps_lowOval, QString("lmsgrp_ovallow"));
-    pMapLmsGrps->setMapping(pLmsGrps_upperOval, QString("lmsgrp_ovalupper"));
+    connect(lmsGrpButton.actions[0], SIGNAL(triggered()), pMapLmsGrps, SLOT(map()));
+    connect(lmsGrpButton.actions[1], SIGNAL(triggered()), pMapLmsGrps, SLOT(map()));
+    pMapLmsGrps->setMapping(lmsGrpButton.actions[0], QString("lmsgrp_ovallow"));
+    pMapLmsGrps->setMapping(lmsGrpButton.actions[1], QString("lmsgrp_ovalupper"));
 */
-
-//    connect(m_pLandmarkGroupsButton->menuAction(), SIGNAL(triggered()), this, SLOT(setLandmarksGroups()));
+    connect(m_pLandmarkGroupsButton->actions()[0], SIGNAL(triggered()), this, SLOT(setLandmarksGroups()));
 
 	m_pLandmarkGroupsButton->setIcon(QIcon(":/icons/landmarksgroups")); // By default display the image thumbnails
 	m_pSortButton->setIcon(QIcon(":/icons/sorticon")); // By default display the image thumbnails
@@ -653,10 +595,14 @@ void ft::MainWindow::on_actionShowFaceOvalLow_triggered(bool bChecked){
     if(!pChild)
         return;
 
-    if (!bChecked)
+    if (!bChecked) {
         pChild->hideOvalLowLandmarks();
-    else
+        lmsGrpButton.actions[0]->setChecked(bChecked);
+    }
+    else {
         pChild->showOvalLowLandmarks();
+        lmsGrpButton.actions[0]->setChecked(bChecked);
+    }
 }
 
 
@@ -1135,5 +1081,21 @@ QList<int> ft::MainWindow::getIndicesOfSelectedImages(ft::ChildWindow *pChild) {
     }
 
     return lIndexes;
+}
+
+void ft::MainWindow::setLandmarksGroups() {
+
+    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
+    if(!pChild )   return;
+
+    if (lmsGrpButton.actions[0]->isChecked()) {
+        pChild->showOvalLowLandmarks();
+        ui->actionShowFaceOvalLow->setChecked(true);
+    }
+    else {
+        pChild->hideOvalLowLandmarks();
+        ui->actionShowFaceOvalLow->setChecked(false);
+    }
+
 }
 

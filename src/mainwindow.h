@@ -23,7 +23,7 @@
 #include <QMainWindow>
 #include <QProcess>
 #include <QLineEdit>
-#include <QUndoStack>
+
 
 #include "aboutwindow.h"
 #include "childwindow.h"
@@ -291,7 +291,7 @@ namespace ft
 		/** Name of the temporary file used for the face-fit utility. */
 		QString m_sFitTempFile;
         QList<int> getIndicesOfSelectedImages(ChildWindow *pChild);
-        QUndoStack *undoStack = nullptr;
+
         LandmarksGroups lmsGrpButton;
 
     };

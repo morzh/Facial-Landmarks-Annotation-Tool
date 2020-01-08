@@ -40,9 +40,7 @@
 using namespace std;
 
 // +-----------------------------------------------------------
-ft::MainWindow::MainWindow(QWidget *pParent) :
-    QMainWindow(pParent),
-    ui(new Ui::MainWindow)
+ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui::MainWindow)
 {
 	// Setup the UI
     ui->setupUi(this);
@@ -146,7 +144,7 @@ ft::MainWindow::MainWindow(QWidget *pParent) :
 	connect(ui->zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(onZoomSliderValueChanged(int)));
 //    connect(pLmsGrps_lBrow, SIGNAL(triggered()), this, SLOT(onBrowLeftChanged()));
 
-    undoStack = new QUndoStack(this);
+
 
 }
 
@@ -170,8 +168,7 @@ ft::MainWindow::~MainWindow()
 		delete m_pSortButton;
 	if (m_oFitProcess)
 		delete m_oFitProcess;
-	if (undoStack)
-	    delete undoStack;
+
 
     delete ui;
 }
@@ -851,7 +848,6 @@ void ft::MainWindow::setImageListSort(QString sType){
     else if (sType == "sort_unsorted"){
         m_pSortButton->setIcon(QIcon(":/icons/unsorted"));
         pChild->setSortAsIs();
-
     }
 }
 

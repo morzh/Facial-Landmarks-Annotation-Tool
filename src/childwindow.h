@@ -27,6 +27,7 @@
 
 #include <QtGui>
 #include <QWidget>
+#include <QUndoStack>
 
 namespace ft
 {
@@ -307,6 +308,7 @@ namespace ft
         QSortFilterProxyModel   *proxy;
         KLinkItemSelectionModel *m_pFaceSelectionProxyModel;
         QString                  searchBoxText;
+        QUndoStack *undoStack = nullptr;
 
     };
 }

@@ -72,6 +72,8 @@ ft::ChildWindow::ChildWindow(QWidget *pParent) :
     m_pFaceSelectionProxyModel = new KLinkItemSelectionModel(proxy, m_pFaceSelectionModel, this);
 
 
+    undoStack = new QUndoStack(this);
+
 }
 
 // +-----------------------------------------------------------
@@ -81,6 +83,8 @@ ft::ChildWindow::~ChildWindow()
 	delete m_pFaceDatasetModel;
 	delete proxy;
 	delete m_pFaceSelectionProxyModel;
+    if (undoStack)
+        delete undoStack;
 }
 
 // +-----------------------------------------------------------

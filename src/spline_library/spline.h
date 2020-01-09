@@ -174,7 +174,7 @@ floating_t SplineImpl<SplineCore, InterpolationType, floating_t>::arcLength(floa
         std::swap(a,b);
     }
 
-    //get the knot indices for the beginning and end
+    //get the knot sIndices for the beginning and end
     size_t aIndex = common.segmentForT(a);
     size_t bIndex = common.segmentForT(b);
 
@@ -225,7 +225,7 @@ floating_t SplineLoopingImpl<SplineCore, InterpolationType, floating_t>::arcLeng
         std::swap(a,b);
     }
 
-    //get the knot indices for the beginning and end
+    //get the knot sIndices for the beginning and end
     size_t aIndex = common.segmentForT(a);
     size_t bIndex = common.segmentForT(b);
 
@@ -270,7 +270,7 @@ floating_t SplineLoopingImpl<CyclicSplineT, InterpolationType, floating_t>::cycl
     }
     else
     {
-        //get the knot indices for the beginning and end
+        //get the knot sIndices for the beginning and end
         size_t aIndex = common.segmentForT(wrappedA);
         size_t bIndex = common.segmentForT(wrappedB);
 

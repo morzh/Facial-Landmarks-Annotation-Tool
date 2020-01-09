@@ -206,7 +206,7 @@ public:
         }
 
         //it would be easiest to just copy the points vector to the position vector, then copy the first 'degree' elements again
-        //this DOES work, but interpolation begins in the wrong place (ie getPosition(0) occurs at the wrong place on the spline)
+        //this DOES work, but sInterpolation begins in the wrong place (ie getPosition(0) occurs at the wrong place on the spline)
         //to fix this, we effectively "rotate" the position vector backwards, by copying point[size-1] to the beginning
         //then copying the points vector in after, then copying degree-1 elements from the beginning
         std::vector<InterpolationType> positions(points.size() + degree);

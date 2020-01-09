@@ -61,7 +61,7 @@ bool ft::FaceDataset::loadFromFile(const QString &sFileName, QString &sMsgError)
         return false;
     }
 
-	// Used to resolve the image file names relative to the saved file path
+	// Used to resolve the image file sNames relative to the saved file path
 	QDir oBase(QFileInfo(sFileName).absolutePath());
 
 	QTextStream oData(&oFile);
@@ -154,12 +154,13 @@ bool ft::FaceDataset::saveToFile(const QString &sFileName, QString &sMsgError) c
 	oDoc.appendChild(oRoot);
 
 	oRoot.setAttribute("numberOfFeatures", m_iNumFeatures);
+	groups.saveToXML(oRoot);
 
 	// Sample images
 	QDomElement oSamples = oDoc.createElement("Samples");
 	oRoot.appendChild(oSamples);
 
-	// Used to make the image file names relative to the saved file path
+	// Used to make the image file sNames relative to the saved file path
 	QDir oBase(QFileInfo(sFileName).absolutePath());
 	QString sSave;
 

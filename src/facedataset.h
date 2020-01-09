@@ -22,9 +22,9 @@
 
 #include "faceimage.h"
 #include "facefeature.h"
+#include "LandmarksGroups.h"
 
 #include <QDomDocument>
-
 #include <vector>
 
 namespace ft
@@ -155,12 +155,9 @@ namespace ft
 		QList<QString> getImageNamesList();
 
 	private:
-
-		/** Vector of sample face images. */
-		std::vector<FaceImage*> m_vSamples;
-
-		/** Number of face features in the dataset (i.e. applicable to all images). */
-		int m_iNumFeatures;
+		std::vector<FaceImage*> m_vSamples;        /** Vector of sample face images. */
+		int m_iNumFeatures;                        /** Number of face features in the dataset (i.e. applicable to all images). */
+		LandmarksGroups groups;                    /** Landmarks Groups*/
 	};
 }
 

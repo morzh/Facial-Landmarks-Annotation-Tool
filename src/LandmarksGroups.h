@@ -10,6 +10,7 @@
 #include <vector>
 #include <QtWidgets/QAction>
 #include <QMenu>
+#include <QtXml/QDomElement>
 
 
 struct Range{
@@ -34,6 +35,7 @@ public:
     QList<Range>      ranges = { Range(0,16), Range(17,27)};
     QList<QString>    interpRanges;
 
+    bool loadFromXML(QDomElement lmsGroups);
 };
 
 

@@ -26,6 +26,8 @@
 #include <fstream>
 #include <iostream>
 
+
+
 using namespace std;
 
 // +-----------------------------------------------------------
@@ -94,7 +96,16 @@ bool ft::FaceDataset::loadFromFile(const QString &sFileName, QString &sMsgError)
 		return false;
 	}
 
+	// Landmark Groups
+    QDomElement oGroups = oRoot.firstChildElement("LandmarksGroups");
+	if (oGroups.isNull()){
+        std::cout << "There are no landmarks groups in file" << std::endl;
+	}else{
+        groups.loadFromXML(oGroups);
+	}
+
 	// Sample images
+//	QDomElement oSamples = oRoot.nextSiblingElement("Samples");
 	QDomElement oSamples = oRoot.firstChildElement("Samples");
 	if(oSamples.isNull())
 	{

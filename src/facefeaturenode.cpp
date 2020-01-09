@@ -25,6 +25,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
+#include <QtWidgets/QGraphicsDropShadowEffect>
 
 // Radius of the drawn node, in pixels
 const int ft::FaceFeatureNode::RADIUS = 3;
@@ -124,6 +125,10 @@ void ft::FaceFeatureNode::paint(QPainter *pPainter, const QStyleOptionGraphicsIt
     if(m_pFaceWidget->displayFeatureIDs())
     {
         QPainterPath path;
+//        QGraphicsDropShadowEffect* effect = new QGraphicsDropShadowEffect();
+//
+//        effect->setBlurRadius(8);
+
         path.addRoundedRect(boundingRect(true), 5, 5);
         pPainter->setBrush(oBrush);
         pPainter->fillPath(path, QColor(255,255,255,155));
@@ -148,9 +153,6 @@ void ft::FaceFeatureNode::paint(QPainter *pPainter, const QStyleOptionGraphicsIt
     pPainter->setBrush(oBrush);
     pPainter->setRenderHint(QPainter::Antialiasing);
     pPainter->drawEllipse(boundingRect(false));
-
-
-
 }
 
 // +-----------------------------------------------------------

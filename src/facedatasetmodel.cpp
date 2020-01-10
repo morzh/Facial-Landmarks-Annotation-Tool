@@ -293,3 +293,15 @@ QList<QString> ft::FaceDatasetModel::getImageNamesList() const {
 
     return m_pFaceDataset->getImageNamesList();
 }
+
+void ft::FaceDatasetModel::addGroupLandmarksActions(QMenu *button) {
+
+    m_pFaceDataset->addActionsToGroupsMenu(button);
+
+}
+
+void ft::FaceDatasetModel::genGroupLandmarksActions(QObject* parent) {
+
+    m_pFaceDataset->genActionsToGroupsMenu(parent);
+
+}

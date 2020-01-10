@@ -102,6 +102,8 @@ bool ft::FaceDataset::loadFromFile(const QString &sFileName, QString &sMsgError)
         std::cout << "There are no landmarks groups in file" << std::endl;
 	}else{
         groups.loadFromXML(oGroups);
+        groups.parseData();
+        groups.printInterpolationsIndices();
 	}
 
 	// Sample images
@@ -339,4 +341,15 @@ QList<QString> ft::FaceDataset::getImageNamesList() {
     }
 
     return  namesList;
+}
+
+void ft::FaceDataset::addActionsToGroupsMenu(QMenu *button) {
+
+    groups.genActionsMenu(button);
+}
+
+void ft::FaceDataset::genActionsToGroupsMenu(QObject *parent) {
+
+    groups.genMenuActions(parent);
+
 }

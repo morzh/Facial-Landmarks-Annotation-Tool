@@ -241,7 +241,7 @@ public:
         //compute the T values for each point
         std::vector<floating_t> knots = SplineCommon::computeTValuesWithInnerPadding(points, alpha, 0);
 
-        //pre-arrange the data needed for sInterpolation
+        //pre-arrange the data needed for sInterpolations
         std::vector<typename QuinticHermiteSplineCommon<InterpolationType, floating_t>::QuinticHermiteSplinePoint> positionData(points.size());
         for(size_t i = 0; i < points.size(); i++)
         {
@@ -316,7 +316,7 @@ public:
         }
 
 
-        //pre-arrange the data needed for sInterpolation
+        //pre-arrange the data needed for sInterpolations
         std::vector<floating_t> knots(numSegments + 1);
         std::vector<typename QuinticHermiteSplineCommon<InterpolationType, floating_t>::QuinticHermiteSplinePoint> positionData(numSegments + 1);
         for(size_t i = 0; i < positionData.size(); i++)
@@ -352,7 +352,7 @@ public:
         //compute the T values for each point
         std::vector<floating_t> knots = SplineCommon::computeLoopingTValues(points, alpha, 0);
 
-        //pre-arrange the data needed for sInterpolation
+        //pre-arrange the data needed for sInterpolations
         std::vector<typename QuinticHermiteSplineCommon<InterpolationType, floating_t>::QuinticHermiteSplinePoint> positionData(points.size() + 1);
         for(size_t i = 0; i < points.size(); i++)
         {
@@ -423,7 +423,7 @@ public:
         }
 
 
-        //pre-arrange the data needed for sInterpolation
+        //pre-arrange the data needed for sInterpolations
         std::vector<floating_t> knots(size + 1);
         std::vector<typename QuinticHermiteSplineCommon<InterpolationType, floating_t>::QuinticHermiteSplinePoint> positionData(size + 1);
         for(int i = 0; i < size; i++)

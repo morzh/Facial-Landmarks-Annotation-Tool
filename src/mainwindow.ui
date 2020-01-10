@@ -129,29 +129,15 @@
      <addaction name="actionShowConnections"/>
      <addaction name="actionShowFeatureIDs"/>
     </widget>
-    <widget class="QMenu" name="menuLandmarks_Groups">
+    <widget class="QMenu" name="menuLandmarksGroups">
      <property name="title">
       <string>Landmarks Groups</string>
      </property>
-     <addaction name="actionShowFaceOvalLow"/>
-     <addaction name="actionShowFaceOvalUpper"/>
-     <addaction name="separator"/>
-     <addaction name="actionBrowRight"/>
-     <addaction name="actionBrowLeft"/>
-     <addaction name="separator"/>
-     <addaction name="actionEyeRight"/>
-     <addaction name="actionEyeLeft"/>
-     <addaction name="separator"/>
-     <addaction name="actionNoseRidge"/>
-     <addaction name="actionNoseShape"/>
-     <addaction name="separator"/>
-     <addaction name="actionMouthOuter"/>
-     <addaction name="actionMouthInner"/>
     </widget>
     <addaction name="menuWindows"/>
     <addaction name="separator"/>
     <addaction name="menu_Image_Elements"/>
-    <addaction name="menuLandmarks_Groups"/>
+    <addaction name="menuLandmarksGroups"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="locale">

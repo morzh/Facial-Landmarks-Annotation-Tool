@@ -154,11 +154,15 @@ namespace ft
 		std::vector<FaceFeature*> getImageFeatures(const int iIndex);
 		QList<QString> getImageNamesList();
 
-	private:
+		void addActionsToGroupsMenu(QMenu *button);
+
+        void genActionsToGroupsMenu(QObject *pObject);
+
+    private:
 		std::vector<FaceImage*> m_vSamples;        /** Vector of sample face images. */
 		int m_iNumFeatures;                        /** Number of face features in the dataset (i.e. applicable to all images). */
 		LandmarksGroups groups;                    /** Landmarks Groups*/
-	};
+    };
 }
 
 #endif // FACEDATASET_H

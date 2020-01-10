@@ -110,8 +110,6 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
     connect(pMapSort, SIGNAL(mapped(QString)), this, SLOT(setImageListSort(QString)));
 
 
-    lmsGrpButton.addMenusToButton(m_pLandmarkGroupsButton, this);
-
     for (int idx=0; idx < m_pLandmarkGroupsButton->actions().size(); ++idx)
         connect(m_pLandmarkGroupsButton->actions()[idx], SIGNAL(triggered()), this, SLOT(setLandmarksGroups()));
 
@@ -904,6 +902,9 @@ void ft::MainWindow::updateUI()
 	bool bItemsSelected = bFileOpened && (pChild->selectionModel()->currentIndex().isValid() || pChild->selectionModel()->selectedIndexes().size() > 0);
 	bool bFileNotNew = bFileOpened && !pChild->property("new").toBool();
 
+	m_pLandmarkGroupsButton->clear();
+    this->ui->menuLandmarksGroups->clear();
+
 	QList<FaceFeatureNode*> lFeats;
 	QList<FaceFeatureEdge*> lConns;
 	if(bFileOpened)
@@ -927,15 +928,14 @@ void ft::MainWindow::updateUI()
         ui->treeImages->setSelectionModel(pChild->selectionProxyModel());
 
 
-//        ui->listImages->setModel(pChild->dataModel());
-//        ui->listImages->setSelectionModel(pChild->selectionModel());
-//        ui->treeImages->setModel(pChild->dataModel());
-//        ui->treeImages->setSelectionModel(pChild->selectionModel());
+        pChild->dataModel()->genGroupLandmarksActions(this);
+        pChild->dataModel()->addGroupLandmarksActions(m_pLandmarkGroupsButton);
+        pChild->dataModel()->addGroupLandmarksActions(this->ui->menuLandmarksGroups);
 	}
 	else
 	{
-		ui->listImages->setModel(NULL);
-		ui->treeImages->setModel(NULL);
+		ui->listImages->setModel(nullptr);
+		ui->treeImages->setModel(nullptr);
 	}
 
 	// Update the UI availability

@@ -110,7 +110,6 @@ namespace ft
 		int getZoomLevel() const;
 		void zoomIn(); /// Performs one step of zoom in.
         void zoomOut(); /// Performs one step of zoom out.
-
         int getRotateLevel() const;
 
 

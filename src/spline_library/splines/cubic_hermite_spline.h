@@ -199,7 +199,7 @@ public:
         //compute the T values for each point
         std::vector<floating_t> knots = SplineCommon::computeTValuesWithInnerPadding(points, alpha, firstTangent);
 
-        //pre-arrange the data needed for sInterpolation
+        //pre-arrange the data needed for sInterpolations
         std::vector<typename CubicHermiteSplineCommon<InterpolationType, floating_t>::CubicHermiteSplinePoint> positionData(numSegments + 1);
         for(size_t i = 0; i < positionData.size(); i++)
         {
@@ -244,7 +244,7 @@ public:
                                 - pCurrent * ((tCurrent - tPrev) - (tNext - tCurrent)) / ((tNext - tCurrent) * (tCurrent - tPrev));
         }
 
-        //pre-arrange the data needed for sInterpolation
+        //pre-arrange the data needed for sInterpolations
         std::vector<floating_t> knots(numSegments + 1);
         std::vector<typename CubicHermiteSplineCommon<InterpolationType, floating_t>::CubicHermiteSplinePoint> positionData(numSegments + 1);
         for(size_t i = 0; i < positionData.size(); i++)
@@ -275,7 +275,7 @@ public:
         //compute the T values for each point
         std::vector<floating_t> knots = SplineCommon::computeLoopingTValues(points, alpha, 0);
 
-        //pre-arrange the data needed for sInterpolation
+        //pre-arrange the data needed for sInterpolations
         std::vector<typename CubicHermiteSplineCommon<InterpolationType, floating_t>::CubicHermiteSplinePoint> positionData(points.size() + 1);
         for(size_t i = 0; i < points.size(); i++)
         {
@@ -321,7 +321,7 @@ public:
                                 - pCurrent * ((tCurrent - tPrev) - (tNext - tCurrent)) / ((tNext - tCurrent) * (tCurrent - tPrev));
         }
 
-        //pre-arrange the data needed for sInterpolation
+        //pre-arrange the data needed for sInterpolations
         std::vector<floating_t> knots(size + 1);
         std::vector<typename CubicHermiteSplineCommon<InterpolationType, floating_t>::CubicHermiteSplinePoint> positionData(size + 1);
         for(size_t i = 0; i < size; i++)

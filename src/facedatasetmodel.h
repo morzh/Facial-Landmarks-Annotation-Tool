@@ -162,8 +162,11 @@ namespace ft
 		int numFeatures() const;
 
         QList<QString> getImageNamesList() const;
+        void addGroupLandmarksActions(QMenu *button);
 
-	protected:
+        void genGroupLandmarksActions(QObject* parent);
+
+    protected:
 
 		/**
 		 * Build a thumbnail for the given image index.
@@ -190,7 +193,7 @@ namespace ft
 		 * indexed position.
 		 */
 		QList<QPixmap> m_lCachedThumbnails;
-	};
+    };
 
 }
 

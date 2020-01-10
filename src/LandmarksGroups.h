@@ -15,14 +15,24 @@
 
 struct Range{
     Range(int start, int end): start(start), end(end) {}
+    Range(){}
     int start, end;
+
+    QList<int> unroll() {
+
+        QList<int> indices;
+
+        for (int idx=start; idx<=end; ++idx)
+            indices.push_back(idx);
+
+        return indices;
+    }
 };
 
 class LandmarksGroups: public QObject {
     Q_OBJECT
 public:
-    void createActions();
-    void addMenusToButton(QMenu *button, QObject *parent);
+    void genActionsMenu(QMenu *menu);
 
     int               num_groups = 10;
     /*
@@ -33,17 +43,26 @@ public:
                                     tr("Mouth Outer"), tr("Mouth Inner")};
     */
 
-    QList<QString>    sNames;
-    QList<QString>    sIndices;
-    QList<QString>    sInterpolation;
-    QList<QAction*>   actions;
-    QList<Range>      ranges = { Range(0,16), Range(17,27)};
-    QList<QString>    interpRanges;
+    QList<QString>              sNames;
+    QList<QString>              sIndices;
+    QList<QString>              sInterpolations;
+    QList<QAction*>             actions;
+    QList<Range>                iIndices;
+    QList<QList<QList<int>>>    iInterpolations;
 
     bool loadFromXML(QDomElement lmsGroups);
     void saveToXML(QDomElement &oParent) const ;
+
+    void genMenuActions(QObject *parent);
+    void printIndices();
+    void printInterpolationsIndices();
+    void parseData();
+
+private:
     void parseIndices();
     void parseInterpolation();
+
+    QList<int> extractIndices(const QString &substring);
 };
 
 

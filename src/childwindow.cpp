@@ -646,3 +646,4 @@ void ft::ChildWindow::setSortMethod(int order){
 
     proxy->sort(0, (Qt::SortOrder)order);
 }
+

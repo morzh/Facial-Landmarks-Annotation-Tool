@@ -110,9 +110,6 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
     connect(pMapSort, SIGNAL(mapped(QString)), this, SLOT(setImageListSort(QString)));
 
 
-    for (int idx=0; idx < m_pLandmarkGroupsButton->actions().size(); ++idx)
-        connect(m_pLandmarkGroupsButton->actions()[idx], SIGNAL(triggered()), this, SLOT(setLandmarksGroups()));
-
 	m_pLandmarkGroupsButton->setIcon(QIcon(":/icons/landmarksgroups")); // By default display the image thumbnails
 	m_pSortButton->setIcon(QIcon(":/icons/sorticon")); // By default display the image thumbnails
 	m_pViewButton->setIcon(QIcon(":/icons/viewmodes_bw")); // By default display the image thumbnails
@@ -930,7 +927,6 @@ void ft::MainWindow::updateUI()
 
         pChild->dataModel()->genGroupLandmarksActions(this);
         pChild->dataModel()->addGroupLandmarksActions(m_pLandmarkGroupsButton);
-        pChild->dataModel()->addGroupLandmarksActions(this->ui->menuLandmarksGroups);
 	}
 	else
 	{

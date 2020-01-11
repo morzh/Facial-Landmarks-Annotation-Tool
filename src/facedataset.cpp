@@ -103,7 +103,7 @@ bool ft::FaceDataset::loadFromFile(const QString &sFileName, QString &sMsgError)
 	}else{
         groups.loadFromXML(oGroups);
         groups.parseData();
-        groups.printInterpolationsIndices();
+//        groups.printInterpolationsIndices();
 	}
 
 	// Sample images

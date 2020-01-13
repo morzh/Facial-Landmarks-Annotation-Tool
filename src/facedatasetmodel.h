@@ -166,6 +166,12 @@ namespace ft
 
         void genGroupLandmarksActions(QObject* parent);
 
+        void addSignalMapper();
+
+        const QObject *getMapper();
+
+        void removeSignalMapper();
+
     protected:
 
 		/**

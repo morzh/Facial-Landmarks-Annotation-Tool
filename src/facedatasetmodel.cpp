@@ -305,3 +305,20 @@ void ft::FaceDatasetModel::genGroupLandmarksActions(QObject* parent) {
     m_pFaceDataset->genActionsToGroupsMenu(parent);
 
 }
+
+void ft::FaceDatasetModel::addSignalMapper() {
+
+    m_pFaceDataset->addSignalMapper();
+
+}
+
+const QObject *ft::FaceDatasetModel::getMapper() {
+
+    return m_pFaceDataset->getMapper();
+}
+
+void ft::FaceDatasetModel::removeSignalMapper() {
+
+    m_pFaceDataset->removeSignalMapper();
+
+}

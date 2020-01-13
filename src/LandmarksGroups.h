@@ -11,6 +11,7 @@
 #include <QtWidgets/QAction>
 #include <QMenu>
 #include <QtXml/QDomElement>
+#include <QtCore/QSignalMapper>
 
 
 struct Range{
@@ -31,18 +32,24 @@ struct Range{
 
 class LandmarksGroups: public QObject {
     Q_OBJECT
+
 public:
-    void genActionsMenu(QMenu *menu);
 
-    int               num_groups = 10;
-    /*
-    QList<QString>    sNames = {tr("Oval Low"),    tr("Oval Upper"),
-                                    tr("Brows Right"), tr("Brows Left"),
-                                    tr("Eyes Right"),  tr("Eyes Left"),
-                                    tr("Nose Ridge"),  tr("Node Shape"),
-                                    tr("Mouth Outer"), tr("Mouth Inner")};
-    */
+    const QObject *getMapper();
+    void    genActionsMenu              ( QMenu *menu);
+    bool    loadFromXML                 ( QDomElement lmsGroups);
+    void    saveToXML                   ( QDomElement &oParent) const ;
+    void    genMenuActions              ( QObject *parent);
+    void    parseData                   ( );
+    void    addSignalMapper             ( );
+    void    removeSignalMapper          ( );
+    void    printInterpolationsIndices  ( );
+    void    printIndices                ( );
 
+
+    virtual ~LandmarksGroups();
+
+    int                         num_groups = 10;
     QList<QString>              sNames;
     QList<QString>              sIndices;
     QList<QString>              sInterpolations;
@@ -50,19 +57,12 @@ public:
     QList<Range>                iIndices;
     QList<QList<QList<int>>>    iInterpolations;
 
-    bool loadFromXML(QDomElement lmsGroups);
-    void saveToXML(QDomElement &oParent) const ;
-
-    void genMenuActions(QObject *parent);
-    void printIndices();
-    void printInterpolationsIndices();
-    void parseData();
-
 private:
-    void parseIndices();
-    void parseInterpolation();
+    void                parseIndices();
+    void                parseInterpolation();
+    QList<int>          extractIndices(const QString &substring);
 
-    QList<int> extractIndices(const QString &substring);
+    QSignalMapper*      mapper = nullptr;
 };
 
 

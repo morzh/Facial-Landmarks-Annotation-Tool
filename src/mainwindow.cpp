@@ -901,6 +901,7 @@ void ft::MainWindow::updateUI()
 
 	m_pLandmarkGroupsButton->clear();
     this->ui->menuLandmarksGroups->clear();
+//    pChild->dataModel()->removeSignalMapper();
 
 	QList<FaceFeatureNode*> lFeats;
 	QList<FaceFeatureEdge*> lConns;
@@ -927,6 +928,10 @@ void ft::MainWindow::updateUI()
 
         pChild->dataModel()->genGroupLandmarksActions(this);
         pChild->dataModel()->addGroupLandmarksActions(m_pLandmarkGroupsButton);
+        pChild->dataModel()->addGroupLandmarksActions(ui->menuLandmarksGroups);
+        pChild->dataModel()->addSignalMapper();
+
+        connect(pChild->dataModel()->getMapper(), SIGNAL(mapped(QString)), pChild, SLOT(setLanmarksGroupsViz(QString)));
 	}
 	else
 	{

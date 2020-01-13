@@ -351,5 +351,19 @@ void ft::FaceDataset::addActionsToGroupsMenu(QMenu *button) {
 void ft::FaceDataset::genActionsToGroupsMenu(QObject *parent) {
 
     groups.genMenuActions(parent);
+}
+
+void ft::FaceDataset::addSignalMapper() {
+
+    groups.addSignalMapper();
+}
+
+const QObject *ft::FaceDataset::getMapper() {
+    return groups.getMapper();
+}
+
+void ft::FaceDataset::removeSignalMapper() {
+
+    groups.removeSignalMapper();
 
 }

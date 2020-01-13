@@ -221,6 +221,8 @@ namespace ft
 
         void InterpolateLandmarks95(const QList<int> &indices);
 
+
+
 		/**
 		 * Moves the face features in the image currently on display according to the given
 		 * list of positions. If the number of face features is different than the number of
@@ -237,6 +239,10 @@ namespace ft
         void setSearchBoxText(const QString &searchBoxText);
 
         QList<QString> getImageNamesList();
+
+
+    public slots:
+        void setLanmarksGroupsViz(QString sType);
 
 	protected:
 

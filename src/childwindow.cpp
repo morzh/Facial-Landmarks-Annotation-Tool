@@ -647,3 +647,8 @@ void ft::ChildWindow::setSortMethod(int order){
     proxy->sort(0, (Qt::SortOrder)order);
 }
 
+void ft::ChildWindow::setLanmarksGroupsViz(QString sType) {
+
+    std::cout << "ft::ChildWindow::setLanmarksGroupsViz" << std::endl;
+}
+

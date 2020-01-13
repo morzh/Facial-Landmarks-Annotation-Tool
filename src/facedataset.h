@@ -158,10 +158,16 @@ namespace ft
 
         void genActionsToGroupsMenu(QObject *pObject);
 
+        void addSignalMapper();
+
+        const QObject *getMapper();
+
+        void removeSignalMapper();
+
     private:
 		std::vector<FaceImage*> m_vSamples;        /** Vector of sample face images. */
 		int m_iNumFeatures;                        /** Number of face features in the dataset (i.e. applicable to all images). */
-		LandmarksGroups groups;                    /** Landmarks Groups*/
+		LandmarksGroups groups;                    /** Landmarks Groups (i.e. applicable to all images) */
     };
 }
 

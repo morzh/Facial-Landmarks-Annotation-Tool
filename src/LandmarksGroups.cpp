@@ -83,6 +83,7 @@ void LandmarksGroups::genMenuActions(QObject *parent) {
     }
 }
 
+
 void LandmarksGroups::parseIndices() {
 
     iIndices.clear();
@@ -198,23 +199,15 @@ void LandmarksGroups::printInterpolationsIndices() {
     }
 }
 
-void LandmarksGroups::addSignalMapper(QObject *parent) {
+void LandmarksGroups::addSignalMapper(QSignalMapper *mapper, QObject *parent) {
 
-//    if (mapper)
-//        delete mapper;
+    if (!mapper || !parent)
+        return;
 
-    mapper = new QSignalMapper(parent);
     for (int idx=0; idx<sNames.size(); ++idx) {
-        connect(actions[idx], SIGNAL(triggered()), mapper, SLOT(map()));
+        parent->connect(actions[idx], SIGNAL(triggered()), mapper, SLOT(map()), Qt::UniqueConnection);
         mapper->setMapping(actions[idx], sNames[idx]);
     }
-//    }
-//    else
-//        mapper->setParent(parent);
-//
-//    std::cout << "addSignalMapper" << std::endl;
-
-
 
 }
 

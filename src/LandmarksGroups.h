@@ -44,7 +44,7 @@ public:
     void            saveToXML                   ( QDomElement &oParent) const ;
     void            genMenuActions              ( QObject *parent);
     void            parseData                   ( );
-    void addSignalMapper(QObject *parent);
+    void addSignalMapper(QSignalMapper *mapper, QObject *parent);
     void            removeSignalMapper          ( );
     void            printInterpolationsIndices  ( );
     void            printIndices                ( );

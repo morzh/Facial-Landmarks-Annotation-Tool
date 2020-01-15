@@ -79,12 +79,16 @@ ft::ChildWindow::ChildWindow(QWidget *pParent) :
 // +-----------------------------------------------------------
 ft::ChildWindow::~ChildWindow()
 {
+    disconnect(mapper, SIGNAL(mapped(QString)), this, SLOT(setLanmarksGroupsViz(QString)));
+
 	delete m_pFaceSelectionModel;
 	delete m_pFaceDatasetModel;
 	delete proxy;
 	delete m_pFaceSelectionProxyModel;
     if (undoStack)
         delete undoStack;
+    if (!mapper)
+        delete mapper;
 }
 
 // +-----------------------------------------------------------
@@ -127,6 +131,8 @@ bool ft::ChildWindow::loadFromFile(const QString &sFileName, QString &sMsgError)
 {
 	if(!m_pFaceDatasetModel->loadFromFile(qPrintable(sFileName), sMsgError))
 		return false;
+
+
 
 	setWindowFilePath(sFileName);
 	onDataChanged(false);
@@ -651,7 +657,7 @@ void ft::ChildWindow::setSortMethod(int order){
     proxy->sort(0, (Qt::SortOrder)order);
 }
 
-void ft::ChildWindow::setLanmarksGroupsViz(QString sType) {
+void ft::ChildWindow::setLanmarksGroupsViz(const QString &sType) {
 
     int idx_start, idx_end;
     bool isChecked;
@@ -664,5 +670,16 @@ void ft::ChildWindow::setLanmarksGroupsViz(QString sType) {
         showLandmarks(idx_start, idx_end);
     else
         hideLandmarks(idx_start, idx_end);
+}
+
+void ft::ChildWindow::createSignalMapper() {
+
+    mapper = new QSignalMapper(this);
+
+}
+
+void ft::ChildWindow::connectSignalMapper() {
+
+    connect(mapper, SIGNAL(mapped(QString)), this, SLOT(setLanmarksGroupsViz(QString)));
 }
 

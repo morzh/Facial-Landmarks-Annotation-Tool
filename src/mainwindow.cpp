@@ -277,6 +277,14 @@ void ft::MainWindow::on_actionOpen_triggered()
 
 			if(pChild->dataModel()->rowCount() > 0)
 				pChild->selectionModel()->setCurrentIndex(pChild->dataModel()->index(0, 0), QItemSelectionModel::Select);
+
+
+            pChild->dataModel()->genGroupLandmarksActions(pChild);
+            pChild->createSignalMapper();
+            pChild->connectSignalMapper();
+            pChild->dataModel()->addSignalMapper(pChild->mapper, pChild);
+
+
 			updateUI();
 		}
 	}
@@ -892,7 +900,7 @@ void ft::MainWindow::updateUI()
 {
 	// Setup the control variables
 	ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
-	QSignalMapper lmsgrpMapper;
+//	QSignalMapper* lmsgrpMapper;
 
 	bool bLandmarksPropertiesOpened = pChild != NULL;
 	bool bFileOpened = pChild != NULL;
@@ -902,6 +910,7 @@ void ft::MainWindow::updateUI()
 
 	m_pLandmarkGroupsButton->clear();
     this->ui->menuLandmarksGroups->clear();
+//    disconnect(lmsgrpMapper, SIGNAL(mapped(QString)), this, SLOT(setLandmarksGroups(QString)));
 
 	QList<FaceFeatureNode*> lFeats;
 	QList<FaceFeatureEdge*> lConns;
@@ -925,16 +934,11 @@ void ft::MainWindow::updateUI()
         ui->treeImages->setModel(pChild->dataProxyModel());
         ui->treeImages->setSelectionModel(pChild->selectionProxyModel());
 
-
         pChild->dataModel()->genGroupLandmarksActions(pChild);
         pChild->dataModel()->addGroupLandmarksActions(m_pLandmarkGroupsButton);
         pChild->dataModel()->addGroupLandmarksActions(ui->menuLandmarksGroups);
 
-        lmsgrpMapper = new QSignalMapper(this);
-        pChild->dataModel()->addSignalMapper(pChild);
-
-//        connect(pChild->dataModel()->getMapper(), SIGNAL(mapped(QString)), this, SLOT(setLanmarksGroups(QString)));
-        connect(pChild->dataModel()->getMapper(), SIGNAL(mapped(QString)), pChild, SLOT(setLanmarksGroupsViz(QString)));
+//        std::cout << "updateUI bFileOpened" << std::endl;
 	}
 	else
 	{
@@ -1063,6 +1067,7 @@ ft::ChildWindow* ft::MainWindow::createChildWindow(QString sFileName, bool bModi
 
 
 
+
 	return pChild;
 }
 
@@ -1117,7 +1122,7 @@ QList<int> ft::MainWindow::getIndicesOfSelectedImages(ft::ChildWindow *pChild) {
     return lIndexes;
 }
 
-void ft::MainWindow::setLandmarksGroups(QString sType) {
+void ft::MainWindow::setLandmarksGroups(const QString &sType) {
     //{tr("Oval Low"), tr("Oval Upper"), tr("Brows"), tr("Eyes"), tr("Nose Ridge"), tr("Node Shape"), tr("Mouth Outer"), tr("Mouth Inner")};
 
     ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();

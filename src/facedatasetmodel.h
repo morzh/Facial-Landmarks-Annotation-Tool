@@ -166,7 +166,7 @@ namespace ft
 
         void genGroupLandmarksActions(QObject* parent);
 
-        void addSignalMapper(QObject *parent);
+        void addSignalMapper(QSignalMapper *mapper, QObject *parent);
 
         const QObject *getMapper();
 

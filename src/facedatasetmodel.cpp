@@ -306,9 +306,9 @@ void ft::FaceDatasetModel::genGroupLandmarksActions(QObject* parent) {
 
 }
 
-void ft::FaceDatasetModel::addSignalMapper(QObject *parent) {
+void ft::FaceDatasetModel::addSignalMapper(QSignalMapper *mapper, QObject *parent) {
 
-    m_pFaceDataset->addSignalMapper(parent);
+    m_pFaceDataset->addSignalMapper(mapper, parent);
 
 }
 

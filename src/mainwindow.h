@@ -267,7 +267,7 @@ namespace ft
 		void onFitFinished(int iExitCode, QProcess::ExitStatus eExitStatus);
 
         void on_SearchBox_textEdited(const QString &textToSearch);
-        void setLandmarksGroups(QString sType);
+        void setLandmarksGroups(const QString &sType);
 
 
     private:

@@ -242,7 +242,7 @@ namespace ft
 
 
     public slots:
-        void setLanmarksGroupsViz(QString sType);
+        void setLanmarksGroupsViz(const QString &sType);
 
 	protected:
 
@@ -314,7 +314,12 @@ namespace ft
         KLinkItemSelectionModel *m_pFaceSelectionProxyModel;
         QString                  searchBoxText;
         QUndoStack *undoStack = nullptr;
+    public:
+        QSignalMapper* mapper = nullptr;
 
+        void createSignalMapper();
+
+        void connectSignalMapper();
     };
 }
 

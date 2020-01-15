@@ -309,18 +309,6 @@ void ft::FaceDatasetModel::genGroupLandmarksActions(QObject* parent) {
 void ft::FaceDatasetModel::addSignalMapper(QSignalMapper *mapper) {
 
     m_pFaceDataset->addSignalMapper(mapper);
-
-}
-
-const QObject *ft::FaceDatasetModel::getMapper() {
-
-    return m_pFaceDataset->getMapper();
-}
-
-void ft::FaceDatasetModel::removeSignalMapper() {
-
-    m_pFaceDataset->removeSignalMapper();
-
 }
 
 void ft::FaceDatasetModel::getMatchedRange(const QString &sType, int *pStart, int *pEnd, bool *isChecked) {

@@ -358,16 +358,6 @@ void ft::FaceDataset::addSignalMapper(QSignalMapper *mapper) {
     groups.addSignalMapper(mapper);
 }
 
-const QObject *ft::FaceDataset::getMapper() {
-    return groups.getMapper();
-}
-
-void ft::FaceDataset::removeSignalMapper() {
-
-    groups.removeSignalMapper();
-
-}
-
 void ft::FaceDataset::getMatchedRange(const QString &sType, int *pStart, int *pEnd, bool *pIsChecked) {
 
     groups.getMatchedRange(sType, pStart, pEnd, pIsChecked);

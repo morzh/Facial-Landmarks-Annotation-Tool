@@ -168,10 +168,6 @@ namespace ft
 
         void addSignalMapper(QSignalMapper *mapper);
 
-        const QObject *getMapper();
-
-        void removeSignalMapper();
-
         void getMatchedRange(const QString &sType, int *pStart, int *pEnd, bool *isChecked);
 
     protected:

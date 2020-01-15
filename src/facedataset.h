@@ -155,15 +155,8 @@ namespace ft
 		QList<QString> getImageNamesList();
 
 		void addActionsToGroupsMenu(QMenu *button);
-
         void genActionsToGroupsMenu(QObject *pObject);
-
         void addSignalMapper(QSignalMapper *mapper);
-
-        const QObject *getMapper();
-
-        void removeSignalMapper();
-
         void getMatchedRange(const QString &sType, int *pStart, int *pEnd, bool *pIsChecked);
 
     private:

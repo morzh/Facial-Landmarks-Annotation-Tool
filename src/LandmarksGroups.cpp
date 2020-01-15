@@ -211,22 +211,8 @@ void LandmarksGroups::addSignalMapper(QSignalMapper *mapper) {
 
 }
 
-void LandmarksGroups::removeSignalMapper() {
-
-    if (mapper != nullptr){
-        delete mapper;
-    }
-
-}
-
-const QObject *LandmarksGroups::getMapper() {
-    return mapper;
-}
-
 LandmarksGroups::~LandmarksGroups() {
 
-    if (mapper != nullptr)
-        delete mapper;
 }
 
 void LandmarksGroups::getMatchedRange(const QString &sType, int *pStart, int *pEnd, bool *pIsChecked) {

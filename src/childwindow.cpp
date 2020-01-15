@@ -582,8 +582,6 @@ void ft::ChildWindow::setLanmarksGroupsViz(const QString &sType) {
     int idx_start, idx_end;
     bool isChecked;
 
-//    std::cout << "setLanmarksGroupsViz" << std::endl;
-
     dataModel()->getMatchedRange(sType, &idx_start, &idx_end, &isChecked);
 
     if (isChecked)
@@ -591,6 +589,7 @@ void ft::ChildWindow::setLanmarksGroupsViz(const QString &sType) {
     else
         hideLandmarks(idx_start, idx_end);
 }
+
 
 void ft::ChildWindow::createGroupsData() {
 

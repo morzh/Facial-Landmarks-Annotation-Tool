@@ -37,15 +37,14 @@ public:
 
     virtual ~LandmarksGroups();
 
-    const QObject * getMapper();
     void            getMatchedRange             (const QString &sType, int *pStart, int *pEnd, bool *pIsChecked);
     void            genActionsMenu              ( QMenu *menu);
     bool            loadFromXML                 ( QDomElement lmsGroups);
     void            saveToXML                   ( QDomElement &oParent) const ;
     void            genMenuActions              ( QObject *parent);
     void            parseData                   ( );
-    void addSignalMapper(QSignalMapper *mapper);
-    void            removeSignalMapper          ( );
+    void            addSignalMapper(QSignalMapper *mapper);
+
     void            printInterpolationsIndices  ( );
     void            printIndices                ( );
 
@@ -61,8 +60,6 @@ private:
     void                parseIndices();
     void                parseInterpolation();
     QList<int>          extractIndices(const QString &substring);
-
-    QSignalMapper*      mapper = nullptr;
 
 };
 

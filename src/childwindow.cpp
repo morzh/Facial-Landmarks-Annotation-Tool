@@ -501,86 +501,6 @@ void ft::ChildWindow::calcFeaturesRadiusAdd(QList<FaceFeatureNode *>& list) {
     }
 }
 
-void ft::ChildWindow::hideOvalUpperLandmarks() {
-    hideLandmarks(17,27);
-}
-void ft::ChildWindow::showOvalUpperLandmarks() {
-    showLandmarks(17,27);
-}
-
-void ft::ChildWindow::hideOvalLowLandmarks() {
-    hideLandmarks(0,16);
-}
-void ft::ChildWindow::showOvalLowLandmarks() {
-    showLandmarks(0,16);
-}
-
-
-
-
-void ft::ChildWindow::hideBrowRightLandmarks() {
-    hideLandmarks(28,32);
-}
-void ft::ChildWindow::showBrowRightLandmarks() {
-    showLandmarks(28,32);
-}
-
-void ft::ChildWindow::hideBrowLeftLandmarks() {
-    hideLandmarks(33,37);
-}
-void ft::ChildWindow::showBrowLeftLandmarks() {
-    showLandmarks(33,37);
-}
-
-
-
-void ft::ChildWindow::hideEyeRightLandmarks() {
-    hideLandmarks(38,47);
-}
-void ft::ChildWindow::showEyeRightLandmarks() {
-    showLandmarks(38,47);
-}
-
-void ft::ChildWindow::hideEyeLeftLandmarks() {
-    hideLandmarks(48,57);
-}
-void ft::ChildWindow::showEyeLeftLandmarks() {
-    showLandmarks(48,57);
-}
-
-
-
-void ft::ChildWindow::hideNoseShapeLandmarks() {
-    hideLandmarks(62,74);
-}
-void ft::ChildWindow::showNoseShapeLandmarks() {
-    showLandmarks(62,74);
-}
-
-void ft::ChildWindow::showNoseRidgeLandmarks() {
-    showLandmarks(58,61);
-}
-void ft::ChildWindow::hideNoseRidgeLandmarks() {
-    hideLandmarks(58,61);
-}
-
-
-
-void ft::ChildWindow::hideMouthOuterLandmarks() {
-    hideLandmarks(75,86);
-}
-void ft::ChildWindow::showMouthOuterLandmarks() {
-    showLandmarks(75,86);
-}
-
-void ft::ChildWindow::showMouthInnerLandmarks() {
-    showLandmarks(87,94);
-}
-void ft::ChildWindow::hideMouthInnerLandmarks() {
-    hideLandmarks(87,94);
-}
-
-
 
 void ft::ChildWindow::showLandmarks(int idx_start, int idx_end) {
 
@@ -606,7 +526,7 @@ void ft::ChildWindow::hideLandmarks(int idx_start, int idx_end) {
 //    onDataChanged();
 }
 
-void ft::ChildWindow::InterpolateLandmarks95(const QList<int> &indices) {
+void ft::ChildWindow::interpolateLandmarksPositions(const QList<int> &indices) {
 
     if (m_pFaceDatasetModel == nullptr)    return;
 
@@ -672,14 +592,11 @@ void ft::ChildWindow::setLanmarksGroupsViz(const QString &sType) {
         hideLandmarks(idx_start, idx_end);
 }
 
-void ft::ChildWindow::createSignalMapper() {
+void ft::ChildWindow::createGroupsData() {
 
+    dataModel()->genGroupLandmarksActions(this);
     mapper = new QSignalMapper(this);
-
-}
-
-void ft::ChildWindow::connectSignalMapper() {
-
     connect(mapper, SIGNAL(mapped(QString)), this, SLOT(setLanmarksGroupsViz(QString)));
+    dataModel()->addSignalMapper(mapper);
 }
 

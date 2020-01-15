@@ -158,7 +158,7 @@ namespace ft
 
         void genActionsToGroupsMenu(QObject *pObject);
 
-        void addSignalMapper(QSignalMapper *mapper, QObject *parent);
+        void addSignalMapper(QSignalMapper *mapper);
 
         const QObject *getMapper();
 

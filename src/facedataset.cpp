@@ -353,9 +353,9 @@ void ft::FaceDataset::genActionsToGroupsMenu(QObject *parent) {
     groups.genMenuActions(parent);
 }
 
-void ft::FaceDataset::addSignalMapper(QSignalMapper *mapper, QObject *parent) {
+void ft::FaceDataset::addSignalMapper(QSignalMapper *mapper) {
 
-    groups.addSignalMapper(mapper, parent);
+    groups.addSignalMapper(mapper);
 }
 
 const QObject *ft::FaceDataset::getMapper() {

@@ -199,13 +199,13 @@ void LandmarksGroups::printInterpolationsIndices() {
     }
 }
 
-void LandmarksGroups::addSignalMapper(QSignalMapper *mapper, QObject *parent) {
+void LandmarksGroups::addSignalMapper(QSignalMapper *mapper) {
 
-    if (!mapper || !parent)
+    if (!mapper)
         return;
 
     for (int idx=0; idx<sNames.size(); ++idx) {
-        parent->connect(actions[idx], SIGNAL(triggered()), mapper, SLOT(map()), Qt::UniqueConnection);
+        connect(actions[idx], SIGNAL(triggered()), mapper, SLOT(map()), Qt::UniqueConnection);
         mapper->setMapping(actions[idx], sNames[idx]);
     }
 

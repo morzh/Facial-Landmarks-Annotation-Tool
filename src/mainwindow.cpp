@@ -278,13 +278,7 @@ void ft::MainWindow::on_actionOpen_triggered()
 			if(pChild->dataModel()->rowCount() > 0)
 				pChild->selectionModel()->setCurrentIndex(pChild->dataModel()->index(0, 0), QItemSelectionModel::Select);
 
-
-            pChild->dataModel()->genGroupLandmarksActions(pChild);
-            pChild->createSignalMapper();
-            pChild->connectSignalMapper();
-            pChild->dataModel()->addSignalMapper(pChild->mapper, pChild);
-
-
+            pChild->createGroupsData();
 			updateUI();
 		}
 	}
@@ -595,137 +589,6 @@ void ft::MainWindow::on_actionShowFeatures_triggered(bool bChecked)
 	updateUI();
 }
 
-void ft::MainWindow::on_actionShowFaceOvalLow_triggered(bool bChecked){
-
-    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
-    if(!pChild)
-        return;
-
-    if (!bChecked) {
-        pChild->hideOvalLowLandmarks();
-        lmsGrpButton.actions[0]->setChecked(bChecked);
-    }
-    else {
-        pChild->showOvalLowLandmarks();
-        lmsGrpButton.actions[0]->setChecked(bChecked);
-    }
-}
-
-
-void ft::MainWindow::on_actionShowFaceOvalUpper_triggered(bool bChecked){
-
-    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
-    if(!pChild)
-        return;
-
-    if (!bChecked){
-        pChild->hideOvalUpperLandmarks();
-        lmsGrpButton.actions[1]->setChecked(bChecked);
-    }
-    else {
-        pChild->showOvalUpperLandmarks();
-        lmsGrpButton.actions[1]->setChecked(bChecked);
-    }
-}
-
-void ft::MainWindow::on_actionBrowLeft_triggered(bool bChecked) {
-
-    ChildWindow *pChild = (ChildWindow *) ui->tabWidget->currentWidget();
-    if (!pChild)
-        return;
-    if (!bChecked){
-        pChild->hideBrowLeftLandmarks();
-    }
-    else {
-        pChild->showBrowLeftLandmarks();
-
-    }
-}
-
-void ft::MainWindow::on_actionBrowRight_triggered(bool bChecked){
-
-    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
-    if(!pChild)
-        return;
-
-    if (!bChecked)
-        pChild->hideBrowRightLandmarks();
-    else
-        pChild->showBrowRightLandmarks();
-}
-
-void ft::MainWindow::on_actionEyeLeft_triggered(bool bChecked){
-
-    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
-    if(!pChild)
-        return;
-    if (!bChecked)
-        pChild->hideEyeLeftLandmarks();
-    else
-        pChild->showEyeLeftLandmarks();
-
-}
-
-void ft::MainWindow::on_actionEyeRight_triggered(bool bChecked){
-
-    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
-    if(!pChild)
-        return;
-
-    if (!bChecked)
-        pChild->hideEyeRightLandmarks();
-    else
-        pChild->showEyeRightLandmarks();
-}
-
-
-void ft::MainWindow::on_actionNoseShape_triggered(bool bChecked){
-
-    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
-    if(!pChild)
-        return;
-    if (!bChecked)
-        pChild->hideNoseShapeLandmarks();
-    else
-        pChild->showNoseShapeLandmarks();
-
-}
-void ft::MainWindow::on_actionNoseRidge_triggered(bool bChecked){
-
-    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
-    if(!pChild)
-        return;
-
-    if (!bChecked)
-        pChild->hideNoseRidgeLandmarks();
-    else
-        pChild->showNoseRidgeLandmarks();
-}
-
-
-void ft::MainWindow::on_actionMouthOuter_triggered(bool bChecked){
-
-    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
-    if(!pChild)
-        return;
-    if (!bChecked)
-        pChild->hideMouthOuterLandmarks();
-    else
-        pChild->showMouthOuterLandmarks();
-
-}
-void ft::MainWindow::on_actionMouthInner_triggered(bool bChecked){
-
-    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
-    if(!pChild)
-        return;
-
-    if (!bChecked)
-        pChild->hideMouthInnerLandmarks();
-    else
-        pChild->showMouthInnerLandmarks();
-}
-
 
 void  ft::MainWindow::on_actionSpaceEvenly_triggered(){
 
@@ -735,7 +598,7 @@ void  ft::MainWindow::on_actionSpaceEvenly_triggered(){
     QModelIndexList     lsSelected = pChild->selectionModel()->selectedRows();
     QList<int>          lIndexes = getIndicesOfSelectedImages(pChild);
 
-    pChild->InterpolateLandmarks95(lIndexes);
+    pChild->interpolateLandmarksPositions(lIndexes);
 }
 
 // =========================================================================================
@@ -910,10 +773,10 @@ void ft::MainWindow::updateUI()
 
 	m_pLandmarkGroupsButton->clear();
     this->ui->menuLandmarksGroups->clear();
-//    disconnect(lmsgrpMapper, SIGNAL(mapped(QString)), this, SLOT(setLandmarksGroups(QString)));
 
 	QList<FaceFeatureNode*> lFeats;
 	QList<FaceFeatureEdge*> lConns;
+
 	if(bFileOpened)
 	{
 		lFeats = pChild->getSelectedFeatures();
@@ -937,7 +800,6 @@ void ft::MainWindow::updateUI()
         pChild->dataModel()->genGroupLandmarksActions(pChild);
         pChild->dataModel()->addGroupLandmarksActions(m_pLandmarkGroupsButton);
         pChild->dataModel()->addGroupLandmarksActions(ui->menuLandmarksGroups);
-
 //        std::cout << "updateUI bFileOpened" << std::endl;
 	}
 	else

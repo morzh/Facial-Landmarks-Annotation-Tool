@@ -185,41 +185,9 @@ namespace ft
 		void connectFeatures();/** Connects the selected features among themselves.  */
 		void disconnectFeatures();/**  Disconnects the selected features.  */
 
-        void hideOvalUpperLandmarks();
-        void showOvalUpperLandmarks();
-
-        void hideOvalLowLandmarks();
-        void showOvalLowLandmarks();
-
-        void hideBrowRightLandmarks();
-        void showBrowRightLandmarks();
-
-        void hideBrowLeftLandmarks();
-        void showBrowLeftLandmarks();
-
-        void hideEyeLeftLandmarks();
-        void showEyeLeftLandmarks();
-
-        void hideEyeRightLandmarks();
-        void showEyeRightLandmarks();
-
-        void hideNoseShapeLandmarks();
-        void showNoseShapeLandmarks();
-
-        void hideNoseRidgeLandmarks();
-        void showNoseRidgeLandmarks();
-
-        void hideMouthOuterLandmarks();
-        void showMouthOuterLandmarks();
-
-        void hideMouthInnerLandmarks();
-        void showMouthInnerLandmarks();
-
         void showLandmarks(int idx_start, int idx_end);
         void hideLandmarks(int idx_start, int idx_end);
-
-
-        void InterpolateLandmarks95(const QList<int> &indices);
+        void interpolateLandmarksPositions(const QList<int> &indices);
 
 
 
@@ -317,9 +285,7 @@ namespace ft
     public:
         QSignalMapper* mapper = nullptr;
 
-        void createSignalMapper();
-
-        void connectSignalMapper();
+        void createGroupsData();
     };
 }
 

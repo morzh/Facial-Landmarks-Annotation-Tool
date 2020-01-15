@@ -35,19 +35,19 @@ class LandmarksGroups: public QObject {
 
 public:
 
-    const QObject *getMapper();
-    void    genActionsMenu              ( QMenu *menu);
-    bool    loadFromXML                 ( QDomElement lmsGroups);
-    void    saveToXML                   ( QDomElement &oParent) const ;
-    void    genMenuActions              ( QObject *parent);
-    void    parseData                   ( );
-    void    addSignalMapper             ( );
-    void    removeSignalMapper          ( );
-    void    printInterpolationsIndices  ( );
-    void    printIndices                ( );
-
-
     virtual ~LandmarksGroups();
+
+    const QObject * getMapper();
+    void            getMatchedRange             (const QString &sType, int *pStart, int *pEnd, bool *pIsChecked);
+    void            genActionsMenu              ( QMenu *menu);
+    bool            loadFromXML                 ( QDomElement lmsGroups);
+    void            saveToXML                   ( QDomElement &oParent) const ;
+    void            genMenuActions              ( QObject *parent);
+    void            parseData                   ( );
+    void addSignalMapper(QObject *parent);
+    void            removeSignalMapper          ( );
+    void            printInterpolationsIndices  ( );
+    void            printIndices                ( );
 
     int                         num_groups = 10;
     QList<QString>              sNames;
@@ -63,6 +63,7 @@ private:
     QList<int>          extractIndices(const QString &substring);
 
     QSignalMapper*      mapper = nullptr;
+
 };
 
 

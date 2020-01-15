@@ -158,11 +158,13 @@ namespace ft
 
         void genActionsToGroupsMenu(QObject *pObject);
 
-        void addSignalMapper();
+        void addSignalMapper(QObject *parent);
 
         const QObject *getMapper();
 
         void removeSignalMapper();
+
+        void getMatchedRange(const QString &sType, int *pStart, int *pEnd, bool *pIsChecked);
 
     private:
 		std::vector<FaceImage*> m_vSamples;        /** Vector of sample face images. */

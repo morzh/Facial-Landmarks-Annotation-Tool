@@ -353,9 +353,9 @@ void ft::FaceDataset::genActionsToGroupsMenu(QObject *parent) {
     groups.genMenuActions(parent);
 }
 
-void ft::FaceDataset::addSignalMapper() {
+void ft::FaceDataset::addSignalMapper(QObject *parent) {
 
-    groups.addSignalMapper();
+    groups.addSignalMapper(parent);
 }
 
 const QObject *ft::FaceDataset::getMapper() {
@@ -365,5 +365,11 @@ const QObject *ft::FaceDataset::getMapper() {
 void ft::FaceDataset::removeSignalMapper() {
 
     groups.removeSignalMapper();
+
+}
+
+void ft::FaceDataset::getMatchedRange(const QString &sType, int *pStart, int *pEnd, bool *pIsChecked) {
+
+    groups.getMatchedRange(sType, pStart, pEnd, pIsChecked);
 
 }

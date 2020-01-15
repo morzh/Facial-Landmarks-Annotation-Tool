@@ -306,9 +306,9 @@ void ft::FaceDatasetModel::genGroupLandmarksActions(QObject* parent) {
 
 }
 
-void ft::FaceDatasetModel::addSignalMapper() {
+void ft::FaceDatasetModel::addSignalMapper(QObject *parent) {
 
-    m_pFaceDataset->addSignalMapper();
+    m_pFaceDataset->addSignalMapper(parent);
 
 }
 
@@ -321,4 +321,9 @@ void ft::FaceDatasetModel::removeSignalMapper() {
 
     m_pFaceDataset->removeSignalMapper();
 
+}
+
+void ft::FaceDatasetModel::getMatchedRange(const QString &sType, int *pStart, int *pEnd, bool *isChecked) {
+
+    m_pFaceDataset->getMatchedRange(sType, pStart, pEnd, isChecked);
 }

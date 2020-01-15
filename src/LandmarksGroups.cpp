@@ -66,27 +66,27 @@ void LandmarksGroups::genMenuActions(QObject *parent) {
         return;
 
     num_groups = sNames.size();
-//    actions.reserve(num_groups);
-    actions.clear();
 
+    if (actions.size()==0){
 
-    for (int idx=0; idx<num_groups; ++idx){
-        QAction* actn = new QAction(sNames[idx], parent);
-        actn->setCheckable(true);
-        actn->setChecked(true);
-        actions.push_back(actn);
-/*
-        actions[idx] = new QAction(sNames[idx], parent);
-        actions[idx]->setText(sNames[idx]);
-        actions[idx]->setCheckable(true);
-        actions[idx]->setChecked(true);
-*/
+        for (int idx=0; idx<num_groups; ++idx){
+            QAction* actn = new QAction(sNames[idx], parent);
+            actn->setCheckable(true);
+            actn->setChecked(true);
+            actions.push_back(actn);
+        }
+    }
+    else{
+        for (int idx=0; idx<num_groups; ++idx){
+            actions[idx]->setParent(parent);
+        }
     }
 }
 
 void LandmarksGroups::parseIndices() {
 
     iIndices.clear();
+    num_groups = sIndices.size();
 
     for (int idx=0; idx< sIndices.size(); ++idx){
 
@@ -121,7 +121,6 @@ void LandmarksGroups::parseData() {
 
     parseIndices();
     parseInterpolation();
-
 }
 
 void LandmarksGroups::parseInterpolation() {
@@ -199,17 +198,23 @@ void LandmarksGroups::printInterpolationsIndices() {
     }
 }
 
-void LandmarksGroups::addSignalMapper() {
+void LandmarksGroups::addSignalMapper(QObject *parent) {
 
-    if (!mapper)
-        mapper = new QSignalMapper(this);
-    else
-        mapper->removeMappings(this);
+//    if (mapper)
+//        delete mapper;
 
+    mapper = new QSignalMapper(parent);
     for (int idx=0; idx<sNames.size(); ++idx) {
         connect(actions[idx], SIGNAL(triggered()), mapper, SLOT(map()));
         mapper->setMapping(actions[idx], sNames[idx]);
     }
+//    }
+//    else
+//        mapper->setParent(parent);
+//
+//    std::cout << "addSignalMapper" << std::endl;
+
+
 
 }
 
@@ -229,6 +234,19 @@ LandmarksGroups::~LandmarksGroups() {
 
     if (mapper != nullptr)
         delete mapper;
+}
+
+void LandmarksGroups::getMatchedRange(const QString &sType, int *pStart, int *pEnd, bool *pIsChecked) {
+
+    for (int idx=0; idx < sNames.size(); ++idx){
+
+        if (sType == sNames[idx]){
+            *pStart = iIndices[idx].start;
+            *pEnd = iIndices[idx].end;
+            *pIsChecked = actions[idx]->isChecked();
+            return;
+        }
+    }
 }
 
 //Range::Range(int start, int end) : start(start), end(end) {}

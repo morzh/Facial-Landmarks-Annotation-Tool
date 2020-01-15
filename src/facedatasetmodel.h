@@ -166,11 +166,13 @@ namespace ft
 
         void genGroupLandmarksActions(QObject* parent);
 
-        void addSignalMapper();
+        void addSignalMapper(QObject *parent);
 
         const QObject *getMapper();
 
         void removeSignalMapper();
+
+        void getMatchedRange(const QString &sType, int *pStart, int *pEnd, bool *isChecked);
 
     protected:
 

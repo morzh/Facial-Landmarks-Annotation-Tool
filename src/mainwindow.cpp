@@ -892,6 +892,7 @@ void ft::MainWindow::updateUI()
 {
 	// Setup the control variables
 	ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
+	QSignalMapper lmsgrpMapper;
 
 	bool bLandmarksPropertiesOpened = pChild != NULL;
 	bool bFileOpened = pChild != NULL;
@@ -901,7 +902,6 @@ void ft::MainWindow::updateUI()
 
 	m_pLandmarkGroupsButton->clear();
     this->ui->menuLandmarksGroups->clear();
-//    pChild->dataModel()->removeSignalMapper();
 
 	QList<FaceFeatureNode*> lFeats;
 	QList<FaceFeatureEdge*> lConns;
@@ -926,11 +926,14 @@ void ft::MainWindow::updateUI()
         ui->treeImages->setSelectionModel(pChild->selectionProxyModel());
 
 
-        pChild->dataModel()->genGroupLandmarksActions(this);
+        pChild->dataModel()->genGroupLandmarksActions(pChild);
         pChild->dataModel()->addGroupLandmarksActions(m_pLandmarkGroupsButton);
         pChild->dataModel()->addGroupLandmarksActions(ui->menuLandmarksGroups);
-        pChild->dataModel()->addSignalMapper();
 
+        lmsgrpMapper = new QSignalMapper(this);
+        pChild->dataModel()->addSignalMapper(pChild);
+
+//        connect(pChild->dataModel()->getMapper(), SIGNAL(mapped(QString)), this, SLOT(setLanmarksGroups(QString)));
         connect(pChild->dataModel()->getMapper(), SIGNAL(mapped(QString)), pChild, SLOT(setLanmarksGroupsViz(QString)));
 	}
 	else
@@ -1114,33 +1117,13 @@ QList<int> ft::MainWindow::getIndicesOfSelectedImages(ft::ChildWindow *pChild) {
     return lIndexes;
 }
 
-void ft::MainWindow::setLandmarksGroups() {
+void ft::MainWindow::setLandmarksGroups(QString sType) {
     //{tr("Oval Low"), tr("Oval Upper"), tr("Brows"), tr("Eyes"), tr("Nose Ridge"), tr("Node Shape"), tr("Mouth Outer"), tr("Mouth Inner")};
 
     ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
     if(!pChild )   return;
 
-    if (lmsGrpButton.actions[0]->isChecked()) {
-        pChild->showOvalLowLandmarks();
-        ui->actionShowFaceOvalLow->setChecked(true);
-    }
-    else {
-        pChild->hideOvalLowLandmarks();
-        ui->actionShowFaceOvalLow->setChecked(false);
-    }
 
-
-    if (lmsGrpButton.actions[1]->isChecked()) {
-        pChild->showOvalUpperLandmarks();
-        ui->actionShowFaceOvalUpper->setChecked(true);
-    }
-    else {
-        pChild->hideOvalUpperLandmarks();
-        ui->actionShowFaceOvalUpper->setChecked(false);
-    }
-
-
-
-
+    pChild->setLanmarksGroupsViz(sType);
 }
 

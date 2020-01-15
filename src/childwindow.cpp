@@ -209,6 +209,7 @@ void ft::ChildWindow::onDataChanged(const bool bModified)
 
 
 
+
 // +-----------------------------------------------------------
 void ft::ChildWindow::onCurrentChanged(const QModelIndex &oCurrent, const QModelIndex &oPrevious)
 {
@@ -583,8 +584,10 @@ void ft::ChildWindow::showLandmarks(int idx_start, int idx_end) {
         lsFeats[idx]->setFlag(QGraphicsItem::ItemIsSelectable, true);
         lsFeats[idx]->setFlag(QGraphicsItem::ItemIsMovable, true);
     }
-    onDataChanged();
+    m_pFaceWidget->onFaceFeaturesChanged();
+//    onDataChanged();
 }
+
 void ft::ChildWindow::hideLandmarks(int idx_start, int idx_end) {
 
     QList<FaceFeatureNode *> lsFeats = m_pFaceWidget->getFaceFeatures(-1);
@@ -593,7 +596,8 @@ void ft::ChildWindow::hideLandmarks(int idx_start, int idx_end) {
         lsFeats[idx]->setFlag(QGraphicsItem::ItemIsSelectable, false);
         lsFeats[idx]->setFlag(QGraphicsItem::ItemIsMovable, false);
     }
-    onDataChanged();
+    m_pFaceWidget->onFaceFeaturesChanged();
+//    onDataChanged();
 }
 
 void ft::ChildWindow::InterpolateLandmarks95(const QList<int> &indices) {
@@ -649,6 +653,16 @@ void ft::ChildWindow::setSortMethod(int order){
 
 void ft::ChildWindow::setLanmarksGroupsViz(QString sType) {
 
-    std::cout << "ft::ChildWindow::setLanmarksGroupsViz" << std::endl;
+    int idx_start, idx_end;
+    bool isChecked;
+
+//    std::cout << "setLanmarksGroupsViz" << std::endl;
+
+    dataModel()->getMatchedRange(sType, &idx_start, &idx_end, &isChecked);
+
+    if (isChecked)
+        showLandmarks(idx_start, idx_end);
+    else
+        hideLandmarks(idx_start, idx_end);
 }
 

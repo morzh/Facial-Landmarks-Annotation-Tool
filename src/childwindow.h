@@ -230,11 +230,7 @@ namespace ft
 		 */
 		void onScaleFactorChanged(const double dScaleFactor);
 		void onRotateFactorChanged(const double dScaleFactor);
-
-		/**
-		 * Captures the indication that face features were selected or unselected in the editor.
-		 */
-		void onFaceFeaturesSelectionChanged();
+		void onFaceFeaturesSelectionChanged(); /// Captures the indication that face features were selected or unselected in the editor.
 
 		/**
 		 * Captures indications of changes in the data model or the face widget
@@ -244,11 +240,7 @@ namespace ft
 		 */
 		void onDataChanged(const bool bModified = true);
 		void onModelChanged(const bool bModified = true);
-
-		/**
-		 * Captures indication of changes in the current selected image on the selection model.
-		 */
-		void onCurrentChanged(const QModelIndex &oCurrent, const QModelIndex &oPrevious);
+		void onCurrentChanged(const QModelIndex &oCurrent, const QModelIndex &oPrevious); /// Captures indication of changes in the current selected image on the selection model.
 
 	signals:
 
@@ -286,6 +278,8 @@ namespace ft
         QSignalMapper* mapper = nullptr;
 
         void createGroupsData();
+
+
     };
 }
 

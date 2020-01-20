@@ -363,3 +363,7 @@ void ft::FaceDataset::getMatchedRange(const QString &sType, int *pStart, int *pE
     groups.getMatchedRange(sType, pStart, pEnd, pIsChecked);
 
 }
+
+QList<QList<QList<int>>> ft::FaceDataset::getGroupsIndices() {
+    return groups.iInterpolations;
+}

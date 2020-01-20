@@ -6,7 +6,7 @@
 #include "spline_library/spline.h"
 #include "spline_library/splines/uniform_cr_spline.h"
 
-void LandmarksInterpolation::interpolate( std::vector<ft::FaceFeature *> &lms, const QList<QList<int>> &indices_list) {
+void LandmarksInterpolation::interpolate( std::vector<ft::FaceFeature *> &lms, const QList<QList<QList<int>>> &indices_list) {
 
     for(int idx=0; idx<indices_list.size(); ++idx){
         interpolateGroup(lms, indices_list[idx]);
@@ -19,7 +19,6 @@ void LandmarksInterpolation::placePointsEvenly(std::vector<QVector2D> &pts) {
     int num_points = pts.size();
 
     for (int idx=1; idx<num_points-1; ++idx)
-
         pts[idx] = getPositionAtLength(spline, idx);
 }
 
@@ -29,14 +28,14 @@ QVector2D LandmarksInterpolation::getPositionAtLength(UniformCRSpline<QVector2D>
     return QVector2D();
 }
 
-void LandmarksInterpolation::interpolateGroup(std::vector<ft::FaceFeature *> &lms_grp, const QList<QList<int>> &list) {
+void LandmarksInterpolation::interpolateGroup(std::vector<ft::FaceFeature *> &vFeatures, const QList<QList<int>> &list) {
 
     for (int idx=0; idx<list.size(); ++idx){
 
         std::vector<QVector2D> lms_subgrp(list[idx].size());
-        copyFeaturesToVector2D(lms_grp, list[idx], lms_subgrp);
+        copyFeaturesToVector2D(vFeatures, list[idx], lms_subgrp);
         placePointsEvenly(lms_subgrp);
-        copyVector2DToFeatures(lms_grp, list[idx], lms_subgrp);
+        copyVector2DToFeatures(vFeatures, list[idx], lms_subgrp);
     }
 }
 

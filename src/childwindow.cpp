@@ -534,7 +534,7 @@ void ft::ChildWindow::interpolateLandmarksPositions(const QList<int> &indices) {
 
     for (auto idx : indices ) {
         std::vector<ft::FaceFeature*> sFaceFeatures = m_pFaceDatasetModel->getFeatures(idx);
-        interp.interpolate(sFaceFeatures, <#initializer#>);
+        interp.interpolate(sFaceFeatures,  dataModel()->getGroupsIndices());
         sFaceFeatures[0]->setX(0.0);
         sFaceFeatures[0]->setY(0.0);
     }

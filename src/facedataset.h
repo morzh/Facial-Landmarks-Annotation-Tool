@@ -159,6 +159,8 @@ namespace ft
         void addSignalMapper(QSignalMapper *mapper);
         void getMatchedRange(const QString &sType, int *pStart, int *pEnd, bool *pIsChecked);
 
+        QList<QList<QList<int>>> getGroupsIndices();
+
     private:
 		std::vector<FaceImage*> m_vSamples;        /** Vector of sample face images. */
 		int m_iNumFeatures;                        /** Number of face features in the dataset (i.e. applicable to all images). */

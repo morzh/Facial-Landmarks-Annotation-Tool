@@ -169,6 +169,7 @@ namespace ft
         void addSignalMapper(QSignalMapper *mapper);
 
         void getMatchedRange(const QString &sType, int *pStart, int *pEnd, bool *isChecked);
+        QList<QList<QList<int>>> getGroupsIndices();
 
     protected:
 

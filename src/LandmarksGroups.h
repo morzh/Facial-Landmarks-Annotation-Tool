@@ -48,7 +48,7 @@ public:
     void            printInterpolationsIndices  ( );
     void            printIndices                ( );
 
-private:
+//private:
     int                         num_groups = 10;
     QList<QString>              sNames;
     QList<QString>              sIndices;

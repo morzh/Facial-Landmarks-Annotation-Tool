@@ -315,3 +315,7 @@ void ft::FaceDatasetModel::getMatchedRange(const QString &sType, int *pStart, in
 
     m_pFaceDataset->getMatchedRange(sType, pStart, pEnd, isChecked);
 }
+
+QList<QList<QList<int>>> ft::FaceDatasetModel::getGroupsIndices() {
+    return m_pFaceDataset->getGroupsIndices();
+}

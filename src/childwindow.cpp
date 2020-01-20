@@ -20,7 +20,7 @@
 #include "childwindow.h"
 #include "mainwindow.h"
 #include "application.h"
-#include "Landmarks95Interpolator.h"
+#include "LandmarksInterpolation.h"
 
 #include <QMessageBox>
 #include <QGridLayout>
@@ -530,11 +530,11 @@ void ft::ChildWindow::interpolateLandmarksPositions(const QList<int> &indices) {
 
     if (m_pFaceDatasetModel == nullptr)    return;
 
-    Landmarks95Interpolator interp;
+    LandmarksInterpolation interp;
 
     for (auto idx : indices ) {
         std::vector<ft::FaceFeature*> sFaceFeatures = m_pFaceDatasetModel->getFeatures(idx);
-        interp.interpolate(sFaceFeatures);
+        interp.interpolate(sFaceFeatures, <#initializer#>);
         sFaceFeatures[0]->setX(0.0);
         sFaceFeatures[0]->setY(0.0);
     }

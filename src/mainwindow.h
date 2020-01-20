@@ -133,6 +133,7 @@ namespace ft
         void on_actionExit_triggered(); ///  Slot for the menu Exit trigger event.
         void on_actionMinimize_triggered(); ///  Slot for the menu Exit trigger event.
         void on_actionFullScreen_triggered(); ///  Slot for the menu Exit trigger event.
+        void on_actionRestore_triggered(); ///  Slot for the menu Exit trigger event.
 
 		/**
 		 * Slot for the menu Configure trigger event.

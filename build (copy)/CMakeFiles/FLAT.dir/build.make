@@ -57,28 +57,28 @@ include CMakeFiles/FLAT.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/FLAT.dir/flags.make
 
-CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.o: CMakeFiles/FLAT.dir/flags.make
-CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.o: ../src/Landmarks95Interpolator.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.o -c /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/Landmarks95Interpolator.cpp
+CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.o: CMakeFiles/FLAT.dir/flags.make
+CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.o: ../src/LandmarksInterpolation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.o -c /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/LandmarksInterpolation.cpp
 
-CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/Landmarks95Interpolator.cpp > CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.i
+CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/LandmarksInterpolation.cpp > CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.i
 
-CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/Landmarks95Interpolator.cpp -o CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.s
+CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/LandmarksInterpolation.cpp -o CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.s
 
-CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.o.requires:
+CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.o.requires:
 
-.PHONY : CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.o.requires
+.PHONY : CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.o.requires
 
-CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.o.provides: CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.o.requires
-	$(MAKE) -f CMakeFiles/FLAT.dir/build.make CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.o.provides.build
-.PHONY : CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.o.provides
+CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.o.provides: CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.o.requires
+	$(MAKE) -f CMakeFiles/FLAT.dir/build.make CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.o.provides.build
+.PHONY : CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.o.provides
 
-CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.o.provides.build: CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.o
+CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.o.provides.build: CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.o
 
 
 CMakeFiles/FLAT.dir/src/aboutwindow.cpp.o: CMakeFiles/FLAT.dir/flags.make
@@ -611,7 +611,7 @@ CMakeFiles/FLAT.dir/FLAT_autogen/UVLADIE3JM/qrc_resources.cpp.o.provides.build: 
 
 # Object files for target FLAT
 FLAT_OBJECTS = \
-"CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.o" \
+"CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.o" \
 "CMakeFiles/FLAT.dir/src/aboutwindow.cpp.o" \
 "CMakeFiles/FLAT.dir/src/application.cpp.o" \
 "CMakeFiles/FLAT.dir/src/childwindow.cpp.o" \
@@ -638,7 +638,7 @@ FLAT_OBJECTS = \
 # External object files for target FLAT
 FLAT_EXTERNAL_OBJECTS =
 
-flat: CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.o
+flat: CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.o
 flat: CMakeFiles/FLAT.dir/src/aboutwindow.cpp.o
 flat: CMakeFiles/FLAT.dir/src/application.cpp.o
 flat: CMakeFiles/FLAT.dir/src/childwindow.cpp.o
@@ -675,7 +675,7 @@ CMakeFiles/FLAT.dir/build: flat
 
 .PHONY : CMakeFiles/FLAT.dir/build
 
-CMakeFiles/FLAT.dir/requires: CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.o.requires
+CMakeFiles/FLAT.dir/requires: CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.o.requires
 CMakeFiles/FLAT.dir/requires: CMakeFiles/FLAT.dir/src/aboutwindow.cpp.o.requires
 CMakeFiles/FLAT.dir/requires: CMakeFiles/FLAT.dir/src/application.cpp.o.requires
 CMakeFiles/FLAT.dir/requires: CMakeFiles/FLAT.dir/src/childwindow.cpp.o.requires

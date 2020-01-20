@@ -403,7 +403,7 @@ CMakeFiles/FLAT.dir/FLAT_autogen/mocs_compilation.cpp.o
  /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/landmarksproperties.h
  /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/mainwindow.h
  FLAT_autogen/include/ui_landmarksproperties.h
-CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.o
+CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.o
  ..//src/spline_library/splines/uniform_cr_spline.h
  /home/morzh/anaconda3/include/qt/QtCore/QPoint
  /home/morzh/anaconda3/include/qt/QtCore/qalgorithms.h
@@ -461,8 +461,8 @@ CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.o
  /home/morzh/anaconda3/include/qt/QtXml/qdom.h
  /home/morzh/anaconda3/include/qt/QtXml/qtxml-config.h
  /home/morzh/anaconda3/include/qt/QtXml/qtxmlglobal.h
- /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/Landmarks95Interpolator.cpp
- /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/Landmarks95Interpolator.h
+ /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/LandmarksInterpolation.cpp
+ /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/LandmarksInterpolation.h
  /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/facefeature.h
  /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/spline_library/spline.h
  /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/spline_library/splines/uniform_cr_spline.h
@@ -1139,7 +1139,7 @@ CMakeFiles/FLAT.dir/src/childwindow.cpp.o
  /home/morzh/anaconda3/include/qt/QtXml/qdom.h
  /home/morzh/anaconda3/include/qt/QtXml/qtxml-config.h
  /home/morzh/anaconda3/include/qt/QtXml/qtxmlglobal.h
- /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/Landmarks95Interpolator.h
+ /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/LandmarksInterpolation.h
  /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/aboutwindow.h
  /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/application.h
  /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/childwindow.cpp

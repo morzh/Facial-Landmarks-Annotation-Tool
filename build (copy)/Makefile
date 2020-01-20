@@ -190,32 +190,32 @@ FLAT_autogen/mocs_compilation.cpp.s:
 	$(MAKE) -f CMakeFiles/FLAT.dir/build.make CMakeFiles/FLAT.dir/FLAT_autogen/mocs_compilation.cpp.s
 .PHONY : FLAT_autogen/mocs_compilation.cpp.s
 
-src/Landmarks95Interpolator.o: src/Landmarks95Interpolator.cpp.o
+src/LandmarksInterpolation.o: src/LandmarksInterpolation.cpp.o
 
-.PHONY : src/Landmarks95Interpolator.o
+.PHONY : src/LandmarksInterpolation.o
 
 # target to build an object file
-src/Landmarks95Interpolator.cpp.o:
-	$(MAKE) -f CMakeFiles/FLAT.dir/build.make CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.o
-.PHONY : src/Landmarks95Interpolator.cpp.o
+src/LandmarksInterpolation.cpp.o:
+	$(MAKE) -f CMakeFiles/FLAT.dir/build.make CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.o
+.PHONY : src/LandmarksInterpolation.cpp.o
 
-src/Landmarks95Interpolator.i: src/Landmarks95Interpolator.cpp.i
+src/LandmarksInterpolation.i: src/LandmarksInterpolation.cpp.i
 
-.PHONY : src/Landmarks95Interpolator.i
+.PHONY : src/LandmarksInterpolation.i
 
 # target to preprocess a source file
-src/Landmarks95Interpolator.cpp.i:
-	$(MAKE) -f CMakeFiles/FLAT.dir/build.make CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.i
-.PHONY : src/Landmarks95Interpolator.cpp.i
+src/LandmarksInterpolation.cpp.i:
+	$(MAKE) -f CMakeFiles/FLAT.dir/build.make CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.i
+.PHONY : src/LandmarksInterpolation.cpp.i
 
-src/Landmarks95Interpolator.s: src/Landmarks95Interpolator.cpp.s
+src/LandmarksInterpolation.s: src/LandmarksInterpolation.cpp.s
 
-.PHONY : src/Landmarks95Interpolator.s
+.PHONY : src/LandmarksInterpolation.s
 
 # target to generate assembly for a file
-src/Landmarks95Interpolator.cpp.s:
-	$(MAKE) -f CMakeFiles/FLAT.dir/build.make CMakeFiles/FLAT.dir/src/Landmarks95Interpolator.cpp.s
-.PHONY : src/Landmarks95Interpolator.cpp.s
+src/LandmarksInterpolation.cpp.s:
+	$(MAKE) -f CMakeFiles/FLAT.dir/build.make CMakeFiles/FLAT.dir/src/LandmarksInterpolation.cpp.s
+.PHONY : src/LandmarksInterpolation.cpp.s
 
 src/aboutwindow.o: src/aboutwindow.cpp.o
 
@@ -773,9 +773,9 @@ help:
 	@echo "... FLAT_autogen/mocs_compilation.o"
 	@echo "... FLAT_autogen/mocs_compilation.i"
 	@echo "... FLAT_autogen/mocs_compilation.s"
-	@echo "... src/Landmarks95Interpolator.o"
-	@echo "... src/Landmarks95Interpolator.i"
-	@echo "... src/Landmarks95Interpolator.s"
+	@echo "... src/LandmarksInterpolation.o"
+	@echo "... src/LandmarksInterpolation.i"
+	@echo "... src/LandmarksInterpolation.s"
 	@echo "... src/aboutwindow.o"
 	@echo "... src/aboutwindow.i"
 	@echo "... src/aboutwindow.s"

@@ -4202,15 +4202,15 @@ UVLADIE3JM/moc_landmarksproperties.cpp
 UVLADIE3JM/moc_mainwindow.cpp
 /home/morzh/work/Facial-Landmarks-Annotation-Tool/build/FLAT_autogen/UVLADIE3JM/moc_mainwindow.cpp
 
-/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/Landmarks95Interpolator.cpp
-Landmarks95Interpolator.h
-/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/Landmarks95Interpolator.h
+/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/LandmarksInterpolation.cpp
+LandmarksInterpolation.h
+/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/LandmarksInterpolation.h
 spline_library/spline.h
 /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/spline_library/spline.h
 spline_library/splines/uniform_cr_spline.h
 /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/spline_library/splines/uniform_cr_spline.h
 
-/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/Landmarks95Interpolator.h
+/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/LandmarksInterpolation.h
 QtGui/QVector2D
 -
 src/spline_library/splines/uniform_cr_spline.h
@@ -4279,8 +4279,8 @@ mainwindow.h
 /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/mainwindow.h
 application.h
 /home/morzh/work/Facial-Landmarks-Annotation-Tool/src/application.h
-Landmarks95Interpolator.h
-/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/Landmarks95Interpolator.h
+LandmarksInterpolation.h
+/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/LandmarksInterpolation.h
 QMessageBox
 -
 QGridLayout

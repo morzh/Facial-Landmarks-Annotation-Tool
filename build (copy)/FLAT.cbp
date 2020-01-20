@@ -112,10 +112,10 @@
 		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/build/FLAT_autogen/mocs_compilation.cpp">
 			<Option target="FLAT"/>
 		</Unit>
-		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/Landmarks95Interpolator.cpp">
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/LandmarksInterpolation.cpp">
 			<Option target="FLAT"/>
 		</Unit>
-		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/Landmarks95Interpolator.h">
+		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/LandmarksInterpolation.h">
 			<Option target="FLAT"/>
 		</Unit>
 		<Unit filename="/home/morzh/work/Facial-Landmarks-Annotation-Tool/src/aboutwindow.cpp">

@@ -75,17 +75,17 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
 
 
     QPushButton * closeButton = new QPushButton(ui->menuBar);
-    QPushButton * resizeButton = new QPushButton(ui->menuBar);
+    QPushButton * restoreButton = new QPushButton(ui->menuBar);
     QPushButton * minimizeButton = new QPushButton(ui->menuBar);
     QPushButton * fullScreenButton = new QPushButton(ui->menuBar);
     closeButton->setFixedSize(18, 18);
-    resizeButton->setFixedSize(18, 18);
+    restoreButton->setFixedSize(18, 18);
     minimizeButton->setFixedSize(18, 18);
     fullScreenButton->setFixedSize(18, 18);
 
     closeButton->setIcon(QIcon(":/icons/close"));
     fullScreenButton->setIcon(QIcon(":/icons/fullscreen"));
-    resizeButton->setIcon(QIcon(":/icons/maximize"));
+    restoreButton->setIcon(QIcon(":/icons/maximize"));
     minimizeButton->setIcon(QIcon(":/icons/minimize"));
 
     closeButton->setIconSize(QSize(16, 16));
@@ -103,7 +103,7 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
     closeButton->setStyleSheet(flatButtonStyle);
     minimizeButton->setStyleSheet(flatButtonStyle);
     fullScreenButton->setStyleSheet(flatButtonStyle);
-    resizeButton->setStyleSheet(flatButtonStyle);
+    restoreButton->setStyleSheet(flatButtonStyle);
 
     QWidget*        menuWidget = new QWidget(this);
     QGridLayout*    menuWidgetLayout = new QGridLayout(menuWidget);
@@ -114,15 +114,15 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
     menuWidgetLayout->addWidget(ui->menuBar, 0, 0, 1,1);
     menuWidgetLayout->addWidget(minimizeButton, 0, 1, 1, 1);
     menuWidgetLayout->addWidget(fullScreenButton, 0, 2, 1, 1);
-    menuWidgetLayout->addWidget(resizeButton, 0, 3, 1, 1);
+    menuWidgetLayout->addWidget(restoreButton, 0, 3, 1, 1);
     menuWidgetLayout->addWidget(closeButton, 0, 4, 1, 1);
 
     setMenuWidget(menuWidget);
 
     connect(closeButton, SIGNAL(clicked()), this, SLOT(close()));
-//    connect(closeButton, SIGNAL(clicked()), this, SLOT(on_actionExit_triggered()));
     connect(fullScreenButton, SIGNAL(clicked()), this, SLOT(on_actionFullScreen_triggered()));
     connect(minimizeButton, SIGNAL(clicked()), this, SLOT(on_actionMinimize_triggered()));
+    connect(restoreButton, SIGNAL(clicked()), this, SLOT(on_actionRestore_triggered()));
 
 
 
@@ -405,9 +405,23 @@ void ft::MainWindow::on_actionMinimize_triggered()
 {
     this->setWindowState(Qt::WindowMinimized);
 }
+
 void ft::MainWindow::on_actionFullScreen_triggered()
 {
     this->setWindowState(Qt::WindowFullScreen);
+}
+void ft::MainWindow::on_actionRestore_triggered()
+{
+    auto wState = windowState();
+
+    if ( wState== Qt::WindowFullScreen)
+        setWindowState(Qt::WindowMaximized);
+    else if ( wState == Qt::WindowMaximized)
+        resize(QSize(800,600));
+    else if ( wState != Qt::WindowMaximized)
+        setWindowState(Qt::WindowMaximized);
+
+//    this->setWindowState(this->windowState() & ~Qt::WindowMinimized | Qt::WindowActive);
 }
 
 

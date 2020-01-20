@@ -119,7 +119,8 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
 
     setMenuWidget(menuWidget);
 
-    connect(closeButton, SIGNAL(clicked()), this, SLOT(on_actionExit_triggered()));
+    connect(closeButton, SIGNAL(clicked()), this, SLOT(close()));
+//    connect(closeButton, SIGNAL(clicked()), this, SLOT(on_actionExit_triggered()));
     connect(fullScreenButton, SIGNAL(clicked()), this, SLOT(on_actionFullScreen_triggered()));
     connect(minimizeButton, SIGNAL(clicked()), this, SLOT(on_actionMinimize_triggered()));
 
@@ -397,7 +398,8 @@ bool ft::MainWindow::saveCurrentFile(bool bAskForFileName)
 // +-----------------------------------------------------------
 void ft::MainWindow::on_actionExit_triggered()
 {
-    QApplication::exit(0);
+    close();
+//    QApplication::exit(0);
 }
 void ft::MainWindow::on_actionMinimize_triggered()
 {

@@ -155,21 +155,9 @@ namespace ft
 		 */
 		void on_tabChanged(int iTabIndex);
 		void on_actionAddImage_triggered(); /// Slot for the button Add Image trigger event.
-
-		/**
-		 * Slot for the button Add Image trigger event.
-		 */
-		void on_actionRemoveImage_triggered();
-
-		/**
-		 * Slot for the menu Show Image List trigger event.
-		 */
-		void on_actionShowImagesList_triggered(bool bChecked);
-
-		/**
-		 * Slot for the menu Show Image Properties trigger event.
-		 */
-		void on_actionShowImageProperties_triggered(bool bChecked);
+		void on_actionRemoveImage_triggered(); ///Slot for the button Add Image trigger event.
+		void on_actionShowImagesList_triggered(bool bChecked); ///Slot for the menu Show Image List trigger event.
+		void on_actionShowImageProperties_triggered(bool bChecked); ///Slot for the menu Show Image Properties trigger event.
 
 		/**
 		 * Slot for the menu Show Face Feature Nodes trigger event.

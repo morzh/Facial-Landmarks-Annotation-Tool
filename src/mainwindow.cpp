@@ -74,31 +74,54 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
     ui->imagesToolbar->addAction(m_pSortButton->menuAction());
 
 
-    QPushButton * closeButton = new QPushButton("x", ui->menuBar);
-    QPushButton * resizeButton = new QPushButton("y", ui->menuBar);
-    QPushButton * minizeButton = new QPushButton("z", ui->menuBar);
+    QPushButton * closeButton = new QPushButton(ui->menuBar);
+    QPushButton * resizeButton = new QPushButton(ui->menuBar);
+    QPushButton * minimizeButton = new QPushButton(ui->menuBar);
+    QPushButton * fullScreenButton = new QPushButton(ui->menuBar);
     closeButton->setFixedSize(18, 18);
     resizeButton->setFixedSize(18, 18);
-    minizeButton->setFixedSize(18, 18);
+    minimizeButton->setFixedSize(18, 18);
+    fullScreenButton->setFixedSize(18, 18);
 
+    closeButton->setIcon(QIcon(":/icons/close"));
+    fullScreenButton->setIcon(QIcon(":/icons/fullscreen"));
+    resizeButton->setIcon(QIcon(":/icons/maximize"));
+    minimizeButton->setIcon(QIcon(":/icons/minimize"));
 
-    QWidget* menuWidget = new QWidget(this);
-    QGridLayout* menuWidgetLayout = new QGridLayout(menuWidget);
-//    menuWidgetLayout->setVerticalSpacing(0);
+    closeButton->setIconSize(QSize(16, 16));
+    fullScreenButton->setIconSize(QSize(16, 16));
+
+    QString flatButtonStyle = "QPushButton {\n"
+                            "border: none;\n"
+                            "margin: 0px;\n"
+                            "padding: 0px;\n"
+                            "} \n"
+                            "QPushButton:hover{\n"
+                             "border: 1px solid;\n"
+                            "}";
+
+    closeButton->setStyleSheet(flatButtonStyle);
+    minimizeButton->setStyleSheet(flatButtonStyle);
+    fullScreenButton->setStyleSheet(flatButtonStyle);
+    resizeButton->setStyleSheet(flatButtonStyle);
+
+    QWidget*        menuWidget = new QWidget(this);
+    QGridLayout*    menuWidgetLayout = new QGridLayout(menuWidget);
+
     menuWidgetLayout->setMargin(0);
     menuWidget->setLayout(menuWidgetLayout);
-
     // Add the menu bar and all tool buttons to the widget
     menuWidgetLayout->addWidget(ui->menuBar, 0, 0, 1,1);
-    menuWidgetLayout->addWidget(closeButton, 0, 1, 1, 1);
-    menuWidgetLayout->addWidget(resizeButton, 0, 2, 1, 1);
-    menuWidgetLayout->addWidget(minizeButton, 0, 3, 1, 1);
+    menuWidgetLayout->addWidget(minimizeButton, 0, 1, 1, 1);
+    menuWidgetLayout->addWidget(fullScreenButton, 0, 2, 1, 1);
+    menuWidgetLayout->addWidget(resizeButton, 0, 3, 1, 1);
+    menuWidgetLayout->addWidget(closeButton, 0, 4, 1, 1);
 
     setMenuWidget(menuWidget);
 
     connect(closeButton, SIGNAL(clicked()), this, SLOT(on_actionExit_triggered()));
-    connect(resizeButton, SIGNAL(clicked()), this, SLOT(on_actionResize_triggered()));
-    connect(minizeButton, SIGNAL(clicked()), this, SLOT(on_actionMinimize_triggered()));
+    connect(fullScreenButton, SIGNAL(clicked()), this, SLOT(on_actionFullScreen_triggered()));
+    connect(minimizeButton, SIGNAL(clicked()), this, SLOT(on_actionMinimize_triggered()));
 
 
 
@@ -380,7 +403,7 @@ void ft::MainWindow::on_actionMinimize_triggered()
 {
     this->setWindowState(Qt::WindowMinimized);
 }
-void ft::MainWindow::on_actionResize_triggered()
+void ft::MainWindow::on_actionFullScreen_triggered()
 {
     this->setWindowState(Qt::WindowFullScreen);
 }

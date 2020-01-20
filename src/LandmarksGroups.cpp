@@ -213,6 +213,11 @@ void LandmarksGroups::addSignalMapper(QSignalMapper *mapper) {
 
 LandmarksGroups::~LandmarksGroups() {
 
+    for (auto action:actions) {
+        if (action)
+            delete action;
+    }
+
 }
 
 void LandmarksGroups::getMatchedRange(const QString &sType, int *pStart, int *pEnd, bool *pIsChecked) {

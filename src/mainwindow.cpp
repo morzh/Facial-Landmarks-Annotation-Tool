@@ -34,6 +34,7 @@
 #include <QAction>
 #include <QMessageBox>
 #include <QTemporaryFile>
+#include <QPushButton>
 #include <iostream>
 
 
@@ -73,7 +74,35 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
     ui->imagesToolbar->addAction(m_pSortButton->menuAction());
 
 
-	QAction *pViewDetails = new QAction(QIcon(":/icons/viewdetails_bw"), tr("&Details"), this);
+    QPushButton * closeButton = new QPushButton("x", ui->menuBar);
+    QPushButton * resizeButton = new QPushButton("y", ui->menuBar);
+    QPushButton * minizeButton = new QPushButton("z", ui->menuBar);
+    closeButton->setFixedSize(18, 18);
+    resizeButton->setFixedSize(18, 18);
+    minizeButton->setFixedSize(18, 18);
+
+
+    QWidget* menuWidget = new QWidget(this);
+    QGridLayout* menuWidgetLayout = new QGridLayout(menuWidget);
+//    menuWidgetLayout->setVerticalSpacing(0);
+    menuWidgetLayout->setMargin(0);
+    menuWidget->setLayout(menuWidgetLayout);
+
+    // Add the menu bar and all tool buttons to the widget
+    menuWidgetLayout->addWidget(ui->menuBar, 0, 0, 1,1);
+    menuWidgetLayout->addWidget(closeButton, 0, 1, 1, 1);
+    menuWidgetLayout->addWidget(resizeButton, 0, 2, 1, 1);
+    menuWidgetLayout->addWidget(minizeButton, 0, 3, 1, 1);
+
+    setMenuWidget(menuWidget);
+
+    connect(closeButton, SIGNAL(clicked()), this, SLOT(on_actionExit_triggered()));
+    connect(resizeButton, SIGNAL(clicked()), this, SLOT(on_actionResize_triggered()));
+    connect(minizeButton, SIGNAL(clicked()), this, SLOT(on_actionMinimize_triggered()));
+
+
+
+    QAction *pViewDetails = new QAction(QIcon(":/icons/viewdetails_bw"), tr("&Details"), this);
 	pViewDetails->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
 	m_pViewButton->addAction(pViewDetails);
 	QAction *pViewIcons = new QAction(QIcon(":/icons/viewicons_bw"), tr("&Icons"), this);
@@ -161,6 +190,8 @@ ft::MainWindow::~MainWindow()
 		delete m_pViewButton;
 	if(m_pSortButton)
 		delete m_pSortButton;
+	if(m_pLandmarkGroupsButton)
+		delete m_pLandmarkGroupsButton;
 	if (m_oFitProcess)
 		delete m_oFitProcess;
 
@@ -344,6 +375,14 @@ bool ft::MainWindow::saveCurrentFile(bool bAskForFileName)
 void ft::MainWindow::on_actionExit_triggered()
 {
     QApplication::exit(0);
+}
+void ft::MainWindow::on_actionMinimize_triggered()
+{
+    this->setWindowState(Qt::WindowMinimized);
+}
+void ft::MainWindow::on_actionResize_triggered()
+{
+    this->setWindowState(Qt::WindowFullScreen);
 }
 
 

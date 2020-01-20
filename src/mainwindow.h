@@ -131,6 +131,8 @@ namespace ft
 		void on_actionSave_triggered(); ///Slot for the menu Save trigger event.
 		void on_actionSaveAs_triggered(); /// Slot for the menu Save As trigger event.
         void on_actionExit_triggered(); ///  Slot for the menu Exit trigger event.
+        void on_actionMinimize_triggered(); ///  Slot for the menu Exit trigger event.
+        void on_actionResize_triggered(); ///  Slot for the menu Exit trigger event.
 
 		/**
 		 * Slot for the menu Configure trigger event.

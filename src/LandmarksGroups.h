@@ -37,17 +37,18 @@ public:
 
     virtual ~LandmarksGroups();
 
-    void            getMatchedRange             (const QString &sType, int *pStart, int *pEnd, bool *pIsChecked);
+    void            getMatchedRange             ( const QString &sType, int *pStart, int *pEnd, bool *pIsChecked);
     void            genActionsMenu              ( QMenu *menu);
     bool            loadFromXML                 ( QDomElement lmsGroups);
     void            saveToXML                   ( QDomElement &oParent) const ;
     void            genMenuActions              ( QObject *parent);
     void            parseData                   ( );
-    void            addSignalMapper(QSignalMapper *mapper);
+    void            addSignalMapper             ( QSignalMapper *mapper);
 
     void            printInterpolationsIndices  ( );
     void            printIndices                ( );
 
+private:
     int                         num_groups = 10;
     QList<QString>              sNames;
     QList<QString>              sIndices;

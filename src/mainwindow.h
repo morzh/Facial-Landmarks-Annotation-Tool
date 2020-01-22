@@ -267,9 +267,10 @@ namespace ft
 		QProcess *m_oFitProcess;
 		/** Name of the temporary file used for the face-fit utility. */
 		QString m_sFitTempFile;
-        QList<int> getIndicesOfSelectedImages(ChildWindow *pChild);
 
-        LandmarksGroups lmsGrpButton;
+
+        QList<int> getIndicesOfSelectedImages(ChildWindow *pChild);
+        bool eventFilter(QObject *watched, QEvent *event);
 
     };
 };

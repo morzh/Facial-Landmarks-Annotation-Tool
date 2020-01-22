@@ -193,6 +193,8 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
 //    connect(pLmsGrps_lBrow, SIGNAL(triggered()), this, SLOT(onBrowLeftChanged()));
 
 
+    ui->menuBar->installEventFilter(this);
+
 
 }
 
@@ -417,7 +419,8 @@ void ft::MainWindow::on_actionRestore_triggered()
     if ( wState== Qt::WindowFullScreen)
         setWindowState(Qt::WindowMaximized);
     else if ( wState == Qt::WindowMaximized)
-        resize(QSize(800,600));
+        setWindowState(Qt::WindowNoState);
+//        resize(QSize(800,600));
     else if ( wState != Qt::WindowMaximized)
         setWindowState(Qt::WindowMaximized);
 
@@ -1072,3 +1075,34 @@ void ft::MainWindow::setLandmarksGroups(const QString &sType) {
     pChild->setLanmarksGroupsViz(sType);
 }
 
+bool ft::MainWindow::eventFilter(QObject *watched, QEvent *event)
+{
+    QPoint dragPosition = QPoint(0,0);
+
+    if (watched == ui->menuBar)
+    {
+        if (event->type() == QEvent::MouseButtonPress)
+        {
+            QMouseEvent* mouse_event = dynamic_cast<QMouseEvent*>(event);
+            if (mouse_event->button() == Qt::LeftButton)
+            {
+                dragPosition = mouse_event->globalPos() - frameGeometry().topLeft();
+                event->accept();
+                return false;
+            }
+        }
+        else if (event->type() == QEvent::MouseMove)
+        {
+            QMouseEvent* mouse_event = dynamic_cast<QMouseEvent*>(event);
+            if (mouse_event->buttons() & Qt::LeftButton)
+            {
+                move(mouse_event->globalPos() - dragPosition);
+                event->accept();
+                return false;
+            }
+        }
+
+
+    }
+    return false;
+}

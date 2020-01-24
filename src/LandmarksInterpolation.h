@@ -6,7 +6,7 @@
 #define FLAT_LANDMARKSINTERPOLATION_H
 
 #include <QtGui/QVector2D>
-#include <src/spline_library/splines/uniform_cr_spline.h>
+#include <src/spline_library/splines/natural_spline.h>
 #include "facefeature.h"
 
 
@@ -17,11 +17,16 @@ public:
 
 private:
 
-    void    placePointsEvenly(std::vector<QVector2D> &pts);
-    QVector2D getPositionAtLength(UniformCRSpline<QVector2D> spline, double length_parm);
-    void interpolateGroup(std::vector<ft::FaceFeature *> &vFeatures, const QList<QList<int>> &list);
-    void copyVector2DToFeatures(std::vector<ft::FaceFeature *> &vFeatures, const QList<int> &indices, const std::vector<QVector2D>& lms_subgrp);
-    void copyFeaturesToVector2D(const std::vector<ft::FaceFeature *> &vFeatures, const QList<int> &indices, std::vector<QVector2D> &list_vec);
+    void        placePointsEvenly           (std::vector<QVector2D> &pts);
+    QVector2D   getPositionAtLength         (NaturalSpline<QVector2D>  &spline, float length_parm);
+    void        interpolateGroup            (std::vector<ft::FaceFeature *> &vFeatures, const QList<QList<int>> &list);
+    void        copyVector2DToFeatures      (std::vector<ft::FaceFeature *> &vFeatures, const QList<int> &indices, const std::vector<QVector2D>& lms_subgrp);
+    void        copyFeaturesToVector2D      (const std::vector<ft::FaceFeature *> &vFeatures, const QList<int> &indices, std::vector<QVector2D> &list_vec);
+
+    template <typename T>
+    int         sgn                         (T val) {
+        return (T(0) < val) - (val < T(0));
+    }
 };
 
 

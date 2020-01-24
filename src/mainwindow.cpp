@@ -1056,16 +1056,14 @@ QList<int> ft::MainWindow::getIndicesOfSelectedImages(ft::ChildWindow *pChild) {
     QModelIndexList     lsSelected = pChild->selectionProxyModel()->selectedRows();
     QList<int>          lIndexes;
 
-    std::cout << "ft::MainWindow::getIndicesOfSelectedImages" << lsSelected.size() <<std::endl;
-
     if(lsSelected.size() > 0){
         for(int i = 0; i < lsSelected.size(); ++i) {
             lIndexes.append(lsSelected[i].row());
         }
     }
-
     return lIndexes;
 }
+
 
 void ft::MainWindow::setLandmarksGroups(const QString &sType) {
     ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
@@ -1075,7 +1073,7 @@ void ft::MainWindow::setLandmarksGroups(const QString &sType) {
 
 bool ft::MainWindow::eventFilter(QObject *watched, QEvent *event)
 {
-    QPoint dragPosition = QPoint(0,0);
+    QPoint dragPosition;
 
     if (watched == ui->menuBar)
     {

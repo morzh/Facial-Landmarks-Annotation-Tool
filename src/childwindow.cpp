@@ -531,18 +531,15 @@ void ft::ChildWindow::interpolateLandmarksPositions(const QList<int> &indices) {
     if (m_pFaceDatasetModel == nullptr)    return;
 
     LandmarksInterpolation interp;
-
+//    std::cout << indices.size() << std::endl;
     for (auto idx : indices ) {
         std::vector<ft::FaceFeature*> sFaceFeatures = m_pFaceDatasetModel->getFeatures(idx);
         interp.interpolate(sFaceFeatures,  dataModel()->getGroupsIndices());
-        sFaceFeatures[0]->setX(0.0);
-        sFaceFeatures[0]->setY(0.0);
     }
     onModelChanged();
 }
 
 QList<QString> ft::ChildWindow::getImageNamesList() {
-
     return m_pFaceDatasetModel->getImageNamesList();
 }
 
@@ -555,9 +552,7 @@ QAbstractItemModel* ft::ChildWindow::dataProxyModel() const {
 }
 
 void ft::ChildWindow::setFilterString(const QString &qString) {
-
     proxy->setFilterFixedString(qString);
-
 }
 
 const QString &ft::ChildWindow::getSearchBoxText() const {
@@ -573,7 +568,6 @@ void ft::ChildWindow::setSortAsIs() {
 }
 
 void ft::ChildWindow::setSortMethod(int order){
-
     proxy->sort(0, (Qt::SortOrder)order);
 }
 

@@ -676,7 +676,7 @@ void  ft::MainWindow::on_actionSpaceEvenly_triggered(){
     ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
     if(!pChild)   return;
 
-    QModelIndexList     lsSelected = pChild->selectionModel()->selectedRows();
+//    QModelIndexList     lsSelected = pChild->selectionProxyModel()->selectedRows();
     QList<int>          lIndexes = getIndicesOfSelectedImages(pChild);
 
     pChild->interpolateLandmarksPositions(lIndexes);
@@ -1053,11 +1053,13 @@ void ft::MainWindow::on_SearchBox_textEdited(const QString &textToSearch) {
 
 QList<int> ft::MainWindow::getIndicesOfSelectedImages(ft::ChildWindow *pChild) {
 
-    QModelIndexList     lsSelected = pChild->selectionModel()->selectedRows();
+    QModelIndexList     lsSelected = pChild->selectionProxyModel()->selectedRows();
     QList<int>          lIndexes;
 
+    std::cout << "ft::MainWindow::getIndicesOfSelectedImages" << lsSelected.size() <<std::endl;
+
     if(lsSelected.size() > 0){
-        for(int i = 0; i < lsSelected.size(); i++) {
+        for(int i = 0; i < lsSelected.size(); ++i) {
             lIndexes.append(lsSelected[i].row());
         }
     }
@@ -1066,12 +1068,8 @@ QList<int> ft::MainWindow::getIndicesOfSelectedImages(ft::ChildWindow *pChild) {
 }
 
 void ft::MainWindow::setLandmarksGroups(const QString &sType) {
-    //{tr("Oval Low"), tr("Oval Upper"), tr("Brows"), tr("Eyes"), tr("Nose Ridge"), tr("Node Shape"), tr("Mouth Outer"), tr("Mouth Inner")};
-
     ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
     if(!pChild )   return;
-
-
     pChild->setLanmarksGroupsViz(sType);
 }
 
@@ -1087,7 +1085,7 @@ bool ft::MainWindow::eventFilter(QObject *watched, QEvent *event)
             if (mouse_event->button() == Qt::LeftButton)
             {
                 dragPosition = mouse_event->globalPos() - frameGeometry().topLeft();
-                event->accept();
+//                event->accept();
                 return false;
             }
         }
@@ -1097,7 +1095,7 @@ bool ft::MainWindow::eventFilter(QObject *watched, QEvent *event)
             if (mouse_event->buttons() & Qt::LeftButton)
             {
                 move(mouse_event->globalPos() - dragPosition);
-                event->accept();
+//                event->accept();
                 return false;
             }
         }

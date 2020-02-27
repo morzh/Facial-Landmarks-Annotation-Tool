@@ -164,6 +164,8 @@ namespace ft
     private:
 		std::vector<FaceImage*> m_vSamples;        /** Vector of sample face images. */
 		int m_iNumFeatures;                        /** Number of face features in the dataset (i.e. applicable to all images). */
+		QString lmsfiles_extension;                 /** landmarks file extension*/
+		bool lmsfiles_write;                       /** write file with landmarks for every image*/
 		LandmarksGroups groups;                    /** Landmarks Groups (i.e. applicable to all images) */
     };
 }

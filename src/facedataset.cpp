@@ -96,6 +96,17 @@ bool ft::FaceDataset::loadFromFile(const QString &sFileName, QString &sMsgError)
 		return false;
 	}
 
+    QDomElement oLandmarksFiles = oRoot.firstChildElement("File");
+	if ( oLandmarksFiles.isNull()){
+	    std::cout << "file has no info about landmarks files" << std::endl;
+	}else{
+        lmsfiles_extension = oLandmarksFiles.attribute("Extension");
+        QString sFileWrite = oLandmarksFiles.attribute("Write");
+        lmsfiles_write = static_cast<QVariant>(sFileWrite).toBool();
+	}
+//    std::cout << "lms ext:   " << lmsfiles_extension.toStdString() << std::endl;
+//    std::cout << "lms write: " << lmsfiles_write << std::endl;
+
 	// Landmark Groups
     QDomElement oGroups = oRoot.firstChildElement("LandmarksGroups");
 	if (oGroups.isNull()){
@@ -158,6 +169,12 @@ bool ft::FaceDataset::saveToFile(const QString &sFileName, QString &sMsgError) c
 	oRoot.setAttribute("numberOfFeatures", m_iNumFeatures);
 	groups.saveToXML(oRoot);
 
+	// Landmarks Files Options
+    QDomElement oFileOptions = oRoot.ownerDocument().createElement("File");
+    oFileOptions.setAttribute("Extension", lmsfiles_extension);
+    oFileOptions.setAttribute("Write", lmsfiles_write);
+    oRoot.appendChild(oFileOptions);
+
 	// Sample images
 	QDomElement oSamples = oDoc.createElement("Samples");
 	oRoot.appendChild(oSamples);
@@ -174,27 +191,17 @@ bool ft::FaceDataset::saveToFile(const QString &sFileName, QString &sMsgError) c
 		pImage->setFileName(sSave);
 
 
-        std::vector<FaceFeature*>   features        =   pImage->getFeatures();
-        QString                     img_name        =   oBase.absoluteFilePath( pImage->fileName() );
-        std::string                 img_name__      =   img_name.toUtf8().constData();
+        if ( this->lmsfiles_write) {
+            std::vector<FaceFeature *> features = pImage->getFeatures();
+            QString QImageName = oBase.absoluteFilePath(pImage->fileName());
+            std::string imageName = QImageName.toUtf8().constData();
 
-        img_name__      +=  ".dan74";
-        std::ofstream   file( img_name__.c_str() );
-        for ( int idx=0; idx<features.size(); ++idx){    file << features[idx]->x() << " "  << features[idx]->y() << std::endl;        }
-        file.close();
+            imageName += "." + lmsfiles_extension.toStdString();
+            std::ofstream file(imageName.c_str());
+            for (int idx = 0; idx < features.size(); ++idx) { file << features[idx]->x() << " " << features[idx]->y() << std::endl; }
+            file.close();
+        }
 
-        /*
-        std::string   img_name_pts = img_name__.substr(0, img_name__.size()-4);
-        img_name_pts    +=  ".pts";
-        std::ofstream   file2( img_name_pts.c_str() );
-        file2 << "version: 1" << std::endl;
-        file2 << "n_points: " << features.size() << std::endl;
-        file2 << "{" << std::endl;
-
-        for ( int idx=0; idx<features.size(); ++idx){    file2 << features[idx]->x() << " "  << features[idx]->y() << std::endl;        }
-        file2 << "}" ;
-        file2.close();
-        */
 	}
 
 	/******************************************************

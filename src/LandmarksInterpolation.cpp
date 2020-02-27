@@ -21,40 +21,41 @@ void LandmarksInterpolation::placePointsEvenly(std::vector<QVector2D> &pts) {
     NaturalSpline<QVector2D>  spline(pts);
 
     for (int idx=1; idx<pts.size()-1; ++idx)
-        pts[idx] = spline.getPosition(float(idx)); /// for testing only
+        pts[idx] = getPositionAtSplineLength(spline, float(idx));
+//        pts[idx] = spline.getPosition(float(idx)); /// for testing only
 }
 
 
-QVector2D LandmarksInterpolation::getPositionAtLength(NaturalSpline<QVector2D>  &spline, float length_parm) {
+QVector2D LandmarksInterpolation::getPositionAtSplineLength(NaturalSpline<QVector2D>  &spline, float length_parm) {
 
-    float   parm_max            =   spline.getMaxT();
-    float   total_length        =   spline.totalLength();
-    float   parm_normalized     =   length_parm / parm_max;
-    float   length_fraction     =   total_length * parm_normalized;
-    float   epsilon             =   1e-2;
-    float   len                 =   spline.arcLength(0.0, length_parm);
-    float   segment_start       =   0;
-    float   segment_end         =   1;
+    float   epsilon             =   1e-1;
+    float   start               =   0;
+    float   end                 =   spline.getMaxT();
 
-    /// first, find segment, at which desired point is located
-    for (int idx=0; idx<1000; ++idx) {
+    float   length_start        = 0;
+    float   length_middle       = spline.arcLength(0, 0.5*(start+end));
+    float   length_end          = spline.arcLength(0, end);
 
-        if (std::abs(len - length_fraction) < epsilon)
-            return spline.getPosition(len);
+    while ( std::abs(length_start-length_end) > epsilon){
 
-        int signum = sgn<float>(len - length_fraction);
-        length_parm += 0.1 * signum;
-        len = spline.arcLength(0.0, length_parm);
+        if ( length_middle  > length_parm){
+            length_end = length_middle;
+            end = 0.5f*(start+end);
+        }
+        else {
+            length_start = length_middle;
+            start = 0.5f*(start+end);
+        }
+
+        length_middle  = spline.arcLength(0, 0.5*(start+end));
+
     }
 
-    /// second, iteratively (dihotomy method) find spline parameter at which length is equal to length_fraction
-
-    return spline.getPosition(len);
+    return spline.getPosition(0.5*(start+end));
 }
 
+
 void LandmarksInterpolation::interpolateGroup(std::vector<ft::FaceFeature *> &vFeatures, const QList<QList<int>> &list) {
-
-
 
     for (int idx=0; idx<list.size(); ++idx){
         std::vector<QVector2D> lms_subgrp(list[idx].size());

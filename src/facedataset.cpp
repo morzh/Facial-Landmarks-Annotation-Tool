@@ -191,7 +191,7 @@ bool ft::FaceDataset::saveToFile(const QString &sFileName, QString &sMsgError) c
 		pImage->setFileName(sSave);
 
 
-        if ( this->lmsfiles_write) {
+        if ( lmsfiles_write &&  !lmsfiles_extension.isEmpty()) {
             std::vector<FaceFeature *> features = pImage->getFeatures();
             QString QImageName = oBase.absoluteFilePath(pImage->fileName());
             std::string imageName = QImageName.toUtf8().constData();

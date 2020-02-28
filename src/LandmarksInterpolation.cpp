@@ -20,25 +20,33 @@ void LandmarksInterpolation::placePointsEvenly(std::vector<QVector2D> &pts) {
 
     NaturalSpline<QVector2D>  spline(pts);
 
-    for (int idx=1; idx<pts.size()-1; ++idx)
-        pts[idx] = getPositionAtSplineLength(spline, float(idx));
+    for (int idx=1; idx < pts.size()-1; ++idx)
+        pts[idx] = getPositionAtSplineLength(spline, float(idx)/float(pts.size()-1));
 //        pts[idx] = spline.getPosition(float(idx)); /// for testing only
 }
 
 
-QVector2D LandmarksInterpolation::getPositionAtSplineLength(NaturalSpline<QVector2D>  &spline, float length_parm) {
+QVector2D LandmarksInterpolation::getPositionAtSplineLength(NaturalSpline<QVector2D>  &spline, float length_normalized) {
+
+    length_normalized <  0 ?  0.0f:length_normalized;
+    length_normalized >  1 ?  1.0f:length_normalized;
 
     float   epsilon             =   1e-1;
     float   start               =   0;
     float   end                 =   spline.getMaxT();
 
-    float   length_start        = 0;
+
+
+    float   length_start        = 0.0f;
     float   length_middle       = spline.arcLength(0, 0.5*(start+end));
     float   length_end          = spline.arcLength(0, end);
 
+    float length = length_normalized*length_end;
+
+
     while ( std::abs(length_start-length_end) > epsilon){
 
-        if ( length_middle  > length_parm){
+        if (length < length_middle){
             length_end = length_middle;
             end = 0.5f*(start+end);
         }

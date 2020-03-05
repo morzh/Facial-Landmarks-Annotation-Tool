@@ -2,7 +2,7 @@
 
 A visual editor for manually annotating facial landmarks in images of human faces.
 
-![Screenshot](screenshot.png)
+![Screenshot1](Screenshot%20from%202020-03-05%2017-28-26.png)
 
 ## Usage
 

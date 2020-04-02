@@ -1,2 +1,4 @@
 # Ignore the build directory
 **/build/
+/build (copy)/
+/cmake-build-debug/

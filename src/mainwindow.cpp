@@ -1003,9 +1003,6 @@ ft::ChildWindow* ft::MainWindow::createChildWindow(QString sFileName, bool bModi
 	int iIndex = ui->tabWidget->addTab(pChild, pChild->windowIcon(), "");
 	ui->tabWidget->setCurrentIndex(iIndex);
 
-
-
-
 	return pChild;
 }
 

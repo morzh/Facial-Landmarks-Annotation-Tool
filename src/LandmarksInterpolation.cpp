@@ -31,11 +31,9 @@ QVector2D LandmarksInterpolation::getPositionAtSplineLength(NaturalSpline<QVecto
     length_normalized <  0 ?  0.0f:length_normalized;
     length_normalized >  1 ?  1.0f:length_normalized;
 
-    float   epsilon             =   1e-1;
+    float   epsilon             =   2e-1;
     float   start               =   0;
     float   end                 =   spline.getMaxT();
-
-
 
     float   length_start        = 0.0f;
     float   length_middle       = spline.arcLength(0, 0.5*(start+end));

@@ -204,7 +204,7 @@ namespace ft
 
         const QString &getSearchBoxText() const;
 
-        void setSearchBoxText(const QString &searchBoxText);
+        void setSearchBoxText(const QString &search_string);
 
         QList<QString> getImageNamesList();
 
@@ -273,12 +273,12 @@ namespace ft
         QSortFilterProxyModel   *proxy;
         KLinkItemSelectionModel *m_pFaceSelectionProxyModel;
         QString                  searchBoxText;
+        int                     sortMode;
         QUndoStack *undoStack = nullptr;
     public:
         QSignalMapper* mapper = nullptr;
 
         void createGroupsData();
-
 
     };
 }

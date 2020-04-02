@@ -483,21 +483,15 @@ void ft::ChildWindow::calcFeaturesRadiusAdd(QList<FaceFeatureNode *>& list) {
 
     int min_radius = 1e6;
 
-//    auto list_it = list.begin();
-
     for (int i=0; i<list.size(); ++i){
-
         int r = list[i]->getRadius();
         if( r < min_radius)
             min_radius = r;
     }
 
-
     for (int i=0; i<list.size(); ++i){
-
         int r = list[i]->getRadius();
         list[i]->addToRadiusMult =   (float) r/min_radius ;
-
     }
 }
 
@@ -559,16 +553,18 @@ const QString &ft::ChildWindow::getSearchBoxText() const {
     return searchBoxText;
 }
 
-void ft::ChildWindow::setSearchBoxText(const QString &searchBoxText) {
-    ChildWindow::searchBoxText = searchBoxText;
+void ft::ChildWindow::setSearchBoxText(const QString &search_string) {
+    this->searchBoxText = search_string;
 }
 
 void ft::ChildWindow::setSortAsIs() {
     proxy->sort(-1);
+    sortMode = -1;
 }
 
 void ft::ChildWindow::setSortMethod(int order){
     proxy->sort(0, (Qt::SortOrder)order);
+    sortMode = order;
 }
 
 void ft::ChildWindow::setLanmarksGroupsViz(const QString &sType) {
@@ -592,4 +588,3 @@ void ft::ChildWindow::createGroupsData() {
     connect(mapper, SIGNAL(mapped(QString)), this, SLOT(setLanmarksGroupsViz(QString)));
     dataModel()->addSignalMapper(mapper);
 }
-

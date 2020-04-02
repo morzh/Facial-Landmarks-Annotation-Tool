@@ -43,7 +43,6 @@ using namespace std;
 // +-----------------------------------------------------------
 ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui::MainWindow)
 {
-	// Setup the UI
     ui->setupUi(this);
 	QPalette oROPalette = ui->textFileName->palette();
 	oROPalette.setColor(QPalette::Base, oROPalette.midlight().color());
@@ -144,12 +143,11 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
     connect(m_pViewButton->menuAction(), SIGNAL(triggered()), this, SLOT(toggleImageListView()));
 
 
-
-    QAction *pSortAZ = new QAction(QIcon(":/icons/sort_az"), tr("Sort A→Z"), this);
+    QAction *pSortAZ        = new QAction(QIcon(":/icons/sort_az"), tr("Sort A→Z"), this);
+    QAction *pSortZA        = new QAction(QIcon(":/icons/sort_za"), tr("Sort Z→A"), this);
+    QAction *pSortUnsorted  = new QAction(QIcon(":/icons/unsorted"), tr("Unsorted"), this);
     m_pSortButton->addAction(pSortAZ);
-    QAction *pSortZA = new QAction(QIcon(":/icons/sort_za"), tr("Sort Z→A"), this);
     m_pSortButton->addAction(pSortZA);
-    QAction *pSortUnsorted = new QAction(QIcon(":/icons/unsorted"), tr("Unsorted"), this);
     m_pSortButton->addAction(pSortUnsorted);
 
     QSignalMapper *pMapSort = new QSignalMapper(ui->imagesToolbar);
@@ -164,8 +162,8 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
 
 
 	m_pLandmarkGroupsButton->setIcon(QIcon(":/icons/landmarksgroups")); // By default display the image thumbnails
-	m_pSortButton->setIcon(QIcon(":/icons/sorticon")); // By default display the image thumbnails
-	m_pViewButton->setIcon(QIcon(":/icons/viewmodes_bw")); // By default display the image thumbnails
+	m_pSortButton->setIcon(QIcon(":/icons/unsorted")); // By default display the image thumbnails
+	m_pViewButton->setIcon(QIcon(":/icons/viewicons_bw")); // By default display the image thumbnails
 	ui->treeImages->setVisible(false);
 
 	// Default path for file dialogs is the standard documents path
@@ -194,8 +192,6 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
 
 
     ui->menuBar->installEventFilter(this);
-
-
 }
 
 // +-----------------------------------------------------------
@@ -881,7 +877,6 @@ void ft::MainWindow::updateUI()
         pChild->dataModel()->genGroupLandmarksActions(pChild);
         pChild->dataModel()->addGroupLandmarksActions(m_pLandmarkGroupsButton);
         pChild->dataModel()->addGroupLandmarksActions(ui->menuLandmarksGroups);
-//        std::cout << "updateUI bFileOpened" << std::endl;
 	}
 	else
 	{
@@ -1035,20 +1030,7 @@ void ft::MainWindow::on_SearchBox_textEdited(const QString &textToSearch) {
     pChild->setFilterString(textToSearch);
     pChild->setSearchBoxText(textToSearch);
     ui->SearchBox->setText(textToSearch);
-
-/*
-
-    QModelIndexList   lsSelected = pChild->selectionModel()->model()->match(
-            pChild->selectionModel()->model()->index(0,0),  // first row, first column
-            Qt::DisplayRole,  // search the text as displayed
-            textToSearch,  // there is a QVariant(QString) conversion constructor
-            100, // first hit only
-            Qt::MatchContains // or Qt::MatchFixedString
-    );
-    for (auto  item:lsSelected) {
-        pChild->selectionModel()->select(item, QItemSelectionModel::Select);
-    }
-*/
+    pChild->setSearchBoxText(textToSearch);
 }
 
 QList<int> ft::MainWindow::getIndicesOfSelectedImages(ft::ChildWindow *pChild) {
@@ -1071,9 +1053,7 @@ void ft::MainWindow::setLandmarksGroups(const QString &sType) {
     pChild->setLanmarksGroupsViz(sType);
 }
 
-bool ft::MainWindow::eventFilter(QObject *watched, QEvent *event)
-{
-    QPoint dragPosition;
+bool ft::MainWindow::eventFilter(QObject *watched, QEvent *event){
 
     if (watched == ui->menuBar)
     {
@@ -1082,8 +1062,8 @@ bool ft::MainWindow::eventFilter(QObject *watched, QEvent *event)
             QMouseEvent* mouse_event = dynamic_cast<QMouseEvent*>(event);
             if (mouse_event->button() == Qt::LeftButton)
             {
-                dragPosition = mouse_event->globalPos() - frameGeometry().topLeft();
-//                event->accept();
+//                std::cout << mapToGlobal(QPoint(0,0)).x() << " " <<   mapToGlobal(QPoint(0,0)).y() << std::endl;
+                dragPosition = mouse_event->globalPos() - ui->menuBar->mapToGlobal(QPoint(0,0));
                 return false;
             }
         }
@@ -1092,13 +1072,10 @@ bool ft::MainWindow::eventFilter(QObject *watched, QEvent *event)
             QMouseEvent* mouse_event = dynamic_cast<QMouseEvent*>(event);
             if (mouse_event->buttons() & Qt::LeftButton)
             {
-                move(mouse_event->globalPos() - dragPosition);
-//                event->accept();
+                move( mouse_event->globalPos() - dragPosition);
                 return false;
             }
         }
-
-
     }
     return false;
 }

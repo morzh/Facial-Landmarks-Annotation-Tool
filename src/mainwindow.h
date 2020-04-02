@@ -271,6 +271,7 @@ namespace ft
 
         QList<int> getIndicesOfSelectedImages(ChildWindow *pChild);
         bool eventFilter(QObject *watched, QEvent *event);
+        QPoint dragPosition;
 
     };
 };

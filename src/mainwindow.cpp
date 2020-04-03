@@ -159,6 +159,7 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
     pMapSort->setMapping(pSortUnsorted, QString("sort_unsorted"));
 
     connect(pMapSort, SIGNAL(mapped(QString)), this, SLOT(setImageListSort(QString)));
+    connect(m_pSortButton->menuAction(), SIGNAL(triggered()), this, SLOT(toggleImageListSort()));
 
 	m_pLandmarkGroupsButton->setIcon(QIcon(":/icons/landmarksgroups")); // By default display the image thumbnails
 	m_pSortButton->setIcon(QIcon(":/icons/unsorted")); // By default display the image thumbnails
@@ -824,10 +825,17 @@ void ft::MainWindow::toggleImageListView()
 
 void ft::MainWindow::toggleImageListSort()
 {
-	if(ui->treeImages->isVisible())
-		setImageListView("icons");
-	else
-		setImageListView("details");
+    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
+    if (!pChild) return;
+
+    QString sType = pChild->getImageListSortType();
+
+	if(sType == "sort_az")
+		setImageListSort("sort_za");
+	else if (sType == "sort_za")
+		setImageListSort("sort_unsorted");
+	else if (sType == "sort_unsorted")
+        setImageListSort("sort_az");
 }
 
 // +-----------------------------------------------------------

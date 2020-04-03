@@ -41,8 +41,7 @@ namespace ft
     public:
 
         void setSortMethod(int order);
-
-        void setSortAsIs();
+        void setSortMenu();
 
         /**
 		 * Class constructor.
@@ -273,13 +272,19 @@ namespace ft
         QSortFilterProxyModel   *proxy;
         KLinkItemSelectionModel *m_pFaceSelectionProxyModel;
         QString                  searchBoxText;
-        int                     sortMode;
-        QUndoStack *undoStack = nullptr;
+        QString                 imageListViewType = "icons";
+        QString                 imageListSortType = "sort_unsorted";
+        int                     sortMode=-1;
+        QUndoStack              *undoStack = nullptr;
     public:
-        QSignalMapper* mapper = nullptr;
+        QSignalMapper           * mapper = nullptr;
 
         void createGroupsData();
+        void setImageListViewType(const QString &sType);
+        void setImageListSortType(const QString &sType);
 
+        QString getImageListViewType();
+        QString getImageListSortType();
     };
 }
 

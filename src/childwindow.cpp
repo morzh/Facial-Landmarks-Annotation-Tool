@@ -69,11 +69,8 @@ ft::ChildWindow::ChildWindow(QWidget *pParent) :
     proxy->setDynamicSortFilter(true);
     proxy->setSourceModel(m_pFaceDatasetModel);
 
-    m_pFaceSelectionProxyModel = new KLinkItemSelectionModel(proxy, m_pFaceSelectionModel, this);
-
-
     undoStack = new QUndoStack(this);
-
+    m_pFaceSelectionProxyModel = new KLinkItemSelectionModel(proxy, m_pFaceSelectionModel, this);
 }
 
 // +-----------------------------------------------------------
@@ -557,13 +554,18 @@ void ft::ChildWindow::setSearchBoxText(const QString &search_string) {
     this->searchBoxText = search_string;
 }
 
-void ft::ChildWindow::setSortAsIs() {
-    proxy->sort(-1);
-    sortMode = -1;
+void ft::ChildWindow::setSortMenu(){
+
+//    proxy->sort(sortMode);
 }
 
 void ft::ChildWindow::setSortMethod(int order){
-    proxy->sort(0, (Qt::SortOrder)order);
+
+    if (order == -1)
+        proxy->sort(-1);
+    else
+        proxy->sort(0, (Qt::SortOrder)order);
+
     sortMode = order;
 }
 
@@ -587,4 +589,20 @@ void ft::ChildWindow::createGroupsData() {
     mapper = new QSignalMapper(this);
     connect(mapper, SIGNAL(mapped(QString)), this, SLOT(setLanmarksGroupsViz(QString)));
     dataModel()->addSignalMapper(mapper);
+}
+
+void ft::ChildWindow::setImageListViewType(const QString &sType) {
+    imageListViewType = sType;
+}
+
+void ft::ChildWindow::setImageListSortType(const QString &sType) {
+    imageListSortType = sType;
+}
+
+QString ft::ChildWindow::getImageListViewType() {
+    return imageListViewType;
+}
+
+QString ft::ChildWindow::getImageListSortType() {
+    return imageListSortType;
 }

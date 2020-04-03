@@ -164,34 +164,13 @@ namespace ft
 		 * Slot for the menu Show Face Feature Nodes trigger event.
 		 */
 		void on_actionShowFeatures_triggered(bool bChecked);
-
-		/**
-		 * Slot for the menu Show Face Feature Edges trigger event.
-		 */
 		void on_actionShowConnections_triggered(bool bChecked);
-
-		/**
-		 * Slot for the menu Show Ids of Face Feature Nodes trigger event.
-		 */
 		void on_actionShowFeatureIDs_triggered(bool bChecked);
-
-		/**
-		 * Slot for the menu Add Feature trigger event.
-		 */
 		void on_actionAddFeature_triggered();
-
-		/**
-		 * Slot for the menu Remove Feature trigger event.
-		 */
 		void on_actionRemoveFeature_triggered();
-
-		/**
-		 * Slot for the menu Connect Features trigger event.
-		 */
 		void on_actionConnectFeatures_triggered();
-		void on_actionDisconnectFeatures_triggered(); ///  Slot for the menu Disconnect Features trigger event.
+		void on_actionDisconnectFeatures_triggered();
 		void on_actionLandmarksProperties_triggered();
-
         void  on_actionSpaceEvenly_triggered();
 
 		/**
@@ -205,6 +184,7 @@ namespace ft
 		 * Helper method to toggle the current view for the list of images (used in the shortcut button).
 		 */
 		void toggleImageListView();
+		void toggleImageListSort();
 
 		/**
 		 * Slot to capture indications of update in the UI due to changes in the child window selection model.
@@ -251,7 +231,6 @@ namespace ft
     private:
         /** Instance of the ui for GUI element access. */
         Ui::MainWindow *ui;
-
         /** Instance of the about dialog box. */
         AboutWindow* m_pAbout;
         LandmarksProperties* m_pLProperties;

@@ -126,10 +126,10 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
 
 
     QAction *pViewDetails = new QAction(QIcon(":/icons/viewdetails_bw"), tr("&Details"), this);
-	pViewDetails->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
-	m_pViewButton->addAction(pViewDetails);
-	QAction *pViewIcons = new QAction(QIcon(":/icons/viewicons_bw"), tr("&Icons"), this);
-	pViewIcons->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_I));
+    QAction *pViewIcons = new QAction(QIcon(":/icons/viewicons_bw"), tr("&Icons"), this);
+    pViewDetails->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
+    pViewIcons->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_I));
+    m_pViewButton->addAction(pViewDetails);
 	m_pViewButton->addAction(pViewIcons);
 
 
@@ -143,8 +143,8 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
     connect(m_pViewButton->menuAction(), SIGNAL(triggered()), this, SLOT(toggleImageListView()));
 
 
-    QAction *pSortAZ        = new QAction(QIcon(":/icons/sort_az"), tr("Sort A→Z"), this);
-    QAction *pSortZA        = new QAction(QIcon(":/icons/sort_za"), tr("Sort Z→A"), this);
+    QAction *pSortAZ        = new QAction(QIcon(":/icons/sort_az"),  tr("Sort A→Z"), this);
+    QAction *pSortZA        = new QAction(QIcon(":/icons/sort_za"),  tr("Sort Z→A"), this);
     QAction *pSortUnsorted  = new QAction(QIcon(":/icons/unsorted"), tr("Unsorted"), this);
     m_pSortButton->addAction(pSortAZ);
     m_pSortButton->addAction(pSortZA);
@@ -160,7 +160,6 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
 
     connect(pMapSort, SIGNAL(mapped(QString)), this, SLOT(setImageListSort(QString)));
 
-
 	m_pLandmarkGroupsButton->setIcon(QIcon(":/icons/landmarksgroups")); // By default display the image thumbnails
 	m_pSortButton->setIcon(QIcon(":/icons/unsorted")); // By default display the image thumbnails
 	m_pViewButton->setIcon(QIcon(":/icons/viewicons_bw")); // By default display the image thumbnails
@@ -169,8 +168,8 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
 	// Default path for file dialogs is the standard documents path
 	m_sLastPathUsed = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)) + QDir::separator();
 
-	// Default path for the face-fit utility
-	m_sFaceFitPath = "";
+
+	m_sFaceFitPath = ""; /// Default path for the face-fit utility
 	m_oFitProcess = new QProcess(this);
 	connect(m_oFitProcess, SIGNAL(error(QProcess::ProcessError)), this, SLOT(onFitError(::ProcessError)));
 	connect(m_oFitProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFitFinished(int, QProcess::ExitStatus)));
@@ -186,10 +185,7 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
 			pAction->setToolTip(QString("%1 (%2)").arg(pAction->toolTip()).arg(pAction->shortcut().toString()));
 	}
 
-	// Connect the zoom slider
 	connect(ui->zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(onZoomSliderValueChanged(int)));
-//    connect(pLmsGrps_lBrow, SIGNAL(triggered()), this, SLOT(onBrowLeftChanged()));
-
 
     ui->menuBar->installEventFilter(this);
 }
@@ -778,6 +774,8 @@ void ft::MainWindow::setImageListSort(QString sType){
     ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
     if (!pChild) return;
 
+    pChild->setImageListSortType(sType);
+
     if(sType == "sort_az")
     {
         m_pSortButton->setIcon(QIcon(":/icons/sort_az"));
@@ -790,11 +788,16 @@ void ft::MainWindow::setImageListSort(QString sType){
     }
     else if (sType == "sort_unsorted"){
         m_pSortButton->setIcon(QIcon(":/icons/unsorted"));
-        pChild->setSortAsIs();
+        pChild->setSortMethod(-1);
     }
 }
 
 void ft::MainWindow::setImageListView(QString sType){
+
+    ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
+    if (!pChild) return;
+
+    pChild->setImageListViewType(sType);
 
 	if(sType == "details")
 	{
@@ -812,6 +815,14 @@ void ft::MainWindow::setImageListView(QString sType){
 
 // +-----------------------------------------------------------
 void ft::MainWindow::toggleImageListView()
+{
+	if(ui->treeImages->isVisible())
+		setImageListView("icons");
+	else
+		setImageListView("details");
+}
+
+void ft::MainWindow::toggleImageListSort()
 {
 	if(ui->treeImages->isVisible())
 		setImageListView("icons");
@@ -840,7 +851,6 @@ void ft::MainWindow::updateUI()
 {
 	// Setup the control variables
 	ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
-//	QSignalMapper* lmsgrpMapper;
 
 	bool bLandmarksPropertiesOpened = pChild != NULL;
 	bool bFileOpened = pChild != NULL;
@@ -854,15 +864,14 @@ void ft::MainWindow::updateUI()
 	QList<FaceFeatureNode*> lFeats;
 	QList<FaceFeatureEdge*> lConns;
 
-	if(bFileOpened)
-	{
+	if(bFileOpened){
 		lFeats = pChild->getSelectedFeatures();
 		lConns = pChild->getSelectedConnections();
 	}
 
-	bool bFeaturesSelected = lFeats.size() > 0;
-	bool bConnectionsSelected = lConns.size() > 0;
-	bool bFeaturesConnectable = lFeats.size() == 2 && lConns.size() == 0;
+	bool bFeaturesSelected      = lFeats.size() > 0;
+	bool bConnectionsSelected   = lConns.size() > 0;
+	bool bFeaturesConnectable   = lFeats.size() == 2 && lConns.size() == 0;
 
 	// Update the data and selection models
 	if(bFileOpened)
@@ -873,6 +882,10 @@ void ft::MainWindow::updateUI()
         ui->listImages->setSelectionModel(pChild->selectionProxyModel());
         ui->treeImages->setModel(pChild->dataProxyModel());
         ui->treeImages->setSelectionModel(pChild->selectionProxyModel());
+
+        setImageListView(pChild->getImageListViewType());
+        setImageListSort(pChild->getImageListSortType());
+
 
         pChild->dataModel()->genGroupLandmarksActions(pChild);
         pChild->dataModel()->addGroupLandmarksActions(m_pLandmarkGroupsButton);
@@ -938,8 +951,7 @@ void ft::MainWindow::onZoomLevelChanged(int iValue)
 }
 
 // +-----------------------------------------------------------
-void ft::MainWindow::onUpdateUI()
-{
+void ft::MainWindow::onUpdateUI(){
 	updateUI();
 }
 
@@ -1045,10 +1057,12 @@ QList<int> ft::MainWindow::getIndicesOfSelectedImages(ft::ChildWindow *pChild) {
 
 
 void ft::MainWindow::setLandmarksGroups(const QString &sType) {
+
     ChildWindow *pChild = (ChildWindow*) ui->tabWidget->currentWidget();
     if(!pChild )   return;
     pChild->setLanmarksGroupsViz(sType);
 }
+
 
 bool ft::MainWindow::eventFilter(QObject *watched, QEvent *event){
 
@@ -1059,7 +1073,6 @@ bool ft::MainWindow::eventFilter(QObject *watched, QEvent *event){
             QMouseEvent* mouse_event = dynamic_cast<QMouseEvent*>(event);
             if (mouse_event->button() == Qt::LeftButton)
             {
-//                std::cout << mapToGlobal(QPoint(0,0)).x() << " " <<   mapToGlobal(QPoint(0,0)).y() << std::endl;
                 dragPosition = mouse_event->globalPos() - ui->menuBar->mapToGlobal(QPoint(0,0));
                 return false;
             }

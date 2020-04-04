@@ -28,8 +28,8 @@ int main(int argc, char *argv[])
 	FtApplication oApp(argc, argv);
 	
 	MainWindow oMainWindow;
-	QObject::connect(FtApplication::instance(), SIGNAL(statusMessageShown(const QString &, const int)), &oMainWindow, SLOT(showStatusMessage(const QString &, const int)));
 
+	QObject::connect(FtApplication::instance(), SIGNAL(statusMessageShown(const QString &, const int)), &oMainWindow, SLOT(showStatusMessage(const QString &, const int)));
     oMainWindow.setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
 /*
     QFile f(":darcula.css");

@@ -48,8 +48,7 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
 	oROPalette.setColor(QPalette::Base, oROPalette.midlight().color());
 	ui->textFileName->setPalette(oROPalette);
 
-    setWindowState(Qt::WindowMaximized);
-    m_pAbout = NULL;
+    setWindowState( Qt::WindowMaximized );
 
     m_pLandmarkGroupsButton = new QMenu(ui->toolsToolBar);
     ui->toolsToolBar->addAction(m_pLandmarkGroupsButton->menuAction());
@@ -84,8 +83,17 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
 
     closeButton->setIcon(QIcon(":/icons/close"));
     fullScreenButton->setIcon(QIcon(":/icons/fullscreen"));
-    restoreButton->setIcon(QIcon(":/icons/maximize"));
     minimizeButton->setIcon(QIcon(":/icons/minimize"));
+
+    if ( windowState().testFlag(Qt::WindowMaximized)  ) {
+        std::cout << "MAximized" << std::endl;
+        restoreButton->setIcon(QIcon(":/icons/unmaximize"));
+    }
+    else if ( windowState().testFlag(Qt::WindowNoState)) {
+        std::cout << "No State" << std::endl;
+        restoreButton->setIcon(QIcon(":/icons/maximize"));
+    }
+
 
     closeButton->setIconSize(QSize(16, 16));
     fullScreenButton->setIconSize(QSize(16, 16));
@@ -166,10 +174,7 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
 	m_pViewButton->setIcon(QIcon(":/icons/viewicons_bw")); // By default display the image thumbnails
 	ui->treeImages->setVisible(false);
 
-	// Default path for file dialogs is the standard documents path
 	m_sLastPathUsed = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)) + QDir::separator();
-
-
 	m_sFaceFitPath = ""; /// Default path for the face-fit utility
 	m_oFitProcess = new QProcess(this);
 	connect(m_oFitProcess, SIGNAL(error(QProcess::ProcessError)), this, SLOT(onFitError(::ProcessError)));
@@ -189,6 +194,7 @@ ft::MainWindow::MainWindow(QWidget *pParent) :   QMainWindow(pParent), ui(new Ui
 	connect(ui->zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(onZoomSliderValueChanged(int)));
 
     ui->menuBar->installEventFilter(this);
+
 }
 
 // +-----------------------------------------------------------
@@ -405,19 +411,16 @@ void ft::MainWindow::on_actionFullScreen_triggered()
 {
     this->setWindowState(Qt::WindowFullScreen);
 }
-void ft::MainWindow::on_actionRestore_triggered()
-{
+void ft::MainWindow::on_actionRestore_triggered(){
+
     auto wState = windowState();
 
     if ( wState== Qt::WindowFullScreen)
         setWindowState(Qt::WindowMaximized);
     else if ( wState == Qt::WindowMaximized)
         setWindowState(Qt::WindowNoState);
-//        resize(QSize(800,600));
     else if ( wState != Qt::WindowMaximized)
         setWindowState(Qt::WindowMaximized);
-
-//    this->setWindowState(this->windowState() & ~Qt::WindowMinimized | Qt::WindowActive);
 }
 
 

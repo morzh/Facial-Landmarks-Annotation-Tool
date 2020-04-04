@@ -60,10 +60,12 @@
         <file>resources/icons/landmarksgroups2.png</file>
         <file>resources/icons/close-bw.png</file>
         <file>resources/icons/maximize-bw.png</file>
+        <file>resources/icons/unmaximize-bw.png</file>
         <file>resources/icons/minimize-bw.png</file>
         <file>resources/icons/fullscreen-bw.png</file>
         <file alias="close">resources/icons/close-bw.png</file>
         <file alias="maximize">resources/icons/maximize-bw.png</file>
+        <file alias="unmaximize">resources/icons/unmaximize-bw.png</file>
         <file alias="minimize">resources/icons/minimize-bw.png</file>
         <file alias="fullscreen">resources/icons/fullscreen-bw.png</file>
     </qresource>

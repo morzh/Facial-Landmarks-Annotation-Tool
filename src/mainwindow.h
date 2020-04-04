@@ -179,11 +179,7 @@ namespace ft
 		 */
 		void setImageListView(QString sType);
 		void setImageListSort(QString sType);
-
-		/**
-		 * Helper method to toggle the current view for the list of images (used in the shortcut button).
-		 */
-		void toggleImageListView();
+		void toggleImageListView(); /// Helper method to toggle the current view for the list of images (used in the shortcut button).
 		void toggleImageListSort();
 
 		/**
@@ -223,35 +219,27 @@ namespace ft
 		* @param eExitStatus QProcess::ExitStatus enumeration with the utility exit status.
 		*/
 		void onFitFinished(int iExitCode, QProcess::ExitStatus eExitStatus);
-
         void on_SearchBox_textEdited(const QString &textToSearch);
         void setLandmarksGroups(const QString &sType);
 
 
     private:
-        /** Instance of the ui for GUI element access. */
-        Ui::MainWindow *ui;
-        /** Instance of the about dialog box. */
-        AboutWindow* m_pAbout;
+        QList<int>  getIndicesOfSelectedImages(ChildWindow *pChild);
+        bool        eventFilter(QObject *watched, QEvent *event);
+
+        Ui::MainWindow *ui;/** Instance of the ui for GUI element access. */
+        AboutWindow* m_pAbout = nullptr;/** Instance of the about dialog box. */
         LandmarksProperties* m_pLProperties;
-		/** Last path used in File Dialogs. */
-		QString m_sLastPathUsed;
-		/** Path to the face-fit utility. */
-		QString m_sFaceFitPath;
+		QString m_sLastPathUsed;/** Last path used in File Dialogs. */
+		QString m_sFaceFitPath;/** Path to the face-fit utility. */
 		/** Instance of a dropdown buttons for the view mode of the image list. */
 		QMenu *m_pViewButton;
 		QMenu *m_pSortButton;
 		QMenu *m_pLandmarkGroupsButton;
-		/** Process instance to execute the face-fit utility. */
-		QProcess *m_oFitProcess;
-		/** Name of the temporary file used for the face-fit utility. */
-		QString m_sFitTempFile;
 
-
-        QList<int> getIndicesOfSelectedImages(ChildWindow *pChild);
-        bool eventFilter(QObject *watched, QEvent *event);
+		QProcess *m_oFitProcess;/** Process instance to execute the face-fit utility. */
+		QString m_sFitTempFile;/** Name of the temporary file used for the face-fit utility. */
         QPoint dragPosition;
-
     };
 };
 

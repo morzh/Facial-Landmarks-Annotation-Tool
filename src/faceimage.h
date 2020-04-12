@@ -134,20 +134,12 @@ namespace ft
 		QPixmap pixMap() const;
 
 	protected:
-
-		/**
-		 * Clears the internal data (like face features).
-		 */
-		void clear();
+		void clear();	/**  Clears the internal data (like face features).  */
 
 	private:
-
-		/** Name of the file with the face image. */
-		QString m_sFileName;
-		/** Vector of the face features in this face image. */
-		std::vector<FaceFeature*> m_vFeatures;
-		/** Vector of the connections between face features in this face image. */
-		std::vector<FaceFeatureEdge*> m_vConnections;
+		QString m_sFileName;/** Name of the file with the face image. */
+		std::vector<FaceFeature*> m_vFeatures;/** Vector of the face features in this face image. */
+		std::vector<FaceFeatureEdge*> m_vConnections;/** Vector of the connections between face features in this face image. */
     };
 }
 

@@ -159,17 +159,13 @@ namespace ft
 		 * Queries the number of facial features in the dataset (applicable to all images).
 		 * @return Integer with the number of face features in the dataset.
 		 */
-		int numFeatures() const;
-
-        QList<QString> getImageNamesList() const;
-        void addGroupLandmarksActions(QMenu *button);
-
-        void genGroupLandmarksActions(QObject* parent);
-
-        void addSignalMapper(QSignalMapper *mapper);
-
-        void getMatchedRange(const QString &sType, int *pStart, int *pEnd, bool *isChecked);
-        QList<QList<QList<int>>> getGroupsIndices();
+		int                         numFeatures() const;
+        QList<QString>              getImageNamesList() const;
+        void                        addGroupLandmarksActions(QMenu *button);
+        void                        genGroupLandmarksActions(QObject* parent);
+        void                        addSignalMapper(QSignalMapper *mapper);
+        void                        getMatchedRange(const QString &sType, int *pStart, int *pEnd, bool *isChecked);
+        QList<QList<QList<int>>>    getGroupsIndices();
 
     protected:
 

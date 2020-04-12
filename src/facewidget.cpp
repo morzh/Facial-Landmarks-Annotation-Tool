@@ -38,6 +38,9 @@ const double ft::FaceWidget::ROTATE_RIGHT_STEP = -2.0;
 const double ft::FaceWidget::ZOOM_IN_FEATURES_STEP  = +1;
 const double ft::FaceWidget::ZOOM_OUT_FEATURES_STEP = -1;
 
+const double ft::FaceWidget::BRIGHTNESS_DOWN_STEP  = -0.1;
+const double ft::FaceWidget::BRIGHTNESS_UP_STEP = +0.1;
+
 // Number of face features edited by the widget
 const int ft::FaceWidget::NUM_FACE_FEATURES = 68;
 
@@ -248,6 +251,15 @@ void ft::FaceWidget::rotateRight() {
 
     rotateViewBy(ROTATE_RIGHT_STEP);
 }
+
+void ft::FaceWidget::brightnessUp() {
+    scaleBrightnessBy(BRIGHTNESS_UP_STEP);
+}
+
+void ft::FaceWidget::brightnessDown() {
+    scaleBrightnessBy(BRIGHTNESS_DOWN_STEP);
+}
+
 
 void ft::FaceWidget::rotateViewBy(double dFactorBy) {
 
@@ -598,11 +610,13 @@ void ft::FaceWidget::addToFeaturesRadius(int add2Radius) {
 
 
 template<class T>
-constexpr const T& ft::FaceWidget::clamp( const T& v, const T& lo, const T& hi )
-{
-//    if (hi < lo)
-//        std::swap(lo,hi);
-
+constexpr const T& ft::FaceWidget::clamp( const T& v, const T& lo, const T& hi ){
     return (v < lo) ? lo : (hi < v) ? hi : v;
 }
+
+
+void ft::FaceWidget::scaleBrightnessBy(const double step) {
+
+}
+
 

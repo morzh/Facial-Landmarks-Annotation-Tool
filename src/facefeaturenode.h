@@ -82,9 +82,9 @@ namespace ft
 		 * Updates the identifier of the feature node.
 		 * @param iID Integer with the new identifier for the feature node.
 		 */
-		void setID(int iID);
-		int getRadius() const;
-		void setRadius(int r);
+		void    setID(int iID);
+		int     getRadius() const;
+		void    setRadius(int r);
 
 	public:
 

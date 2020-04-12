@@ -138,14 +138,11 @@ void ft::FaceFeatureNode::paint(QPainter *pPainter, const QStyleOptionGraphicsIt
         pPainter->drawText(boundingRect(true), sID);
     }
 
-    if(isSelected())
-    {
-
+    if(isSelected()){
         pPainter->setPen(QPen(Qt::black, 1));
         oBrush.setColor(QColor(Qt::red));
     }
-    else
-    {
+    else{
         pPainter->setPen(QPen(Qt::black, 1));
         oBrush.setColor(QColor(Qt::yellow));
     }

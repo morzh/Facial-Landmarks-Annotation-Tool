@@ -52,6 +52,9 @@ namespace ft
 		static const double ZOOM_IN_FEATURES_STEP;/** Scale value for features radius. */
 		static const double ZOOM_OUT_FEATURES_STEP;/** Scale value for features radius. */
 
+		static const double BRIGHTNESS_DOWN_STEP;
+		static const double BRIGHTNESS_UP_STEP;
+
 		/** * Class constructor.  * @param pParent Instance of the parent widget. 	 */
 		FaceWidget(QWidget *pParent = 0);
 		virtual ~FaceWidget();
@@ -60,11 +63,13 @@ namespace ft
 		 * Updates the pixmap displayed at the central area.
 		 * @param oPixmap Reference for a QPixmap with the new pixmap to display.
 		 */
-		void    setPixmap(const QPixmap &oPixmap);
-		double  getScaleFactor() const; /// Gets the currently applied scale factor on the image displayed.  @return Double with the currently applied scale factor.
-		void    setScaleFactor(const double dScaleFactor);/// Sets the scale factor of the image displayed.  @param dScaleFactor Double with the new scale factor to be applied. It must be  in the interval [0.10, 13.0].
-	    void    zoomIn();/// Performs one step of zoom in.
-		void    zoomOut();/// Performs one step of zoom out.
+		void    setPixmap       ( const QPixmap &oPixmap );
+		double  getScaleFactor  ( ) const; /// Gets the currently applied scale factor on the image displayed.  @return Double with the currently applied scale factor.
+		void    setScaleFactor  ( const double dScaleFactor );/// Sets the scale factor of the image displayed.  @param dScaleFactor Double with the new scale factor to be applied. It must be  in the interval [0.10, 13.0].
+	    void    zoomIn          ( );/// Performs one step of zoom in.
+		void    zoomOut         ( );/// Performs one step of zoom out.
+		void    brightnessUp    ( );
+		void    brightnessDown  ( );
 
         double  getRotateFactor() const;
         void    setRotateFactor(const double dRotateFactor);
@@ -274,6 +279,7 @@ namespace ft
 		QMenu *m_pContextMenu; ///  Context menu for the face feature editor.
 
 
+        void scaleBrightnessBy(const double step);
     };
 };
 

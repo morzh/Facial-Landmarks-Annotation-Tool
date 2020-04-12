@@ -34,38 +34,15 @@ namespace ft
 	class FaceFeature : public QPointF
     {
 	public:
-
-		/**
-		 * Class constructor.
-		 */
 		FaceFeature();
-
-		/**
-		 * Class constructor.
-		 * @param iID Integer with the feature identifier.
-		 * @param x Float with the x coordinate of the face feature.
-		 * @param y Float with the y coordinate of the face feature.
-		 */
+		/**		 * Class constructor.		 * @param iID  feature identifier.		 * @param x  x coordinate of the face feature.		 * @param y  y coordinate of the face feature.		 */
 		FaceFeature(int iID, float x, float y);
 
-
-		QVector2D toVector();
-
-
-		void setRadius(int R);
-        int getRadius() const;
-
-        /**
-		 * Getter of the feature ID.
-		 * @return Integer with the ID of the feature.
-		 */
-		int getID() const;
-
-		/**
-		 * Setter of the feature ID.
-		 * @param iID Integer with the new ID for the feature.
-		 */
-		void setID(int iID);
+		QVector2D   toVector();
+		void        setRadius(int R);
+        int         getRadius() const;
+		int         getID() const;         /** Getter of the feature ID. * @return Integer with the ID of the feature.	 */
+		void        setID(int iID);        /**	Setter of the feature ID.  * @param iID Integer with the new ID for the feature.	*/
 
 		/**
 		 * Connects this feature to the feature of given ID.
@@ -99,17 +76,11 @@ namespace ft
          */
         void saveToXML(QDomElement &oParent) const;
 
-
-
 	private:
-
-		/** Identifier of the face feature. */
-		int m_iID;
-		QColor  color;
-		int radius =3;
-
-		/** List of other features to which this feature is connected to. */
-		std::vector<int> m_vConnections;
+		int                 m_iID;/** Identifier of the face feature. */
+		QColor              color;
+		int                 radius =3;
+		std::vector<int>    m_vConnections;/** List of other features to which this feature is connected to. */
     };
 }
 
